@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,4 +33,58 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public void main(Locale locale, Model model) {
+		
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void login(Model model) {
+		
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public void join(Model model) {
+		
+	}
+	
+//	@RequestMapping("/signUp.do")
+//	public String signUp(Model model) throws Exception {
+//
+//		User user = new User();
+//		//		UserVO userVO = new UserVO();	
+//		//		homeMapper.insertUser(userVO);
+//		
+//		model.addAttribute("user", user);
+//		return "signUp";
+//	}
+//	
+//	@RequestMapping("/actionSignUp.do")
+//	public String actionSignUp(@ModelAttribute @Valid ActionSignUpDTO actionSignUpDTO, BindingResult bindingResult,
+//			Model model) throws Exception {
+//		
+//		if(bindingResult.hasErrors()){
+//			return "signUp";
+//		}
+//		
+//		int count = homeMapper.selectUsersCount(actionSignUpDTO.getUsername());
+//		if(count == 0){
+//			String username = actionSignUpDTO.getUsername();
+//			String password = actionSignUpDTO.getPassword();
+//			String name = actionSignUpDTO.getName();
+//			String email = actionSignUpDTO.getEmail();
+//			String phone = actionSignUpDTO.getPhone();
+//			String address = actionSignUpDTO.getAddress();
+//			homeMapper.insertUser(username, password, name, email, phone, address);
+//		} else {
+///*			에러 예외처리
+//			throw new NullPointerException();
+//			User user = null;
+//			user.getId();
+//			user.setName("AAAA");*/
+//			
+//			return "signUp";
+//		}
+//		return "redirect:/main.do";
+//	}
 }
