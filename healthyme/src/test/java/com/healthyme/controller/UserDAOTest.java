@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.healthyme.dao.UserDAO;
 import com.healthyme.domain.UserVO;
-import com.healthyme.persistence.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -36,7 +36,6 @@ public class UserDAOTest {
 		
     	dao.insertUser(userVO);
     	
-
     }
 
 }

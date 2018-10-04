@@ -1,0 +1,27 @@
+body, div {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	width: 100%;
+	background: #fff;
+	padding-top: 70px;
+}
+
+#header {
+	float: right;
+	list-style: none;
+	
+}
+
+ul, li {
+	display: inline;
+	list-style: none;
+}
+
+a { text-decoration: none;}
+a:hover {color:blue;}
+img { border: 0; }
+
+topWrap {width:100}

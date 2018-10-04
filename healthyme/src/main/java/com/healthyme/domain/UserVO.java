@@ -7,6 +7,7 @@ public class UserVO {
 	private String userpw;
 	private String username;
 	private String email;
+	private int phone;
 	private Date regDate;
 	private Date updateDate;
 	
@@ -27,6 +28,12 @@ public class UserVO {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public int getPhone() {
+		return phone;
+	}
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;

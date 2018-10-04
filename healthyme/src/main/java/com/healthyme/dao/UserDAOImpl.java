@@ -1,4 +1,4 @@
-package com.healthyme.persistence;
+package com.healthyme.dao;
 
 import javax.inject.Inject;
 
@@ -30,7 +30,6 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	//.../zex00/src/main/resources/mappers/xMemberMapper.xml에서 설정한 namespace 참조.
 	private static final String namespace = "com.healthyme.mapper.UserMapper";
 	
 	@Override

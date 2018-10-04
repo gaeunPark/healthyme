@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.healthyme.mapper.UserMapper">
 
 	<select id="getTime" resultType="String">
@@ -11,24 +11,17 @@
 	</select>
 
 	<insert id="insertUser">
-		insert into user (userid, userpw, username, email)
-		values (#{userid}, #{userpw}, #{username}, #{email})
+		insert into user (userid, userpw, username, email, phone)
+		values (#{userid}, #{userpw}, #{username}, #{email}, #{phone})
 	</insert>
+	
+	<select id="selecttUser" resultType="com.healthyme.domain.UserVO">
+		select *
+		from user
+		where userid = #{userid}
+	</select>
 
 
-	<!-- <resultMap type="com.jsonobject.example.domain.User" id="userMap"> 
-		<result property="id" column="id"/> <result property="name" column="name"/> 
-		<result property="age" column="age"/> <result property="createdAt" column="created_at"/> 
-		<result property="updatedAt" column="updated_at"/> <result property="deletedAt" 
-		column="deleted_at"/> <result property="isDeleted" column="is_deleted"/> 
-		</resultMap> -->
-
-	<!-- <select id="selectUserList" parameterType="com.jsonobject.example.domain.User" 
-		resultMap="userMap"> SELECT id, name, age, created_at, updated_at, deleted_at, 
-		is_deleted <if test="limit != null and offset != null"> , COUNT(0) AS total_count 
-		</if> FROM users <where> <if test="id != null"> AND id = #{id} </if> <if 
-		test="name != null"> AND name = #{name} </if> </where> ORDER BY created_at 
-		DESC <if test="limit != null and offset != null"> LIMIT #{limit} OFFSET #{offset} 
-		</if> </select> -->
+	
 
 </mapper>

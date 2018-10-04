@@ -1,4 +1,4 @@
-package com.healthyme.persistence;
+package com.healthyme.dao;
 
 import com.healthyme.domain.UserVO;
 

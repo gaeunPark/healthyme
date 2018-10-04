@@ -4,20 +4,27 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.healthyme.domain.UserVO;
+import com.healthyme.service.UserService;
 
 
 @Controller
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Inject
+	private UserService userService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -34,18 +41,30 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void main(Locale locale, Model model) {
-		
-	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void login(Model model) {
+	public void main(Locale locale, Model model) throws Exception {
 		
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public void join(Model model) {
+	public void joinGET(UserVO userVO, Model model) throws Exception {
 		
+	}
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String joinPOST(@ModelAttribute UserVO userVO, Model model) throws Exception {
+		
+		userService.join(userVO);
+		
+		return "redirect:/home";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void loginGET(Model model) throws Exception {
+		
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPOST(Model model) throws Exception {
+		
+		return "redirect:/home";
 	}
 	
 //	@RequestMapping("/signUp.do")
