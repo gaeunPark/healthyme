@@ -62,6 +62,11 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void loginPost(Model model) throws Exception {
+		
+	}
+	
 	
 	
 //	@RequestMapping("/signUp.do")
