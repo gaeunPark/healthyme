@@ -61,11 +61,8 @@ public class HomeController {
 	public void loginGET(Model model) throws Exception {
 		
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPOST(Model model) throws Exception {
-		
-		return "redirect:/home";
-	}
+	
+	
 	
 //	@RequestMapping("/signUp.do")
 //	public String signUp(Model model) throws Exception {
@@ -96,7 +93,7 @@ public class HomeController {
 //			String address = actionSignUpDTO.getAddress();
 //			homeMapper.insertUser(username, password, name, email, phone, address);
 //		} else {
-///*			에러 예외처리
+///*			�뿉�윭 �삁�쇅泥섎━
 //			throw new NullPointerException();
 //			User user = null;
 //			user.getId();
