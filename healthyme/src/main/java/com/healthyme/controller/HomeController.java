@@ -62,8 +62,13 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void loginPost(Model model) throws Exception {
+		
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public void test(Model model) throws Exception {
 		
 	}
 	

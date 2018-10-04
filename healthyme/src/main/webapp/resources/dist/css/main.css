@@ -1,12 +1,13 @@
-body, div {
+div {
 	padding: 0px;
 	margin: 0px;
 }
 
 body {
+	margin: 0px;
 	width: 100%;
 	background: #fff;
-	padding-top: 70px;
+	padding-top: 300px;
 }
 
 #header {
