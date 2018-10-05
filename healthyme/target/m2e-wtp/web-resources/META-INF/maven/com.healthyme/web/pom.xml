@@ -129,6 +129,21 @@
 		<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis/3.4.5 Spring과 
 			MyBatis 사이에 두 프레임워크의 접착제 역할을 하는 모듈 추가. mybatis, mybatis-spring, spring-jdbc, 
 			spring-test. 이후 root-context.xml에서 다양한 태그 사용가능함. -->
+			
+		<!-- Json -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.7</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<!-- mybatis -->

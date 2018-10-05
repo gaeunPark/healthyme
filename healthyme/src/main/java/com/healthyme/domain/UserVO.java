@@ -3,14 +3,22 @@ package com.healthyme.domain;
 import java.util.Date;
 
 public class UserVO {
+	private long idx;
 	private String userid;
 	private String userpw;
 	private String username;
 	private String email;
-	private int phone;
+	private String phone;
 	private Date regDate;
 	private Date updateDate;
 	
+	
+	public long getIdx() {
+		return idx;
+	}
+	public void setIdx(long idx) {
+		this.idx = idx;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -29,10 +37,10 @@ public class UserVO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {

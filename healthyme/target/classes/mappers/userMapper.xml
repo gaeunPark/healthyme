@@ -15,7 +15,7 @@
 		values (#{userid}, #{userpw}, #{username}, #{email}, #{phone})
 	</insert>
 	
-	<select id="selecttUser" resultType="com.healthyme.domain.UserVO">
+	<select id="selectUser" resultType="com.healthyme.domain.UserVO">
 		select *
 		from user
 		where userid = #{userid}
