@@ -3,15 +3,13 @@ package com.healthyme.controller;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,8 +17,6 @@ import com.healthyme.domain.UserVO;
 import com.healthyme.service.UserService;
 
 
-//@RestController
-//@RequestMapping("/controller")
 @Controller
 public class HomeController {
 	
@@ -31,48 +27,28 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homeGET(Model model) throws Exception {
-//		logger.info("홈 화면");
+		logger.info("홈 화면");
 		System.out.println("홈화면");
+		
 		return "home";
 	}
 	
-	
-	/*@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String joinPOST(@ModelAttribute UserVO userVO, Model model) throws Exception {
-
-		userService.join(userVO);
-	
-		return "redirect:/";
-	}*/
-	
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<String> insertReply(@RequestBody UserVO userVO) {
+	@RequestMapping(value = "/loginPOST", method = RequestMethod.POST)
+	public String loginPOST(@ModelAttribute UserVO userVO, Model model, HttpSession session) throws Exception {
+		logger.info("로그인 처리");	
+		System.out.println("로그인처리");
+		String username = userService.loginCheck(userVO, session);
 		
-		logger.info("insert POST called ...........");
-				
-		ResponseEntity<String> entity = null;
-		try {
-			userService.join(userVO);
-//			logger.info("OK... vo = " + userVO.toString());	
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-			
-		} catch (Exception e) {
-			logger.info("Error ...........");
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		
+		if(username != null) {
+			model.addAttribute("username", username);
+			System.out.println("들어감");
+		} else {
+			model.addAttribute("username", "잘못입력하셨습니다.");
+			System.out.println("잘못");
 		}
 		
-		return entity;
-	}
-	
-	
-	
-	
-	
-//	@RequestMapping(value = "/", method = RequestMethod.POST)
-//	public String loginPOST(@ModelAttribute UserVO userVO, Model model) throws Exception {
-//		
-//		int memberIdx = homeMapper.selectMemberIdx(adminVO.getUsername(), adminVO.getPassword());		
+		
 //		if(memberIdx > 0) {
 //			session.setAttribute("memberIdx", memberIdx);
 //			session.setAttribute("username", adminVO.getUsername());
@@ -80,9 +56,8 @@ public class HomeController {
 //			Exception e = new Exception("로그인 정보가 틀립니다.");
 //			throw e;
 //		}		
-//		return "redirect:/main.do";
-//		return "redirect:/";
-//	}
+		return "redirect:/";
+	}
 	
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)

@@ -22,29 +22,15 @@ import com.healthyme.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Inject
 	private UserService userService;
 	
-//	@RequestMapping(value = "", method = RequestMethod.GET)
-//	public String homeGET(Model model) throws Exception {
-//		
-//		return "home";
-//	}
-	
-	/*@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String joinPOST(@ModelAttribute UserVO userVO, Model model) throws Exception {
-
-		userService.join(userVO);
-	
-		return "redirect:/";
-	}*/
-	
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> join(@RequestBody UserVO userVO) {
 		
-		logger.info("insert POST called ...........");
+		logger.info("회원가입  ...........");
 				
 		ResponseEntity<String> entity = null;
 		try {

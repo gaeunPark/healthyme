@@ -42,6 +42,13 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.insert(namespace+".insertUser", userVO);
 	}
 	
+	@Override
+	public String loginCheck(UserVO userVO) {
+		String username = sqlSession.selectOne(namespace + ".loginCheck");	
+		return username;
+	}
+	
+	
 //	@Override
 //	public MemberVO selectMember(String user_id) throws Exception {
 //		return (MemberVO) sqlSession.selectOne(namespace+".selectMember", user_id);
