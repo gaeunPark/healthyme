@@ -18,11 +18,8 @@ public class UserServiceImpl implements UserService{
 		dao.insertUser(userVO);
 	}
 	
-	public String loginCheck(UserVO userVO, HttpSession session) throws Exception{
-		String username = dao.loginCheck(userVO);
-		if(username != null) {
-			session.setAttribute("username", username);
-		}
-		return username;
+	public UserVO loginCheck(UserVO userVO, HttpSession session) throws Exception{
+		UserVO vo = dao.loginCheck(userVO);
+		return vo;
 	}
 }

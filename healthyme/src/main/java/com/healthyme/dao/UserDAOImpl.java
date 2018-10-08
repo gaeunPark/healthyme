@@ -43,9 +43,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public String loginCheck(UserVO userVO) {
-		String username = sqlSession.selectOne(namespace + ".loginCheck");	
-		return username;
+	public UserVO loginCheck(UserVO userVO) {
+		UserVO vo = sqlSession.selectOne(namespace + ".loginCheck", userVO);
+		return vo;
 	}
 	
 	

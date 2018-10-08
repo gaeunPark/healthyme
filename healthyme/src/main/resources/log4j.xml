@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.healthyme.web">
+	<logger name="com.healthyme.controller">
 		<level value="info" />
 	</logger>
 	

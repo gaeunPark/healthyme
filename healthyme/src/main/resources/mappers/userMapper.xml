@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="loginCheck" resultType="com.healthyme.domain.UserVO">
-		select username
+		select username, idx
 		from user
 		where userid = #{userid} AND userpw = #{userpw}
 	</select>

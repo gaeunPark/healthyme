@@ -8,5 +8,5 @@ public interface UserService {
 
 	public void join(UserVO userVO) throws Exception;
 	
-	public String loginCheck(UserVO userVO, HttpSession session) throws Exception;
+	public UserVO loginCheck(UserVO userVO, HttpSession session) throws Exception;
 }

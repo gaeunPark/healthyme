@@ -8,6 +8,6 @@ public interface UserDAO {
 	
 	public void insertUser(UserVO userVO);
 	
-	public String loginCheck(UserVO userVO);
+	public UserVO loginCheck(UserVO userVO);
 
 }
