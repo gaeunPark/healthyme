@@ -22,16 +22,17 @@ html, body {
 </head>
 
 
-<body>	
+<body>
 	<div id="nav">
-		<%@ include file="include/nav.jsp" %>
+		<%@ include file="include/nav.jsp"%>
 	</div>
 
 
 	<div style="width: 100%; border: 2px solid black">
 		<div
 			style="border: solid 1px black; margin: auto; width: 80%; height: 600px;">
-			${username} 반갑습니다.</div>
+			${username} 반갑습니다. <a href="/openApi">api</a>
+		</div>
 	</div>
 </body>
 </html>

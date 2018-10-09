@@ -1,8 +1,12 @@
 package com.healthyme.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Locale;
 
@@ -12,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONObject;
+import org.json.XML;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,7 +25,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.healthyme.domain.UserVO;
 import com.healthyme.service.UserService;
@@ -33,8 +37,8 @@ public class HomeController {
 	@Inject
 	private UserService userService;
 
-	@RequestMapping(value = "/openApi", method = RequestMethod.GET)
-	public void openApi(HttpServletRequest request, HttpServletResponse response
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public JSONObject openApi(HttpServletRequest request, HttpServletResponse response
             ) throws Exception {
 		
 		logger.info("api 컨트롤러");
@@ -45,7 +49,7 @@ public class HomeController {
         String serviceKey = "yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D";
         String parameter = "";
  
-        PrintWriter out = response.getWriter();                                        //클라이언트로 보낼 TEXT DATA, JSON에 넣을 때 쭉 나열하는듯
+        PrintWriter out = response.getWriter();       //클라이언트로 보낼 TEXT DATA, JSON에 넣을 때 쭉 나열하는듯
  
 //        parameter = parameter + "&" + "contentId=" + contentId;//JSP에서 받아올 contentid, contentTypeid
        
@@ -57,7 +61,7 @@ public class HomeController {
  
         System.out.println(addr);
  
-        InputStream in = url.openStream();                            //URL로 부터 자바로 데이터 읽어오도록 URL객체로 스트림 열기
+        InputStream in = url.openStream();             //URL로 부터 자바로 데이터 읽어오도록 URL객체로 스트림 열기
  
         ByteArrayOutputStream bos1 = new ByteArrayOutputStream();        //InputStream의 데이터들을 바이트 배열로 저장하기 위해
         IOUtils.copy(in, bos1);            //InputStream의 데이터를 바이트 배열로 복사
@@ -69,10 +73,47 @@ public class HomeController {
         byte[] b = mbos.getBytes("UTF-8");
         String s = new String(b, "UTF-8");        //String으로 풀었다가 byte배열로 했다가 다시 String으로 해서 json에 저장할 배열을 print?? 여긴 잘 모르겠다
         out.println(s);
- 
+        System.out.println(s);
         JSONObject json = new JSONObject();
-        json.put("data", s);                                                          
+        json.put("data", s);
+        System.out.println(json.toString());
+        
+        return json;
     }
+	
+
+	@RequestMapping(value = "/openApi", method = RequestMethod.GET)
+	public void openApiGET(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("전송");
+		int INDENT_FACTOR = 4;
+		
+		
+		 PrintWriter out = response.getWriter();
+		HttpURLConnection conn = (HttpURLConnection) new URL(
+				"http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?"
+						+ "ServiceKey=yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D").openConnection();
+		conn.connect();
+		BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+		BufferedReader reader = new BufferedReader(new InputStreamReader(bis));
+		StringBuffer st = new StringBuffer();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			st.append(line);
+		}
+
+		JSONObject xmlJSONObj = XML.toJSONObject(st.toString());
+//		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
+//		System.out.println(jsonPrettyPrintString);
+		out.println(xmlJSONObj);
+		
+	}
+	
+	@RequestMapping(value = "/openApi", method = RequestMethod.POST)
+	public void openApiPost(Model model) throws Exception {
+		logger.info("받음");
+		
+
+	}
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -104,33 +145,10 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public void joinGET(UserVO userVO, Model model) throws Exception {
-
-	}
-
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join2POST(@ModelAttribute UserVO userVO, Model model) throws Exception {
-
-		userService.join(userVO);
-
-		return "redirect:/";
-	}
-
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void loginGET(Model model) throws Exception {
-
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void loginPost(Model model) throws Exception {
-
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
