@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 
 <script
@@ -11,25 +10,25 @@
 </head>
 <body>
 
-	<script>
+	<!-- <script>
 		$.ajax({
-			url : '',
+			url : 'openApi222',
 			type : 'get',
 			data : {
 			/* 					"contentId" : "2521880",
 			 "contentTypeId" : "15" */
-			}, //contentid, contentTypeid ¼­¹ö·Î Àü¼Û
+			}, //contentid, contentTypeid ì„œë²„ë¡œ ì „ì†¡
 			dataType : 'json',
 			success : function(data) {
 				console.log(data.response.body.items.item);
-				var myItem = data.response.body.items.item; //ÀÌ °æ·Î ³»ºÎ¿¡ µ¥ÀÌÅÍ°¡ µé¾îÀÖÀ½
+				var myItem = data.response.body.items.item; //ì´ ê²½ë¡œ ë‚´ë¶€ì— ë°ì´í„°ê°€ ë“¤ì–´ìˆìŒ
 				
 				var output = '';
-				output += '<h4>' + "½ÄÇ°ÀÌ¸§" + myItem + '</h4>';
-				/* output += '<h4>' + "½ÄÇ°ÀÌ¸§" + myItem.DESC_KOR + '</h4>'; //API È°¿ë ¸Ş´º¾ó º¸¸é Response ÇÒ ¼ö ÀÖ´Â
-				output += '<h4>' + "1È¸ Á¦°ø·®" + myItem.SERVING_WT + '</h4>'; //µ¥ÀÌÅÍµéÀÌ ÀÖÀ½
-				output += '<h4>' + "¿­·®(kcal)" + myItem.NUTR_CONT1 + '</h4>'; //°Å±â¼­ °ñ¶ó ¾²¸é µÊ.
-				output += '<h4>' + "Åº¼öÈ­¹°(g)" + myItem.NUTR_CONT2 + '</h4>'; */
+				output += '<h4>' + "ì‹í’ˆì´ë¦„" + myItem + '</h4>';
+				/* output += '<h4>' + "ì‹í’ˆì´ë¦„" + myItem.DESC_KOR + '</h4>'; //API í™œìš© ë©”ë‰´ì–¼ ë³´ë©´ Response í•  ìˆ˜ ìˆëŠ”
+				output += '<h4>' + "1íšŒ ì œê³µëŸ‰" + myItem.SERVING_WT + '</h4>'; //ë°ì´í„°ë“¤ì´ ìˆìŒ
+				output += '<h4>' + "ì—´ëŸ‰(kcal)" + myItem.NUTR_CONT1 + '</h4>'; //ê±°ê¸°ì„œ ê³¨ë¼ ì“°ë©´ ë¨.
+				output += '<h4>' + "íƒ„ìˆ˜í™”ë¬¼(g)" + myItem.NUTR_CONT2 + '</h4>'; */
 				$('#window').html(output);
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -37,7 +36,7 @@
 				alert("Error: " + errorThrown);
 			}
 		});
-	</script>
+	</script> -->
 
 	<!-- <script>
 		$(document).ready(
@@ -47,7 +46,7 @@
 						url : '',
 						type : 'post',
 						dataType : 'xml',
-						success : function(data) { //ajax¿äÃ»À» ÅëÇØ ¹İÈ¯µÇ´Â µ¥ÀÌÅÍ data.
+						success : function(data) { //ajaxìš”ì²­ì„ í†µí•´ ë°˜í™˜ë˜ëŠ” ë°ì´í„° data.
 
 							/* $(data).find("data.response.body.items.item").each( */
 									alert("1")
@@ -63,18 +62,13 @@
 
 						},
 						error: function() {
-							alert("½ÇÆĞ");
+							alert("ì‹¤íŒ¨");
 						}
 					});
 
 				}
 		);
 	</script> -->
-	dsfadfs
-	<div id="wrap"></div>
-	¤±¤¤¤«¤¤¤·¤©¤¤¤±¤©¤¤¤·sadffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-
-
 
 </body>
 </html>
