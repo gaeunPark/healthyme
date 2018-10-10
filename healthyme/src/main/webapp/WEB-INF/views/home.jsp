@@ -31,7 +31,8 @@ html, body {
 	<div style="width: 100%; border: 2px solid black">
 		<div
 			style="border: solid 1px black; margin: auto; width: 80%; height: 600px;">
-			${username} 반갑습니다. <a href="/openApi">api</a>
+			${username} 반갑습니다. <a href="/openApi">api</a><br>
+			 <a href="/openApi2">api2</a>
 		</div>
 	</div>
 </body>

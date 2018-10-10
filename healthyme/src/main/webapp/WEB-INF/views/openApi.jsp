@@ -69,6 +69,47 @@
 				}
 		);
 	</script> -->
+	
+	<script>
+		/* 		$(document).ready(
+		 function() {
+		 */
+	 	/* $.ajax({
+			url : '/openApi',
+			type : 'get',
+			dataType : 'json',
+			success: function(data){
+				console.log(data.data); 
+				var output = ""
+				output += data.data
+				document.body.innerHTML += "";
+				
+				$(data).find("data").find("response").each(
+					function(){
+						console.log($(this).find("header").text());
+					}
+				)
+			}  */
+			/* success : function(data) { //ajax요청을 통해 반환되는 데이터 data.
+				$(data).find("data").find("response").find("body")
+						.find("items").find("item").each(
+								function() {
+									console.log($(this).find("DESC_KOR").text());
+									var info = "DESC_KOR : "
+											+ $(this).find("DESC_KOR").text()
+											+ "<br/>";
+
+									$('#wrap').append(info);
+								});
+
+			},
+			error : function() {
+				alert("실패");
+			} */
+		/* }); */
+
+		/* 				}); */
+	</script>
 
 </body>
 </html>

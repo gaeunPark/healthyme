@@ -38,56 +38,57 @@ public class HomeController {
 	@Inject
 	private UserService userService;
 
-	@RequestMapping(value = "/openApi", method = RequestMethod.GET)
-	public void openApi(HttpServletRequest request, HttpServletResponse response
-            ) throws Exception {
-		
-		logger.info("api 컨트롤러");
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html; charset=utf-8");
- 
-        String addr = "http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey=";
-        String serviceKey = "yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D";
-        String parameter = "";
- 
-        PrintWriter out = response.getWriter();       //클라이언트로 보낼 TEXT DATA, JSON에 넣을 때 쭉 나열하는듯
- 
-//        parameter = parameter + "&" + "contentId=" + contentId;//JSP에서 받아올 contentid, contentTypeid    
-        parameter = parameter + "&" + "numOfRows=" + "1"; 
-
-        addr = addr + serviceKey + parameter;
-        URL url = new URL(addr);
- 
-        InputStream in = url.openStream();             //URL로 부터 자바로 데이터 읽어오도록 URL객체로 스트림 열기
- 
-        ByteArrayOutputStream bos1 = new ByteArrayOutputStream();        //InputStream의 데이터들을 바이트 배열로 저장하기 위해
-        IOUtils.copy(in, bos1);            //InputStream의 데이터를 바이트 배열로 복사
-        in.close();
-        bos1.close();
- 
-        String mbos = bos1.toString("UTF-8");
-//        System.out.println("mbos 출력\n" + mbos);
- 
-        byte[] b = mbos.getBytes("UTF-8");
-        String s = new String(b, "UTF-8");        //String으로 풀었다가 byte배열로 했다가 다시 String으로 해서 json에 저장할 배열을 print?? 여긴 잘 모르겠다
-//        out.println(s);
-        JSONObject json = new JSONObject();
-        json.put("data", s);
-        out.println(json);
-        System.out.println(json.toString());
-        
-    }
-	
-
 //	@RequestMapping(value = "/openApi", method = RequestMethod.GET)
-	public void openApiGET(Model model,RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void openApi(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		logger.info("api 컨트롤러");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+
+		String addr = "http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey=";
+		String serviceKey = "yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D";
+		String parameter = "";
+
+		PrintWriter out = response.getWriter(); // 클라이언트로 보낼 TEXT DATA, JSON에 넣을 때 쭉 나열하는듯
+
+//        parameter = parameter + "&" + "contentId=" + contentId;//JSP에서 받아올 contentid, contentTypeid    
+		parameter = parameter + "&" + "numOfRows=" + "1";
+
+		addr = addr + serviceKey + parameter;
+		URL url = new URL(addr);
+
+		InputStream in = url.openStream(); // URL로 부터 자바로 데이터 읽어오도록 URL객체로 스트림 열기
+
+		ByteArrayOutputStream bos1 = new ByteArrayOutputStream(); // InputStream의 데이터들을 바이트 배열로 저장하기 위해
+		IOUtils.copy(in, bos1); // InputStream의 데이터를 바이트 배열로 복사
+		in.close();
+		bos1.close();
+
+		String mbos = bos1.toString("UTF-8");
+//        System.out.println("mbos 출력\n" + mbos);
+
+		byte[] b = mbos.getBytes("UTF-8");
+		String s = new String(b, "UTF-8"); // String으로 풀었다가 byte배열로 했다가 다시 String으로 해서 json에 저장할 배열을 print?? 여긴 잘 모르겠다
+//        out.println(s);
+		JSONObject json = new JSONObject();
+		json.put("data", s);
+		out.println(json);
+		System.out.println(json.toString());
+
+	}
+
+	@RequestMapping(value = "/openApi", method = RequestMethod.GET)
+	public void openApiGET(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("전송");
-		int INDENT_FACTOR = 4;
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
-		 PrintWriter out = response.getWriter();
+		int INDENT_FACTOR = 4;
+		PrintWriter out = response.getWriter();
 		HttpURLConnection conn = (HttpURLConnection) new URL(
 				"http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?"
-						+ "ServiceKey=yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D&numOfRows=50").openConnection();
+						+ "ServiceKey=yZZgPPuDihT%2F%2BxPnqlmB43yjAdza8%2F23DVjtbXpxc5peeqF9Mu%2FADaBFPgXYSxzXG6pXJtdQJzUdiFIVQMsg4Q%3D%3D&numOfRows=50&bgn_year=2017")
+								.openConnection();
 		conn.connect();
 		BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
 		BufferedReader reader = new BufferedReader(new InputStreamReader(bis, "UTF-8"));
@@ -96,29 +97,11 @@ public class HomeController {
 		while ((line = reader.readLine()) != null) {
 			st.append(line);
 		}
-		
-		System.out.println(st);
-		
-		JSONObject xmlJSONObj = XML.toJSONObject(st.toString());
-//		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
-//		System.out.println(jsonPrettyPrintString);
-		out.println(xmlJSONObj);
 
-//		System.out.println(xmlJSONObj);
+		JSONObject xmlJSONObj = XML.toJSONObject(st.toString());
+		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
+		out.println(xmlJSONObj);
 	}
-	  
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@RequestMapping(value = "/openApi2", method = RequestMethod.GET)
@@ -128,7 +111,6 @@ public class HomeController {
 		return "openApi2";
 	}
 
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/json; charset=UTF-8")
 	public String homeGET(Model model) throws Exception {
 		logger.info("홈 화면");

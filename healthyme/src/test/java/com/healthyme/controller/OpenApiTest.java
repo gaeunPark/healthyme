@@ -66,7 +66,7 @@ public class OpenApiTest {
 
 	public static int INDENT_FACTOR = 4;
 
-	// @Test
+	 @Test
 	public void test2() throws Exception {
 
 		HttpURLConnection conn = (HttpURLConnection) new URL(
@@ -88,7 +88,7 @@ public class OpenApiTest {
 
 	}
 
-	@Test
+//	@Test
 	public void test3() throws Exception {
 
 		String BASE_URL = "http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey=";
