@@ -30,7 +30,7 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> join(@RequestBody UserVO userVO) {
 		
-		logger.info("х╦©Ь╟║ют  ...........");
+		logger.info("х╦О©╫О©╫О©╫О©╫О©╫О©╫  ...........");
 				
 		ResponseEntity<String> entity = null;
 		try {
@@ -45,6 +45,13 @@ public class UserController {
 		}
 		
 		return entity;
+	}
+	
+	
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public void myPage(Model model) throws Exception {
+		logger.info("К╖┬Л²╢М▌≤Л²╢Л╖─");
+
 	}
 
 }

@@ -4,22 +4,11 @@
 <html>
 <head>
 <title>nav</title>
+
 <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/dist/css/main.css">
-
-<style>
-body {
-	width: 100%;
-	padding-top: 140px;
-}
-
-html, body {
-	height: 100%;
-}
-</style>
+<link href="resources/dist/css/main.css?after" rel="stylesheet">
 
 </head>
-
 
 
 
@@ -28,7 +17,7 @@ html, body {
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid p-3 mb-2 bg-success text-white">
+	<div class="container-fluid p-3 mb-2 text-white">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -51,7 +40,7 @@ html, body {
 				</div>
 				<button type="submit" class="btn btn-default">검색</button>
 			</form>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right" style="font-size:10px;">
 				<c:if test="${empty sessionScope.username}">
 					<li><a data-toggle="modal" href="#loginModal">로그인</a></li>
 					<li><a data-toggle="modal" href="#joinModal">회원가입</a></li>
@@ -59,13 +48,11 @@ html, body {
 				<c:if test="${!empty sessionScope.username}">
 					<li><a data-toggle="modal" href="/logout">${sessionScope.username}님</a></li>
 					<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
-					<li><a data-toggle="modal" href="#joinModal">마이페이지</a></li>
+					<li><a data-toggle="modal" href="/user/myPage">마이페이지</a></li>
 				</c:if>
 				<li><a href="join">즐겨찾기</a></li>
 			</ul>
 		</div>
-
-
 
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
