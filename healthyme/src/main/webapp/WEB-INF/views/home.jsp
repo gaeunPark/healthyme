@@ -2,38 +2,19 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<title>Home</title>
-<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/dist/css/main.css">
-
-<style>
-body {
-	width: 100%;
-	padding-top: 140px;
-}
-
-html, body {
-	height: 100%;
-}
-</style>
-
-</head>
+<%@ include file="include/nav.jsp"%>
 
 
-<body>
-	<div id="nav">
-		<%@ include file="include/nav.jsp"%>
-	</div>
+<section>
 
-
-	<div style="width: 100%; border: 2px solid black">
-		<div
-			style="border: solid 1px black; margin: auto; width: 80%; height: 600px;">
-			${username} 반갑습니다. <a href="/openApi">api</a><br>
-			 <a href="/openApi2">api2</a>
+	<div class="container" style="width: 100%; border: 2px solid black; padding:0 10%;">
+		<div class="contents" style="border: solid 1px black; height: 600px; float: left; width: 75%;">
+			${username} 반갑습니다.
+		</div>
+		<div class="side" style="border: 1px solid green; height:600px; float: right;  width: 20%; ">
+		
 		</div>
 	</div>
-</body>
-</html>
+</section>
+
+<%@ include file="include/footer.jsp"%>

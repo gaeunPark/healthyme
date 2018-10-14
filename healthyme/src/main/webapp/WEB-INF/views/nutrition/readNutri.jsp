@@ -1,34 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="include/nav.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link href="resources/dist/css/main.css?after" rel="stylesheet">
-
-</head>
-<body>
 
 
 
 	<div>
 		<div>
-		<form action="/nutrition/search">
+		<form action="/nutrition/searchNutri">
 			<input type="text" style="width:30%;" class="form-control" placeholder="Search" id="searchKey"  name="searchKey"/>
 			<button type="submit" id="searchBtn">검색</button>
 			</form>
 		</div>
-
+		<p>음식 검색어 순위</p>
 		<table id="food_table" style="border: 1px solid black; text-align: center; width: 60%;">
 			<thead>
 			<tr>
+				<td style="width: 3%;">순위</td>
 				<td class="foodName" style="width: 10%;">음식명</td>
 				<td class="serving_wt" style="width: 6%;">1회 제공량(g)</td>
 				<td class="kcal" style="width: 6%;">열량(kcal)</td>
@@ -39,9 +29,8 @@
 		</table>
 	</div>
 	
-	
-	
-	<script>
+
+	<!-- <script>
 	/* $(document).ready(function() {
 		$("#searchBtn").on("click", function() {
 				var searchKey = $("#searchKey").val();
@@ -131,7 +120,7 @@
 		});  
 
 	</script>
+ -->
 
 
-</body>
 </html>

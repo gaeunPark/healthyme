@@ -1,0 +1,157 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=13824, tid=0x0000000000002474
+#
+# JRE version:  (8.0_152-b16) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.152-b16 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000003663800):  JavaThread "Unknown thread" [_thread_in_vm, id=9332, stack(0x0000000003560000,0x0000000003660000)]
+
+Stack: [0x0000000003560000,0x0000000003660000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000003663800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=9332, stack(0x0000000003560000,0x0000000003660000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 18944K, used 327K [0x00000000eb180000, 0x00000000ec680000, 0x0000000100000000)
+  eden space 16384K, 2% used [0x00000000eb180000,0x00000000eb1d1ec8,0x00000000ec180000)
+  from space 2560K, 0% used [0x00000000ec400000,0x00000000ec400000,0x00000000ec680000)
+  to   space 2560K, 0% used [0x00000000ec180000,0x00000000ec180000,0x00000000ec400000)
+ ParOldGen       total 44032K, used 0K [0x00000000c1400000, 0x00000000c3f00000, 0x00000000eb180000)
+  object space 44032K, 0% used [0x00000000c1400000,0x00000000c1400000,0x00000000c3f00000)
+ Metaspace       used 746K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 75K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000012b20000,0x0000000012d20000] byte_map_base: 0x0000000012516000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000063b20860
+ Begin Bits: [0x0000000013270000, 0x0000000014220000)
+ End Bits:   [0x0000000014220000, 0x00000000151d0000)
+
+Polling page: 0x0000000001720000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x0000000003760000, 0x00000000039d0000, 0x0000000012760000]
+ total_blobs=58 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.098 loading class java/lang/Short
+Event: 0.098 loading class java/lang/Short done
+Event: 0.098 loading class java/lang/Integer
+Event: 0.098 loading class java/lang/Integer done
+Event: 0.099 loading class java/lang/Long
+Event: 0.099 loading class java/lang/Long done
+Event: 0.100 loading class java/lang/NullPointerException
+Event: 0.101 loading class java/lang/NullPointerException done
+Event: 0.101 loading class java/lang/ArithmeticException
+Event: 0.101 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff7e0760000 - 0x00007ff7e0797000 	C:\Program Files\Java\jre1.8.0_152\bin\javaw.exe
+0x00007ffea6670000 - 0x00007ffea6851000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffea3e60000 - 0x00007ffea3f12000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffea2ce0000 - 0x00007ffea2f53000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffea4b40000 - 0x00007ffea4be1000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffea4de0000 - 0x00007ffea4e7e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffea4c90000 - 0x00007ffea4ceb000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffea50d0000 - 0x00007ffea51f4000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffea4020000 - 0x00007ffea41b0000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffea3300000 - 0x00007ffea3320000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffea3e30000 - 0x00007ffea3e58000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffea2aa0000 - 0x00007ffea2c32000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffea2c40000 - 0x00007ffea2cdf000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffea3010000 - 0x00007ffea310a000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffe91ef0000 - 0x00007ffe92159000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17134.345_none_fb429a5930656358\COMCTL32.dll
+0x00007ffea3b00000 - 0x00007ffea3e23000 	C:\WINDOWS\System32\combase.dll
+0x00007ffea3370000 - 0x00007ffea33ea000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffea4c50000 - 0x00007ffea4c7d000 	C:\WINDOWS\System32\IMM32.DLL
+0x0000000064c10000 - 0x0000000064ce2000 	C:\Program Files\Java\jre1.8.0_152\bin\msvcr100.dll
+0x0000000063300000 - 0x0000000063ba0000 	C:\Program Files\Java\jre1.8.0_152\bin\server\jvm.dll
+0x00007ffea4c80000 - 0x00007ffea4c88000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffe991e0000 - 0x00007ffe99203000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffe985a0000 - 0x00007ffe985a9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffe98c40000 - 0x00007ffe98c4a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffea4600000 - 0x00007ffea466c000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffe99010000 - 0x00007ffe9903a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffea3320000 - 0x00007ffea3369000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00000000632f0000 - 0x00000000632ff000 	C:\Program Files\Java\jre1.8.0_152\bin\verify.dll
+0x00000000632c0000 - 0x00000000632e9000 	C:\Program Files\Java\jre1.8.0_152\bin\java.dll
+0x00000000632a0000 - 0x00000000632b6000 	C:\Program Files\Java\jre1.8.0_152\bin\zip.dll
+
+VM Arguments:
+jvm_args: -ea -Dfile.encoding=UTF-8 
+java_command: org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 9061 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames com.healthyme.controller.OpenApiTest
+java_class_path (initial): D:\STS\workspace\healthyme\healthyme\target\test-classes;D:\STS\workspace\healthyme\healthyme\target\classes;C:\Users\ATIV\.m2\repository\org\springframework\spring-context\4.3.8.RELEASE\spring-context-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\springframework\spring-beans\4.3.8.RELEASE\spring-beans-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\springframework\spring-core\4.3.8.RELEASE\spring-core-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\springframework\spring-expression\4.3.8.RELEASE\spring-expression-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\springframework\spring-webmvc\4.3.8.RELEASE\spring-webmvc-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\springframework\spring-web\4.3.8.RELEASE\spring-web-4.3.8.RELEASE.jar;C:\Users\ATIV\.m2\repository\org\aspectj\aspectjrt\1.6.10\aspectjrt-1.6.10.jar;C:\Users\ATIV\.m2\repository\org\slf4j\slf4j-api\1.6.6\slf4j-api-1.6.6.jar;C:\Users\ATIV\.m2\repository\org\slf4j\jcl-over-slf4j\1.6.6\jcl-over-slf4j-1.6.6.jar;C:\Users\ATIV\.m2\repository\org\slf4j\slf4j-log4j12\1.6.6\slf4j-log4j12-1.6.6.jar;C:\Users\ATIV\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar;C:\Users\ATIV\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\ATIV\.m2\repository\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar;C:\Users\ATIV\.m2\repository\javax\servlet\jsp\jsp-api\2.1\jsp-api-2.1.jar;C:\Users\ATIV\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;C:\Users\ATIV\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\ATIV\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\ATIV\.m2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar;C:\Users\ATIV\.m2\repository\com\google\protobuf\protobuf-java\2.6.0\protobuf-java-2.6.0.jar;C:\Users\ATIV\.m2\repository\org\mybatis\mybatis\3.4.1\mybatis-3.4.1.jar;C:\Users\ATIV\.m2\repository\org\mybatis\mybatis-spring\1.3.0\mybatis-spring-1.3.0.jar;C:\Users\ATIV\.m2\repository\org\spri
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_152
+PATH=C:/Program Files/Java/jre1.8.0_152/bin/server;C:/Program Files/Java/jre1.8.0_152/bin;C:/Program Files/Java/jre1.8.0_152/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\MySQL\MySQL Utilities 1.6\;C:\Program Files\Java\jdk1.8.0_152\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\IBM\SPSS\Statistics\Subscription\JRE\bin;C:\Program Files\TortoiseGit\bin;C:\Users\ATIV\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\sts-bundle\sts-3.9.6.RELEASE;
+USERNAME=ATIV
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 78 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 17134 (10.0.17134.1)
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 4107040k(386596k free), swap 16689952k(5532k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.152-b16) for windows-amd64 JRE (1.8.0_152-b16), built on Sep 14 2017 02:29:36 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Sun Oct 14 17:13:54 2018
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

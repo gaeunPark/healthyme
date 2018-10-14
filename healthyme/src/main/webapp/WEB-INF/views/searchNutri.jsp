@@ -20,7 +20,7 @@
 
 	<div>
 		<div>
-		<form action="/nutrition/search">
+		<form role="form">
 			<input type="text" style="width:30%;" class="form-control" placeholder="Search" id="searchKey"  name="searchKey"/>
 			<button type="submit" id="searchBtn">검색</button>
 			</form>
@@ -37,6 +37,7 @@
 			<tbody>
 			</tbody>
 		</table>
+		<%= request.getParameter("searchKey") %>
 	</div>
 	
 	
@@ -84,13 +85,34 @@
 		$("#searchBtn").on("click", function() {
 		var searchKey = $("#searchKey").val();
 		 $.ajax({
-			url : '/nutrition/search',
+			url : '/nutrition/',
 			type : 'get',
 			data : {
 				"searchKey" : searchKey
 			}, //contentid, contentTypeid 서버로 전송
-			dataType : 'json', */
-			/* success :  function(data) {
+			dataType : 'json',
+			
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("Status: " + textStatus);
+				alert("Error: " + errorThrown);
+			}
+		});
+		 
+		 
+		})
+	}); */
+	
+	
+	
+	
+	 $.ajax({
+			url : '/nutrition/search?searchKey=' + "<%= request.getParameter("searchKey") %>",
+			type : 'get',
+			data : {
+				//"searchKey" : searchKey
+			}, //contentid, contentTypeid 서버로 전송
+			dataType : 'json',
+			success : function(data) {
 				var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
 				console.log(myItem.length);
 				
@@ -108,17 +130,17 @@
 		
 					$("#food_table tbody").append(text);
 				}
-				alert("검색!");
-			}, */
-		/* 	error : function(XMLHttpRequest, textStatus, errorThrown) {
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("Status: " + textStatus);
 				alert("Error: " + errorThrown);
 			}
-		}); */
-		 
-		 
-		//})
-	// });
+		});
+	
+	
+	
+	
+	
 	
 	
 		 $(document).ready(function() {

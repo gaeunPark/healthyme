@@ -5,8 +5,8 @@
 <head>
 <title>nav</title>
 
-<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/dist/css/main.css?after" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/dist/css/main.css?after" rel="stylesheet">
 
 </head>
 
@@ -14,7 +14,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid p-3 mb-2 text-white">
@@ -25,8 +25,8 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"> <img alt="Brand" src="..."></a>
-			<a class="navbar-brand" href="#">헬미!</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img alt="Brand" src="http://placehold.it/70x30"></a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/">헬미!</a>
 			<p class="navbar-text">Healthy me</p>
 		</div>
 
@@ -40,15 +40,24 @@
 				</div>
 				<button type="submit" class="btn btn-default">검색</button>
 			</form>
-			<ul class="nav navbar-nav navbar-right" style="font-size:10px;">
+			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty sessionScope.username}">
 					<li><a data-toggle="modal" href="#loginModal">로그인</a></li>
 					<li><a data-toggle="modal" href="#joinModal">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty sessionScope.username}">
-					<li><a data-toggle="modal" href="/logout">${sessionScope.username}님</a></li>
-					<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
-					<li><a data-toggle="modal" href="/user/myPage">마이페이지</a></li>
+					<li><a data-toggle="modal" href="#">${sessionScope.username}님</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">마이페이지
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">내 정보</a></li>
+							<li><a data-toggle="modal" href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
+						</ul></li>
 				</c:if>
 				<li><a href="join">즐겨찾기</a></li>
 			</ul>
@@ -57,7 +66,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="readNutri">음식정보 <span class="sr-only">(current)</span></a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/nutrition/readNutri">음식정보 <span class="sr-only">(current)</span></a></li>
 				<li><a href="#">트레이닝</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="true">커뮤니티</a>
@@ -152,11 +161,11 @@
 						</center>
 						<br>
 						<button class="btn facebookBtn">
-							<img src="/resources/img/flogo-HexRBG-Wht-58.svg"
-								alt="facebookLogo"> 페이스북으로 로그인
+							<!-- <img src="/resources/img/flogo-HexRBG-Wht-58.svg"
+								alt="facebookLogo"> --> 페이스북으로 로그인
 						</button>
 						<button class="btn googleBtn">
-							<img src="/resources/img/google-logo-01.svg" alt="googleLogo">
+							<!-- <img src="/resources/img/google-logo-01.svg" alt="googleLogo"> -->
 							구글로 로그인 &nbsp;&nbsp;
 						</button>
 				</form>
@@ -277,4 +286,4 @@
 </script>
 
 
-</html>
+
