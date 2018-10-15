@@ -6,43 +6,66 @@
 
 <section>
 
-	<div class="container"
-		style="width: 100%; border: 2px solid black; padding: 0 10%;">
-		<div class="contents"
-			style="border: solid 1px black; height: 600px; float: left; width: 75%;">
-			
-			<img src="http://placehold.it/70x70" alt="..." class="img-circle">
-
-			<p style="">식단</p>
-			<div class="progress" style="margin:auto; width: 60%; style="float: left"">
-				<div
-					class="progress-bar progress-bar-success progress-bar-striped active"
-					role="progressbar" aria-valuenow="5" aria-valuemin="0"
-					aria-valuemax="100" style="min-width: 2em; width: 2%;">2%</div>
+	<div class="container">
+		<div class="contents">
+			<div class="date-wrap">
+				<div class="date-inner">< 2018.10.15 ></div>
 			</div>
 
-			<p style="float: left">운동<p>
-			<div class="progress" style="width: 60%;">
-				<div class="progress-bar progress-bar-success" style="width: 35%">
-					<span class="sr-only">35% Complete (success)</span>
-				</div>
-				<div class="progress-bar progress-bar-warning progress-bar-striped"
-					style="width: 20%">
-					<span class="sr-only">20% Complete (warning)</span>
-				</div>
-				<div class="progress-bar progress-bar-danger" style="width: 10%">
-					<span class="sr-only">10% Complete (danger)</span>
-				</div>
+			<div class="content-wrap">
+				<table class="mypage-table">
+					<tr>
+						<th>체성분</th>
+						<td>몸무게</td>
+						<td>입력칸</td>
+						<td style="text-align:right;">목표체중 앞으로 -kg</td>
+					</tr>
+					<tr>
+						<th>식단칼로리</th>
+						<td colspan="3">
+							<div class="progress">
+								<div
+									class="progress-bar progress-bar-success progress-bar-striped active"
+									role="progressbar" aria-valuenow="5" aria-valuemin="0"
+									aria-valuemax="100" style="min-width: 2em; width: 2%;">2%</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>운동칼로리</th>
+						<td colspan="3">
+							<div class="progress">
+								<div class="progress-bar progress-bar-success"
+									style="width: 35%">
+									<span class="sr-only">35% Complete (success)</span>
+								</div>
+								<div
+									class="progress-bar progress-bar-warning progress-bar-striped"
+									style="width: 20%">
+									<span class="sr-only">20% Complete (warning)</span>
+								</div>
+								<div class="progress-bar progress-bar-danger" style="width: 10%">
+									<span class="sr-only">10% Complete (danger)</span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>영양소</th>
+						<td colspan="3">gdf</td>
+
+					</tr>
+				</table>
+				
+				<div class="circleDiv">아침</div>
+				<div class="circleDiv">점심</div>
+				<div class="circleDiv">저녁</div>
+				<div class="circleDiv">운동</div>
 			</div>
-			<p>아침</p>
-			<p>점심</p>
-			<p>저녁</p>
-			<p>운동</p>
-		</div>
-		<div class="side"
-			style="border: 1px solid green; height: 600px; float: right; width: 20%;">
 
 		</div>
+		<div class="side"></div>
 	</div>
 </section>
 
+<%@ include file="../include/footer.jsp"%>

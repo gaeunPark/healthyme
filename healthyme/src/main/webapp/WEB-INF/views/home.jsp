@@ -7,13 +7,29 @@
 
 <section>
 
-	<div class="container" style="width: 100%; border: 2px solid black; padding:0 10%;">
-		<div class="contents" style="border: solid 1px black; height: 600px; float: left; width: 75%;">
-			${username} 반갑습니다.
+	<div class="container">
+		<c:if test="${empty sessionScope.username}">
+		<div class="alert alert-danger alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<h4 id="oh-snap!-you-got-an-error!">
+				아직 가입을 하지 않으셨나요!
+				<a class="anchorjs-link" href="#oh-snap!-you-got-an-error!"><span class="anchorjs-icon"></span></a>
+			</h4>
+			<p>Change this and that and try again. Duis mollis, est non
+				commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem
+				nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+			<p>
+				<button type="button" class="btn btn-danger">가입하기</button>
+				<button type="button" class="btn btn-default">로그인</button>
+			</p>
 		</div>
-		<div class="side" style="border: 1px solid green; height:600px; float: right;  width: 20%; ">
-		
-		</div>
+		</c:if>
+		<div class="contents">${username}반갑습니다.</div>
+		<div class="side"></div>
+
 	</div>
 </section>
 

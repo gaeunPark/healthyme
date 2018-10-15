@@ -54,7 +54,6 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">내 정보</a></li>
 							<li><a data-toggle="modal" href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
-							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
 							<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
 						</ul></li>
@@ -134,7 +133,7 @@
 						</button> --%>
 
 
-				<form role="form" method="post" id="loginForm" action="loginPOST"
+				<form action="${pageContext.request.contextPath}/loginPOST" method="post" id="loginForm" 
 					onsubmit="return confirm('로그인 하시겠습니까?')">
 					<div class="form-group">
 						<label for="username-email">이메일 or 아이디</label> <input

@@ -7,30 +7,35 @@
 
 
 
+<div class="container">
 	<div>
 		<div>
-		<form action="/nutrition/searchNutri">
-			<input type="text" style="width:30%;" class="form-control" placeholder="Search" id="searchKey"  name="searchKey"/>
-			<button type="submit" id="searchBtn">검색</button>
+			<form action="/nutrition/searchNutri">
+				<input type="text" style="width: 30%;" class="form-control"
+					placeholder="Search" id="searchKey" name="searchKey" />
+				<button type="submit" id="searchBtn">검색</button>
 			</form>
 		</div>
 		<p>음식 검색어 순위</p>
-		<table id="food_table" style="border: 1px solid black; text-align: center; width: 60%;">
+		<table id="food_table"
+			style="border: 1px solid black; text-align: center; width: 60%;">
 			<thead>
-			<tr>
-				<td style="width: 3%;">순위</td>
-				<td class="foodName" style="width: 10%;">음식명</td>
-				<td class="serving_wt" style="width: 6%;">1회 제공량(g)</td>
-				<td class="kcal" style="width: 6%;">열량(kcal)</td>
-			</tr>
+				<tr>
+					<td style="width: 10%;">순위</td>
+					<td class="foodName" style="width: 30%;">음식명</td>
+					<td class="serving_wt" style="width: 20%;">1회 제공량(g)</td>
+					<td class="kcal" style="width: 20%;">열량(kcal)</td>
+				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
 	</div>
-	
+	<div></div class="side">
+</div>
 
-	<!-- <script>
+
+<!-- <script>
 	/* $(document).ready(function() {
 		$("#searchBtn").on("click", function() {
 				var searchKey = $("#searchKey").val();
@@ -123,4 +128,4 @@
  -->
 
 
-</html>
+<%@ include file="../include/footer.jsp"%>
