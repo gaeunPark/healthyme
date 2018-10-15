@@ -100,8 +100,9 @@ public class NutritionController {
 			st.append(line);
 		}
 		JSONObject xmlJSONObj = XML.toJSONObject(st.toString());
-		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
+		
 		out.println(xmlJSONObj);
+//		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
 //		System.out.println(jsonPrettyPrintString);
 		
 	}
