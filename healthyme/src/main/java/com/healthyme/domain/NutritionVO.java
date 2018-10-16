@@ -12,7 +12,10 @@ public class NutritionVO {
 	private float sugars;
 	private float sodium;
 	private float cholesterol;
+	private String enterprise;
 	private int searchCount;
+	
+	
 	public String getFoodName() {
 		return foodName;
 	}
@@ -85,12 +88,11 @@ public class NutritionVO {
 	public void setSearchCount(int searchCount) {
 		this.searchCount = searchCount;
 	}
-	
-	@Override
-	public String toString() {
-		return "NutritionVO [foodName=" + foodName + ", servingWt=" + servingWt + ", kcal=" + kcal + ", carbo=" + carbo
-				+ ", protein=" + protein + ", fat=" + fat + ", saturatedFat=" + saturatedFat + ", transFat=" + transFat
-				+ ", sugars=" + sugars + ", sodium=" + sodium + ", cholesterol=" + cholesterol + ", searchCount="
-				+ searchCount + "]";
+	public String getEnterprise() {
+		return enterprise;
 	}
+	public void setEnterprise(String enterprise) {
+		this.enterprise = enterprise;
+	}
+	
 }

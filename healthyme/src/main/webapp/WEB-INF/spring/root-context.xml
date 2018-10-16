@@ -37,7 +37,7 @@
 
 		<!-- mybatis-config파일을 스프링과 함께 작동하도록 연결함 -->
 		<property name="configLocation"
-			value="classpath:/mybatis-config.xml" ></property>
+			value="classpath:mybatis-config.xml" ></property>
 		
 		<!-- MyBatis가 동작하면 XML Mapper를 인식하도록 함. -->
 		<property name="mapperLocations"

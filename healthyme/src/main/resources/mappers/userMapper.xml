@@ -11,18 +11,12 @@
 	</select>
 
 	<insert id="insertUser">
-		insert into user (userid, userpw, username, email, phone)
-		values (#{userid}, #{userpw}, #{username}, #{email}, #{phone})
+		insert into user (userid, userpw, username, email, gender)
+		values (#{userid}, #{userpw}, #{username}, #{email}, #{gender})
 	</insert>
 	
-	<select id="selectUser" resultType="com.healthyme.domain.UserVO">
-		select *
-		from user
-		where userid = #{userid}
-	</select>
-	
-	<select id="loginCheck" resultType="com.healthyme.domain.UserVO">
-		select username, idx
+	<select id="loginCheck" resultType="UserVO">
+		select username, user_idx
 		from user
 		where userid = #{userid} AND userpw = #{userpw}
 	</select>

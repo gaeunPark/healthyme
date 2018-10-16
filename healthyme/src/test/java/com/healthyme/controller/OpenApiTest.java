@@ -8,13 +8,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.cxf.helpers.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
-import org.json.simple.parser.JSONParser;
 import org.junit.Test;
+
+import com.healthyme.domain.NutritionVO;
 
 public class OpenApiTest {
 
@@ -76,19 +79,44 @@ public class OpenApiTest {
 			st.append(line);
 		}
 
-		JSONObject xmlJSONObj = XML.toJSONObject(st.toString());
-		String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
-		JSONParser jsonParser = new JSONParser();
-		JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonPrettyPrintString);
-		JSONArray bookInfoArray = (JSONArray) jsonObject.get("header");
-
-		JSONObject a = (JSONObject) xmlJSONObj.get("response");
-		JSONObject b = (JSONObject) a.get("body");
-//		a = (JSONObject) a.get("totalCount");
+		JSONObject JSONObj = XML.toJSONObject(st.toString());
+		String JsonString = JSONObj.toString(INDENT_FACTOR);
 		
-		System.out.println(b);
-//		System.out.println(jsonObject);
-//		System.out.println(jsonPrettyPrintString);
+		
+		JSONObject jObject = JSONObj.getJSONObject("response");
+		JSONObject body = jObject.getJSONObject("body");
+		JSONObject items = body.getJSONObject("items");	
+		JSONArray item = (JSONArray)items.get("item");
+
+		List<NutritionVO> list = new ArrayList<NutritionVO>(); 
+
+		for(int i=0; i<item.length(); i++) {
+			JSONObject json = (JSONObject) item.get(i);
+			NutritionVO vo = new NutritionVO();
+//			System.out.println(json);
+			
+
+			vo.setFoodName(json.optString("DESC_KOR"));
+			vo.setServingWt(Float.parseFloat(json.optString("SERVING_WT")));
+			vo.setKcal(Float.parseFloat(json.optString("NUTR_CONT1")));
+			vo.setCarbo(Float.parseFloat(json.optString("NUTR_CONT2")));
+			vo.setProtein(Float.parseFloat(json.optString("NUTR_CONT3")));
+			vo.setFat(Float.parseFloat(json.optString("NUTR_CONT4")));
+			vo.setSaturatedFat(Float.parseFloat(json.optString("NUTR_CONT8")));
+			vo.setTransFat(Float.parseFloat(json.optString("NUTR_CONT9")));
+			vo.setSugars(Float.parseFloat(json.optString("NUTR_CONT5")));
+			vo.setSodium(Float.parseFloat(json.optString("NUTR_CONT6")));
+			vo.setCholesterol(Float.parseFloat(json.optString("NUTR_CONT7")));
+			vo.setEnterprise(json.optString("ANIMAL_PLANT"));
+			
+//			if (json.optString("NUTR_CONT9").equals("N/A")) {
+//				Float.parseFloat(json.optString("NUTR_CONT9")) = 0
+//			}
+
+			
+			list.add(vo);
+		}
+
 	}
 
 	

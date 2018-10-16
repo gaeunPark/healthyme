@@ -27,12 +27,12 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> join(@RequestBody UserVO userVO) {
 		
-		logger.info("ȸ������  ...........");
+		logger.info("회원가입 ...........");
 				
 		ResponseEntity<String> entity = null;
 		try {
 			userService.join(userVO);
-//			logger.info("OK... vo = " + userVO.toString());	
+			logger.info("OK... vo = " + userVO.toString());	
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			
 		} catch (Exception e) {

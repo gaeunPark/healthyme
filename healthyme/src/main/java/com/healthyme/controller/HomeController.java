@@ -52,7 +52,7 @@ public class HomeController {
 
 		if (username != null) {
 			session.setAttribute("username", username);
-			session.setAttribute("idx", vo.getIdx());
+			session.setAttribute("userIdx", vo.getUserIdx());
 		} else {
 			Exception e = new Exception("로그인 정보가 틀립니다.");
 			throw e;
