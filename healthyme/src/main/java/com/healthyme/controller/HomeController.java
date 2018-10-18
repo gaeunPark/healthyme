@@ -30,18 +30,6 @@ public class HomeController {
 
 		return "home";
 	}
-	
-	@RequestMapping(value = "/readNutri", method = RequestMethod.GET, produces = "text/json; charset=UTF-8")
-	public void readNutri(Model model) throws Exception {
-		logger.info("readNutri 화면");
-
-	}
-	
-	@RequestMapping(value = "/searchNutri", method = RequestMethod.GET, produces = "text/json; charset=UTF-8")
-	public void searchNutri(Model model) throws Exception {
-		logger.info("searchNutri 화면");
-
-	}
 
 	@RequestMapping(value = "/loginPOST", method = RequestMethod.POST)
 	public String loginPOST(@ModelAttribute UserVO userVO, Model model, HttpSession session) throws Exception {

@@ -93,27 +93,20 @@ public class OpenApiTest {
 		for(int i=0; i<item.length(); i++) {
 			JSONObject json = (JSONObject) item.get(i);
 			NutritionVO vo = new NutritionVO();
-//			System.out.println(json);
-			
-
-			vo.setFoodName(json.optString("DESC_KOR"));
-			vo.setServingWt(Float.parseFloat(json.optString("SERVING_WT")));
-			vo.setKcal(Float.parseFloat(json.optString("NUTR_CONT1")));
-			vo.setCarbo(Float.parseFloat(json.optString("NUTR_CONT2")));
-			vo.setProtein(Float.parseFloat(json.optString("NUTR_CONT3")));
-			vo.setFat(Float.parseFloat(json.optString("NUTR_CONT4")));
-			vo.setSaturatedFat(Float.parseFloat(json.optString("NUTR_CONT8")));
-			vo.setTransFat(Float.parseFloat(json.optString("NUTR_CONT9")));
-			vo.setSugars(Float.parseFloat(json.optString("NUTR_CONT5")));
-			vo.setSodium(Float.parseFloat(json.optString("NUTR_CONT6")));
-			vo.setCholesterol(Float.parseFloat(json.optString("NUTR_CONT7")));
-			vo.setEnterprise(json.optString("ANIMAL_PLANT"));
-			
-//			if (json.optString("NUTR_CONT9").equals("N/A")) {
-//				Float.parseFloat(json.optString("NUTR_CONT9")) = 0
-//			}
-
-			
+//			
+//			vo.setFoodName(json.optString("DESC_KOR"));
+//			vo.setFoodName(json.optString("SERVING_WT"));
+//			vo.setFoodName(json.optString("NUTR_CONT1"));
+//			vo.setFoodName(json.optString("NUTR_CONT2"));
+//			vo.setFoodName(json.optString("NUTR_CONT3"));
+//			vo.setFoodName(json.optString("NUTR_CONT4"));
+//			vo.setFoodName(json.optString("NUTR_CONT8"));
+//			vo.setFoodName(json.optString("NUTR_CONT9"));
+//			vo.setFoodName(json.optString("NUTR_CONT5"));
+//			vo.setFoodName(json.optString("NUTR_CONT6"));
+//			vo.setFoodName(json.optString("NUTR_CONT7"));
+//			vo.setFoodName(json.optString("ANIMAL_PLANT"));
+					
 			list.add(vo);
 		}
 

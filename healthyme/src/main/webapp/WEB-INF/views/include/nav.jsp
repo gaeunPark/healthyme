@@ -1,25 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <title>nav</title>
 
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/dist/css/main.css?after"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/dist/css/main.css?after" rel="stylesheet">
 
 </head>
 
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid p-3 mb-2 text-white">

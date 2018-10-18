@@ -14,14 +14,22 @@
 		</div>
 		<p><%=request.getParameter("searchKey")%>로 개가 검색되었습니다
 		</p>
+		<h3>
+			<span><%=request.getParameter("searchKey")%></span>(으)로 <span
+				class="food_total"></span>개 검색 되었습니다.
+		</h3>
 		<table id="food_table"
 			style="border: 1px solid black; text-align: center; width: 60%;">
 			<thead>
 				<tr>
-					<td class="idx" style="width: 3%;">순서</td>
-					<td class="foodName" style="width: 10%;">음식명</td>
-					<td class="serving_wt" style="width: 6%;">1회 제공량(g)</td>
-					<td class="kcal" style="width: 6%;">열량(kcal)</td>
+					<th class="idx" style="width: 3%;">순서
+					</td>
+					<th class="foodName" style="width: 10%;">음식명
+					</td>
+					<th class="serving_wt" style="width: 6%;">1회 제공량(g)
+					</td>
+					<th class="kcal" style="width: 6%;">열량(kcal)
+					</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,28 +51,62 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">영양소</h4>
+					<h4 class="modal-title" id="myModalLabel"></h4>
 				</div>
 				<div class="modal-body">
-
-					<form role="form" method="post" id="" onsubmit="return false;">
-						<p>식품이름</p>
-						<p>
-							1회제공량(g)<input type="text" id="aa">
-						</p>
-						<p>열량(kcal)</p>
-						<p>탄수화물(g)</p>
-						<p>단백질(g)</p>
-						<p>지방(g)</p>
-						<p>당류(g)</p>
-						<p>나트륨(mg)</p>
-						<p>콜레스테롤(mg)</p>
-						<p>가공업체</p>
+					<table id="food_modal"
+						style="border: 1px solid black; text-align: center; width: 60%;">
+						<tr>
+							<th>식품이름</th>
+							<td id="foodName">
+							<td>
+						</tr>
+						<tr>
+							<th>1회제공량(g)</th>
+							<td id="servingWt">
+							<td>
+						</tr>
+						<tr>
+							<th>열량(kcal)</th>
+							<td id="kcal">
+							<td>
+						</tr>
+						<tr>
+							<th>탄수화물(g)</th>
+							<td id="carbo">
+							<td>
+						</tr>
+						<tr>
+							<th>단백질(g)</th>
+							<td id="protein">
+							<td>
+						</tr>
+						<tr>
+							<th>지방(g)</th>
+							<td id="fat">
+							<td>
+						</tr>
+						<tr>
+							<th>당류(g)</th>
+							<td id="sugars">
+							<td>
+						</tr>
+						<tr>
+							<th>나트륨(mg)</th>
+							<td id="soldium">
+							<td>
+						</tr>
+						<th>가공업체</th>
+						<td id="enterprise">
+						<td>
+						</tr>
+					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<c:if test="${!empty sessionScope.username}">
 					<button type="submit" id="nutriAddBtn" class="btn btn-primary">추가하기</button>
-					</form>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -73,7 +115,6 @@
 
 
 	<script>
-	var idx = [];
 	
 	$.ajax({
 		url : '/nutrition/search?searchKey=' + "<%=request.getParameter("searchKey")%>",
@@ -82,19 +123,19 @@
 		dataType : 'json',
 		success : function(data) {
 			var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
-			console.log(myItem.length);
-
+			$(".food_total").html(myItem.length);
+			
 			for (var i = 0; i < myItem.length; i++) {
 				var ntr = [];
 				ntr.push(myItem[i].DESC_KOR);
 				ntr.push(myItem[i].SERVING_WT);
 				ntr.push(myItem[i].NUTR_CONT1);
 				ntr.push(myItem[i].NUTR_CONT2);
-				
+
 				text = '';
 				text += '<tr>';
 				text += '<td>' + (i+1) + '</td>'
-				text += '<td><a data-toggle="modal" href="#nutriModal">'
+				text += '<td class="food_td" data-fName="' + ntr[0] + '"><a class="c" data-toggle="modal" href="#nutriModal">'
 						+ ntr[0] + '</a></td>';
 				text += '<td>' + ntr[1] + '</td>'
 				text += '<td>' + ntr[2] + '</td>'
@@ -110,6 +151,79 @@
 	});
 
 	$(document).ready(function() {
+		$("#food_table").on("click", ".food_td a", function(){
+			var food = $(this).parent();
+			var fName = food.attr("data-fName");
+
+			$(".modal-title").html(fName);
+			$.ajax({
+				url : '/nutrition/search?searchKey=' + fName,
+				type : 'get',
+				dataType : 'json',
+				success : function(data) {
+					var myItem = data.response.body.items.item;
+						var foodName = myItem.DESC_KOR;
+						var servingWt = myItem.SERVING_WT;
+						var kcal = myItem.NUTR_CONT1;
+						var carbo = myItem.NUTR_CONT2;
+						var protein = myItem.NUTR_CONT3;
+						var fat = myItem.NUTR_CONT4;
+						var sugars = myItem.NUTR_CONT5;
+						var soldium = myItem.NUTR_CONT6;
+						var enterprise = myItem.ANIMAL_PLANT;
+						
+						$("#foodName").html(foodName);
+						$("#servingWt").html(servingWt);
+						$("#kcal").html(kcal);
+						$("#carbo").html(carbo);
+						$("#protein").html(protein);
+						$("#fat").html(fat);
+						$("#sugars").html(sugars);
+						$("#soldium").html(soldium);
+						$("#enterprise").html(enterprise);
+				}
+			});
+		});
+		
+		$("#nutriAddBtn").on("click", function(){
+			var foodName = $("#foodName").html();
+			var servingWt = $("#servingWt").html();
+			var kcal = $("#kcal").html();
+			var carbo = $("#carbo").html();
+			var protein = $("#protein").html();
+			var fat = $("#fat").html();
+			var sugars = $("#sugars").html();
+			var soldium = $("#soldium").html();
+			var enterprise = $("#enterprise").html()
+
+			$.ajax({
+				type : 'POST',
+				url : '/user/addNutri/',
+				headers : {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "POST"
+				},
+				dataType : 'text',
+				data : JSON.stringify({
+					foodName : foodName,
+					kcal : kcal,
+					carbo : carbo,
+					servingWt : servingWt,
+					protein : protein,
+					fat : fat,
+					sugars : sugars,
+					soldium : soldium,
+					enterprise : enterprise
+				}),
+				success : function(result) {
+					if (result == 'SUCCESS') {
+						alert("등록 되었습니다.");
+						location.href = "${pageContext.request.contextPath}/user/myPage";
+					}
+				}
+			});
+		});
+		
 		$('#searchKey').keyup(function() {
 				var k = $(this).val();
 				$("#food_table > tbody > tr").hide();
@@ -117,171 +231,11 @@
 				$(temp).parent().show();
 		})
 
-		$('#nutriModal').on("click", function() {
-			alert(a);
-			<%-- $.ajax({
-				url : '/nutrition/search?searchKey=' + "<%=request.getParameter("searchKey")%>",
-				type : 'get',
-				data : {
-				//"searchKey" : searchKey
-				}, //contentid, contentTypeid 서버로 전송
-				dataType : 'json',
-				success : function(data) {
-					var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
-					console.log(myItem.length);
-					for (var i = 0; i < myItem.length; i++) {
-						var ntr = [];
-						ntr.push(myItem[i].DESC_KOR);
-						ntr.push(myItem[i].SERVING_WT);
-						ntr.push(myItem[i].NUTR_CONT1);
-						ntr.push(myItem[i].NUTR_CONT2);
-						ntr.push(myItem[i].NUTR_CONT3);
-						ntr.push(myItem[i].NUTR_CONT4);
-						ntr.push(myItem[i].NUTR_CONT5);
-						ntr.push(myItem[i].NUTR_CONT6);
-						ntr.push(myItem[i].NUTR_CONT7);
-						ntr.push(myItem[i].NUTR_CONT8);
-						ntr.push(myItem[i].NUTR_CONT9)
-						ntr.push(myItem[i].ANIMAL_PLANT);;
-											
-						var foodName = myItem[i].DESC_KOR;
-						var serving_wt = myItem[i].SERVING_WT;
-						var kcal = myItem[i].NUTR_CONT1;
-						
-						/* text = '';
-						text += '<tr>';
-						text += '<td><a data-toggle="modal" href="#nutriModal">'
-								+ ntr[0] + '</a></td>';
-						text += '<td>' + ntr[1] + '</td>'
-						text += '<td>' + ntr[2] + '</td>'
-						text += '</tr>'; */
-					
-						$("#food_table tbody").append(text);
-						
-						document.getElementById('aa').value= serving_wt;
-					}
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("Status: " + textStatus);
-						alert("Error: " + errorThrown);
-				}
-			}); --%>
-		})
 	});
 
 </script>
 
 
 
-	<%-- <script>
-	 $(document).ready(function() {
-		$("#searchBtn").on("click", function() {
-				var searchKey = $("#searchKey").val();
-				$.ajax({
-					url : '/nutrition/search?searchKey=' + "<%= request.getParameter("searchKey") %>",
-					type : 'get',
-					data : {
-					}, //contentid, contentTypeid 서버로 전송
-					dataType : 'json',
-					success : function(data) {		
-						var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
-						console.log(myItem.length);
-						
-						for (var i=0; i<myItem.length; i++) {
-							var foodName = myItem[i].DESC_KOR;
-							var serving_wt = myItem[i].SERVING_WT;
-							var kcal = myItem[i].NUTR_CONT1;
-							
-							text = '';
-							text += '<tr>';
-							text += '<td>' + foodName + '</td>';
-							text += '<td>' + serving_wt + '</td>'
-							text += '<td>' + kcal + '</td>'
-							text += '</tr>';
-				
-							$("#food_table tbody").append(text);
-						}
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("Status: " + textStatus);
-						alert("Error: " + errorThrown);
-					}
-				});
-			
-		});
-	});
-	
-	 /* $(document).ready(function() {
-		$("#searchBtn").on("click", function() {
-		var searchKey = $("#searchKey").val();
-		 $.ajax({
-			url : '/nutrition/',
-			type : 'get',
-			data : {
-				"searchKey" : searchKey
-			}, //contentid, contentTypeid 서버로 전송
-			dataType : 'json',
-			
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("Status: " + textStatus);
-				alert("Error: " + errorThrown);
-			}
-		});
-		 
-		 
-		})
-	}); */
-	
-	</script>
- --%>
 
-	<%-- <script>
-	$(document).ready(function() {
-	var searchKey = <%= request.getParameter("searchKey") %>
-	alert("Status: " + searchKey);
-	$.ajax({
-		url : '/nutrition/search?searchKey=' + searchKey,
-		type : 'get',
-		data : {
-		/* 					"contentId" : "2521880",
-		 "contentTypeId" : "15" */
-		}, //contentid, contentTypeid 서버로 전송
-		dataType : 'json',
-		success : function(data) {
-			var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
-			console.log(myItem.length);
-			
-			for (var i=0; i<myItem.length; i++) {
-				var foodName = myItem[i].DESC_KOR;
-				var serving_wt = myItem[i].SERVING_WT;
-				var kcal = myItem[i].NUTR_CONT1;
-				
-				text = '';
-				text += '<tr>';
-				text += '<td>' + foodName + '</td>';
-				text += '<td>' + serving_wt + '</td>'
-				text += '<td>' + kcal + '</td>'
-				text += '</tr>';
-	
-				$("#food_table tbody").append(text);
-			}
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Status: " + textStatus);
-			alert("Error: " + errorThrown);
-		}
-	});
-	});
-	$(document).ready(function() {
-		$('#searchKey').keyup(function(){
-			var k = $(this).val();
-			$("#food_table > tbody > tr").hide();
-			var temp = $("#food_table > tbody > tr > td:nth-child(3n+1):contains('" + k + "')");
-			$(temp).parent().show();
-		})
-	}); 
-</script>
- --%>
-</section>
-
-<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../include/footer.jsp"%>

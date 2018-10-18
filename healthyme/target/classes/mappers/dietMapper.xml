@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.healthyme.mapper.dietMapper">
+
+
+	<insert id="insertNutrition">
+		insert into userdiet (user_idx, timeslot, food_name,
+		serving_wt, kcal, carbo, protein, fat, sugars, sodium, enterprise)
+		values (#{userIdx}, #{timeslot}, #{foodName}, #{servingWt}, #{kcal},
+		#{carbo}, #{protein}, #{fat}, #{sugars}, #{sodium}, #{enterprise})
+	</insert>
+
+	<select id="selectDietList" resultType="UserDietVO">
+		select *
+		from userdiet
+		where user_idx=#{userIdx} And Date(date)=#{date};
+	</select>
+
+	<select id="sumNutri" resultType="NutritionVO">
+		select sum(kcal) as sum_kcal,
+				sum(carbo) as sum_carbo, sum(protein) as sum_protein, sum(fat) as
+				sum_fat, sum(sugars) as sum_sugars, sum(sodium) as sum_sudium
+		from userdiet
+		where user_idx=#{userIdx} And Date(date)=#{date};
+	</select>
+
+</mapper>
