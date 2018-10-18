@@ -17,7 +17,7 @@
 	<select id="selectDietList" resultType="UserDietVO">
 		select *
 		from userdiet
-		where user_idx=#{userIdx} And Date(date)=#{date};
+		where user_idx=#{userIdx} And Date(date)=#{date}
 	</select>
 
 	<select id="sumNutri" resultType="NutritionVO">
@@ -25,7 +25,7 @@
 				sum(carbo) as sum_carbo, sum(protein) as sum_protein, sum(fat) as
 				sum_fat, sum(sugars) as sum_sugars, sum(sodium) as sum_sudium
 		from userdiet
-		where user_idx=#{userIdx} And Date(date)=#{date};
+		where user_idx=#{userIdx} And Date(date)=#{date}
 	</select>
 
 </mapper>

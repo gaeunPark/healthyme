@@ -35,7 +35,7 @@ public class UserController {
 	private DietService dietService;
 	
 	
-	@RequestMapping(value = "/a", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<String> join(@RequestBody UserVO userVO) {
 		
 		logger.info("회원가입 ...........");
@@ -79,13 +79,11 @@ public class UserController {
 //		List<UserDietVO> dietList = new ArrayList<UserDietVO>();
 		Integer userIdx = (Integer)session.getAttribute("userIdx");
 		String date = "2018-10-18";
-		List<UserDietVO> dietList = dietService.selectDietList(1, date);
+		List<UserDietVO> dietLists = dietService.selectDietList(1, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
 		
-		model.addAttribute("dietList", dietList);
-		model.addAttribute("sumNutri", sumNutri);
-		System.out.println(sumNutri.toString());
-		
+		model.addAttribute("dietLists", dietLists);
+		model.addAttribute("sumNutri", sumNutri);	
 	}
 	
 	@RequestMapping(value = "/myPage2", method = RequestMethod.GET)
