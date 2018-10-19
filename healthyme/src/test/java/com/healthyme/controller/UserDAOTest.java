@@ -45,12 +45,13 @@ public class UserDAOTest {
 
 	}
 
-//    @Test
+    @Test
 	public void testInserNutrition() throws Exception {
 
 		UserDietVO dietVO = new UserDietVO();
 		dietVO.setUserIdx(1);
 		dietVO.setFoodName("safdfa");
+		
 
 		dietDao.insertNutrition(dietVO);
 	}
@@ -62,7 +63,7 @@ public class UserDAOTest {
 		System.out.println(dietList.size());
 	}
 	
-	@Test
+//	@Test
 	public void sumNutri() throws Exception {
 		NutritionVO sumNutri = dietDao.sumNutri(1, "2018-10-18");
 		sumNutri.toString();

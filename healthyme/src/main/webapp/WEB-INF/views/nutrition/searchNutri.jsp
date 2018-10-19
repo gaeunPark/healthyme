@@ -93,7 +93,7 @@
 						</tr>
 						<tr>
 							<th>나트륨(mg)</th>
-							<td id="soldium">
+							<td id="sodium">
 							<td>
 						</tr>
 						<th>가공업체</th>
@@ -169,7 +169,7 @@
 						var protein = myItem.NUTR_CONT3;
 						var fat = myItem.NUTR_CONT4;
 						var sugars = myItem.NUTR_CONT5;
-						var soldium = myItem.NUTR_CONT6;
+						var sodium = myItem.NUTR_CONT6;
 						var enterprise = myItem.ANIMAL_PLANT;
 						
 						$("#foodName").html(foodName);
@@ -179,7 +179,7 @@
 						$("#protein").html(protein);
 						$("#fat").html(fat);
 						$("#sugars").html(sugars);
-						$("#soldium").html(soldium);
+						$("#sodium").html(sodium);
 						$("#enterprise").html(enterprise);
 				}
 			});
@@ -193,16 +193,13 @@
 			var protein = $("#protein").html();
 			var fat = $("#fat").html();
 			var sugars = $("#sugars").html();
-			var soldium = $("#soldium").html();
+			var sodium = $("#sodium").html();
 			var enterprise = $("#enterprise").html()
-
+			
 			$.ajax({
 				type : 'POST',
 				url : '/user/addNutri/',
-				headers : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
+				contentType : "application/json; charset=UTF-8",
 				dataType : 'text',
 				data : JSON.stringify({
 					foodName : foodName,
@@ -212,14 +209,18 @@
 					protein : protein,
 					fat : fat,
 					sugars : sugars,
-					soldium : soldium,
+					sodium : sodium,
 					enterprise : enterprise
 				}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
 						alert("등록 되었습니다.");
-						location.href = "${pageContext.request.contextPath}/user/myPage";
+						location.href = "/user/myPage";
 					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("Status: " + textStatus);
+					alert("Error: " + errorThrown);
 				}
 			});
 		});

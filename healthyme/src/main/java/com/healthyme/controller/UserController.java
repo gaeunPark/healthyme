@@ -56,29 +56,61 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/addNutri", method = RequestMethod.POST)
-	public void addNutri(HttpSession session, @RequestBody UserDietVO dietVO) throws Exception {
-		logger.info("식단정보 넣기 ...........");
+	public ResponseEntity<String> addNutri(HttpSession session, @RequestBody UserDietVO dietVO) {
 		
+		logger.info("식단정보넣기 ...........");
+				
+		ResponseEntity<String> entity = null;
 		try {
 			int userIdx = (Integer)session.getAttribute("userIdx");
 			dietVO.setUserIdx(userIdx);
 			dietVO.setTimeslot(1);
+			
 			dietService.insertNutrition(dietVO);
-			logger.info("OK... vo = " + dietVO.toString());				
+			logger.info("OK... vo = " + dietVO.toString());	
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();
-
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+		
+		return entity;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@RequestMapping(value = "/addNutri", method = RequestMethod.POST)
+//	public void addNutri(HttpSession session, @RequestBody UserDietVO dietVO) throws Exception {
+//		logger.info("식단정보 넣기 ...........");
+//		
+//		try {
+//			int userIdx = (Integer)session.getAttribute("userIdx");
+//			dietVO.setUserIdx(userIdx);
+//			dietVO.setTimeslot(1);
+//			dietService.insertNutrition(dietVO);
+//			logger.info("OK... vo = " + dietVO.toString());				
+//			
+//		} catch (Exception e) {
+//			logger.info("Error ...........");
+//			e.printStackTrace();
+//
+//		}
+//	}
 	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public void myPage(HttpSession session, Model model) throws Exception {
 		logger.info("마이페이지");
 //		List<UserDietVO> dietList = new ArrayList<UserDietVO>();
 		Integer userIdx = (Integer)session.getAttribute("userIdx");
-		String date = "2018-10-18";
+		String date = "2018-10-19";
 		List<UserDietVO> dietLists = dietService.selectDietList(1, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
 		
