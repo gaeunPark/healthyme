@@ -23,12 +23,6 @@ public class HomeController {
 
 	@Inject
 	private UserService userService;
-
-	@RequestMapping(value = "/cal", method = RequestMethod.GET)
-	public void cal(Model model) throws Exception {
-		logger.info("홈 cal");
-
-	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homeGET(Model model) throws Exception {

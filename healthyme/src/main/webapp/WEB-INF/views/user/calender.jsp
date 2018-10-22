@@ -5,9 +5,9 @@
 <%@ include file="../include/nav.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/dist/css/jsCalendar.css">
+	href="${pageContext.request.contextPath}/resources/dist/css/jsCalendar.min.css">
 <script
-	src="${pageContext.request.contextPath}/resources/dist/js/jsCalendar.js"></script>
+	src="${pageContext.request.contextPath}/resources/dist/js/jsCalendar.min.js"></script>
 
 
 

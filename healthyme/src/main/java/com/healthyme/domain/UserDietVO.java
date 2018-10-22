@@ -5,7 +5,7 @@ import java.util.Date;
 public class UserDietVO {
 	private int userIdx;
 	private int timeslot;
-	private Date date;
+	private String date;
 	private String foodName;
 	private String servingWt;
 	private String kcal;
@@ -28,10 +28,10 @@ public class UserDietVO {
 	public void setTimeslot(int timeslot) {
 		this.timeslot = timeslot;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getFoodName() {

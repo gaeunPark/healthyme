@@ -1,9 +1,9 @@
 package com.healthyme.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.healthyme.domain.NutritionVO;
 import com.healthyme.domain.UserDietVO;
@@ -79,38 +80,50 @@ public class UserController {
 		return entity;
 	}
 	
+	@RequestMapping(value = "/cal", method = RequestMethod.GET)
+	public void cal(Model model) throws Exception {
+		logger.info("홈 cal");
+
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-//	@RequestMapping(value = "/addNutri", method = RequestMethod.POST)
-//	public void addNutri(HttpSession session, @RequestBody UserDietVO dietVO) throws Exception {
-//		logger.info("식단정보 넣기 ...........");
-//		
-//		try {
-//			int userIdx = (Integer)session.getAttribute("userIdx");
-//			dietVO.setUserIdx(userIdx);
-//			dietVO.setTimeslot(1);
-//			dietService.insertNutrition(dietVO);
-//			logger.info("OK... vo = " + dietVO.toString());				
-//			
-//		} catch (Exception e) {
-//			logger.info("Error ...........");
-//			e.printStackTrace();
-//
-//		}
-//	}
-	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public void myPage(HttpSession session, Model model) throws Exception {
+	@RequestMapping(value = "/myPage", method = {RequestMethod.GET, RequestMethod.POST})
+	public ResponseEntity<String> myPage(HttpServletRequest request, HttpSession session, @RequestBody UserDietVO dietVO, Model model) {
+		
 		logger.info("마이페이지");
-//		List<UserDietVO> dietList = new ArrayList<UserDietVO>();
+				
+		ResponseEntity<String> entity = null;
+		try {
+			String date = dietVO.getDate();
+			System.out.println(date);
+			Integer userIdx = (Integer)session.getAttribute("userIdx");
+//			String date = "2018-10-18"; 	
+			List<UserDietVO> dietLists = dietService.selectDietList(1, date);
+			NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
+			
+			model.addAttribute("dietLists", dietLists);
+			model.addAttribute("sumNutri", sumNutri); 
+			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			logger.info("Error ...........");
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/myPagee", method = RequestMethod.GET)
+	public void myPagee(HttpSession session, Model model) throws Exception {
+		logger.info("마이페이지");
+
 		Integer userIdx = (Integer)session.getAttribute("userIdx");
-		String date = "2018-10-19";
+		String date = "2018-10-18";
 		List<UserDietVO> dietLists = dietService.selectDietList(1, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
 		

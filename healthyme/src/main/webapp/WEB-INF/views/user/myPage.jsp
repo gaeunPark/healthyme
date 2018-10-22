@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="contents">
 			<div class="date-wrap">
-				<div class="date-inner">< 2018.10.15 ></div>
+				<div class="date-inner"></div>
 			</div>
 
 			<div class="content-wrap">
