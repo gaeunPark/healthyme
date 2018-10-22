@@ -11,17 +11,34 @@
 	</select>
 
 	<insert id="insertUser">
-		insert into user (userid, userpw, username, email, gender)
+		insert into user (userid, userpw, username, email,
+		gender)
 		values (#{userid}, #{userpw}, #{username}, #{email}, #{gender})
 	</insert>
-	
+
 	<select id="loginCheck" resultType="UserVO">
 		select username, user_idx
 		from user
 		where userid = #{userid} AND userpw = #{userpw}
 	</select>
 
+	<insert id="insertWeight">
+		INSERT INTO userinfo (user_idx, weight, date)
+		values(#{userIdx}, #{weight}, #{date})
+		ON DUPLICATE KEY UPDATE weight =
+		VALUES(weight);
+	</insert>
 
-	
+	<select id="selectDayWeight" resultType="String">
+		select weight
+		from userinfo
+		where user_idx = #{userIdx} AND Date(date) = #{date};
+	</select>
+
+	<select id="selectMonthWeight" resultType="UserInfoVO">
+		select Date(date) as date, weight
+		from userinfo
+		where user_idx = #{userIdx} AND month(date)=#{month} order by date;
+	</select>
 
 </mapper>

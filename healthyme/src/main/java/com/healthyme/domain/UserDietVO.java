@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class UserDietVO {
 	private int userIdx;
+	private int weight;
 	private int timeslot;
 	private String date;
 	private String foodName;
@@ -21,6 +22,12 @@ public class UserDietVO {
 	}
 	public void setUserIdx(int userIdx) {
 		this.userIdx = userIdx;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 	public int getTimeslot() {
 		return timeslot;

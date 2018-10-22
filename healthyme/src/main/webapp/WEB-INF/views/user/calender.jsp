@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/nav.jsp"%>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/dist/css/jsCalendar.min.css">
-<script
-	src="${pageContext.request.contextPath}/resources/dist/js/jsCalendar.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/fullcalendar.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/fullcalendar.print.min.css">
+<script src="${pageContext.request.contextPath}/resources/dist/js/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/dist/js/ko.js"></script>
+
 
 
 
@@ -16,10 +13,10 @@
 	<div class="container">
 		<div class="contents">
 
-			<input id="my-input-a"><br> 
-			Month change : <br> <input id="my-input-b"><br>
+			<div id="calendar"></div>
+			<div><a href="${pageContext.request.contextPath}/user/myChart">차트보기</a></div>
 
-			<div id="my-calendar" class="material-theme orange" ></div>
+
 
 		</div>
 		<!--  class="contents" -->
@@ -31,26 +28,123 @@
 
 </section>
 
-<script type="text/javascript">
-    // Create the calendar
-    var element = document.getElementById("my-calendar");
-    var myCalendar = jsCalendar.new(element);
 
-    var inputA = document.getElementById("my-input-a");
-    var inputB = document.getElementById("my-input-b");
-    // Add events
-    myCalendar.onDateClick(function(event, date){
-        inputA.value = date.toString();
-    });
-    myCalendar.onMonthChange(function(event, date){
-        inputB.value = date.toString();
-    });
-    
-    var b = document.getElementsByClassName("jsCalendar-current");
- 	b.innerHTML='a';
-	$(".jsCalendar-current").text("a<br>a");
+<!-- <script type='text/javascript'>
+var calendar = null;
+var events = null;
+
+events = [
+    {
+        title: 'Long Event',
+        color: 'red',
+        backgroundColor: 'yellow',
+        borderColor: 'blue',
+        textColor: 'green',
+        uid: 'event_0003',                     //--- Customize한 속성
+        flagCheckbox: true                     //--- Customize한 속성
+    }
+];
+
+$(document).ready(function() {
+	calendar = $('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		lang: "ko",
+		selectable: true,
+		selectHelper: true,
+		dayClick: function(date, allDay, jsEvent, view) {
+			window.alert("dayClick");
+			calendar.fullCalendar('unselect');
+		},
+		eventClick: function(calEvent, jsEvent, view) {
+			window.alert("eventClick");
+		},
+		select: function(start, end, allDay) {
+			var title = prompt('Event Title:');
+			if (title) {
+				calendar.fullCalendar('renderEvent',
+					{
+						title: title,
+						start: start,
+						end: end,
+						allDay: allDay
+					},
+					true // make the event "stick"
+				);
+			}
+			calendar.fullCalendar('unselect');
+		},
+		eventMouseover: function( event, jsEvent, view) { 
+			window.alert("eventMouseover");
+		},
+		eventMouseout: function( event, jsEvent, view) { 
+			window.alert("eventMouseout");
+		},
+		eventDrop: function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
+			window.alert("eventDrop");
+		},
+		eventResize:function( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) { 
+			window.alert("eventResize");
+		},
+ 		editable: true,
+ 		events: events,
+		firstDay: 0,				//---	0. 일요일
+		weekends: true,
+		allDaySlot: true,
+		allDayText: '종일',
+		axisFormat : 'hh:mm tt',
+		slotMinutes: 30,
+		defaultEventMinutes: 60,
+		firstHour: 9,
+		timeFormat: 'hh:mm tt',
+		columnFormat: {month: 'ddd', week: 'M/d ddd', day: 'M/d dddd'}
+	});
+});
+</script> -->
+
+
+
+
+
+<script>
+	$(document).ready(function() {
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			contentHeight:420,
+			height: 400,
+			lang: "ko",
+			header: {
+				left: "prev",
+				center: "title",
+				right: "today next"
+			},
+			editable: true,
+			defaultView: 'month',
+			navLinks: true,
+			navLinkDayClick: function(date, jsEvent) {
+			    var date = date.format();		    
+			    location.href = "/user/myPage?date=" + date;
+			},
+			buttonText: {
+				today : "오늘",
+				month : "월별",
+				week : "주별",
+				day : "일별",
+			},
+			timeFormat : "HH:mm"
+
+			
+		}) /* fullCalendar */
+	}); /* document.ready */
 	
-    
+	
 </script>
 
 <%@ include file="../include/footer.jsp"%>

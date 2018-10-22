@@ -1,10 +1,15 @@
 package com.healthyme.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
 
 /*
@@ -47,6 +52,28 @@ public class UserDAOImpl implements UserDAO {
 		UserVO vo = sqlSession.selectOne(namespace + ".loginCheck", userVO);
 		return vo;
 	}
+	
+	@Override
+	public void insertWeight(UserInfoVO userInfoVO) {
+		sqlSession.insert(namespace + ".insertWeight", userInfoVO);
+	}
+	
+	@Override
+	public String selectDayWeight(Integer userIdx, String date) {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userIdx", userIdx);
+		paramMap.put("date", date);
+		return sqlSession.selectOne(namespace + ".selectWeight", paramMap);
+	}
+	@Override
+	public List<UserInfoVO> selectMonthWeight(Integer userIdx, Integer month){
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userIdx", userIdx);
+		paramMap.put("month", month);
+		return sqlSession.selectList(namespace + ".selectMonthWeight", paramMap);
+	}
+	
+	
 	
 	
 //	@Override

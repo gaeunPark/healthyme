@@ -59,7 +59,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">내 정보</a></li>
 							<li><a data-toggle="modal"
-								href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
+								href="${pageContext.request.contextPath}/user/calender">마이페이지</a></li>
 							<li class="divider"></li>
 							<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
 						</ul></li>

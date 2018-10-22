@@ -12,10 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.healthyme.domain.NutritionVO;
 import com.healthyme.domain.UserDietVO;
@@ -38,7 +40,6 @@ public class UserController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<String> join(@RequestBody UserVO userVO) {
-		
 		logger.info("회원가입 ...........");
 				
 		ResponseEntity<String> entity = null;
@@ -80,67 +81,33 @@ public class UserController {
 		return entity;
 	}
 	
-	@RequestMapping(value = "/cal", method = RequestMethod.GET)
+	@RequestMapping(value = "/calender", method = RequestMethod.GET)
 	public void cal(Model model) throws Exception {
-		logger.info("홈 cal");
+		logger.info("calender");
 
 	}
 	
-	@RequestMapping(value = "/myPage", method = {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity<String> myPage(HttpServletRequest request, HttpSession session, @RequestBody UserDietVO dietVO, Model model) {
-		
+	@RequestMapping(value = "/myPage",   method = {RequestMethod.GET})
+	public void myPageGET(@RequestParam("date") String date, HttpSession session, Model model ) throws Exception {
 		logger.info("마이페이지");
-				
-		ResponseEntity<String> entity = null;
-		try {
-			String date = dietVO.getDate();
-			System.out.println(date);
-			Integer userIdx = (Integer)session.getAttribute("userIdx");
-//			String date = "2018-10-18"; 	
-			List<UserDietVO> dietLists = dietService.selectDietList(1, date);
-			NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
-			
-			model.addAttribute("dietLists", dietLists);
-			model.addAttribute("sumNutri", sumNutri); 
-			
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-			
-		} catch (Exception e) {
-			logger.info("Error ...........");
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
 		
-		return entity;
-	}
-	
-	
-	
-	
-	
-	@RequestMapping(value = "/myPagee", method = RequestMethod.GET)
-	public void myPagee(HttpSession session, Model model) throws Exception {
-		logger.info("마이페이지");
-
 		Integer userIdx = (Integer)session.getAttribute("userIdx");
-		String date = "2018-10-18";
-		List<UserDietVO> dietLists = dietService.selectDietList(1, date);
+		List<UserDietVO> dietLists = dietService.selectDietList(userIdx, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
+		String weight = userService.selectDayWeight(userIdx, date);
 		
 		model.addAttribute("dietLists", dietLists);
-		model.addAttribute("sumNutri", sumNutri);	
+		model.addAttribute("sumNutri", sumNutri);
+		model.addAttribute("weight", weight);
 	}
+
 	
-	@RequestMapping(value = "/myPage2", method = RequestMethod.GET)
-	public void myPage2(Model model) throws Exception {
-		logger.info("마이페이지2");
+	@RequestMapping(value = "/myChart", method = RequestMethod.GET)
+	public void myChart(Model model) throws Exception {
+		logger.info("myChart");
 		
 	}
 	
-	@RequestMapping(value = "/calender", method = RequestMethod.GET)
-	public void calender(Model model) throws Exception {
-		logger.info("마이페이지2");
-		
-	}
+
 
 }

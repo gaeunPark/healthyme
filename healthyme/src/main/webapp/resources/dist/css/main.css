@@ -18,7 +18,7 @@ footer {
 }
 .contents {
 	border: solid 1px black; 
-	height: 600px; 
+	height: auto; 
 	float: left; 
 	width: 75%;
 }
