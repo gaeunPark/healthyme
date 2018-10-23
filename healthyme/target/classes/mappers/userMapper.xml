@@ -39,5 +39,11 @@
 		from userinfo
 		where user_idx = #{userIdx} AND month(date)=#{month} order by date
 	</select>
+	
+	<select id="getMyWeight" resultType="UserInfoVO">
+		select Date(date) as date, weight
+		from userinfo
+		where user_idx = #{userIdx} order by date
+	</select>
 
 </mapper>

@@ -109,19 +109,55 @@ $(document).ready(function() {
 
 
 <script>
+	var events = [];
 	$.ajax({
 		type : 'post',
-		url : '/user/getEvents/',
+		url : '/user/getWeightEvents/',
 		headers : {
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Override" : "POST"
 		},
 		dataType : 'json',
 		success : function(data) {
-			var events = data;
+			if(data != 'empty'){
+				$.each(data, function(key, val){
+					events.push({
+						title: val.weight,
+						start: val.date,
+				        backgroundColor: 'orange',
+				        borderColor: 'white',
+				        textColor: 'black',
+						flagCheckbox: true
+					})
+				})
+			}
 		}
 	});
-
+	console.log(events);
+	$.ajax({
+		type : 'post',
+		url : '/user/getKcalEvents/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		success : function(data) {
+			if(data != 'empty'){
+				$.each(data, function(key, val){
+					events.push({
+						title: val.sumKcal,
+						start: val.date,
+				        backgroundColor: 'green',
+				        borderColor: 'white',
+				        textColor: 'white',
+						flagCheckbox: true
+					})
+				})
+			}
+		}
+	});
+	
 	$(document).ready(function() {
 		var date = new Date();
 		var d = date.getDate();
@@ -144,7 +180,7 @@ $(document).ready(function() {
 			    var date = date.format();		 	
 			    location.href = "/user/myPage?date=" + date;
 			},
-			/* events: events, */
+			events: events,
 			timeFormat : "HH:mm"
 
 			

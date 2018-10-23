@@ -21,14 +21,23 @@
 </section>
 
 <script>
+	var labels = []
+	for(var i=0; i<=31; i++){
+		labels.push(i);
+	};
+
 	var ctxWeight = document.getElementById("myChartWeight").getContext('2d');
 	
-	var Weightdata = [ 12, 19, 3, 3, 2, 3 ];
+	/* var Weightdata = [  { x: "2015-3-15 13:3", y: 12 }, 
+	      { x: "2015-3-25 13:2", y: 21 }, 
+	      { x: "2015-4-25 14:12", y: 32 } 
+	      {"5"}, {"" }, {"15"}]; */
+	var Weightdata = ["1", "2", "3", "10", , "15", "15"];
 	var ctxWeight = new Chart(ctxWeight, {
 		type : 'line',
 		data : {
-			labels : [ 1, 31, 1 ],
-			datasets : [ {
+			labels : labels,
+			datasets : [{
 				label : '체중 변화',
 				data : Weightdata,
 				backgroundColor : [ 'rgba(255, 99, 132, 0.2)' ],
@@ -43,9 +52,13 @@
 	var options = {
 		maintainAspectRatio : false,
 		spanGaps : false,
+		
+		toolitips: {
+			mode: 'index'
+		},
 		elements : {
 			line : {
-				tension : 0.000001
+				bezierCurveTension: false
 			}
 		},
 		plugins : {
@@ -54,13 +67,25 @@
 			}
 		},
 		scales : {
-			xAxes : [ {
+			xAxes : [{
 				ticks : {
+					type: 'time',
+					time: {
+						unit: 'day',
+						unitStepSize: 1,
+						displayFormats: {
+							day: 'MMM D'
+						},
+					},
+					distribution: 'series',
 					autoSkip : false,
 					maxRotation : 0,
 					beginAtZero : true
 				}
-			} ]
+			}],
+			yAxes: [{
+				
+			}]
 		}
 	};
 	

@@ -12,4 +12,6 @@ public interface DietDAO {
 	public List<UserDietVO> selectDietList(Integer userIdx, String date);
 	
 	public NutritionVO sumNutri(Integer userIdx, String date);
+	
+	public List<NutritionVO> sumKcal(Integer userIdx);
 }

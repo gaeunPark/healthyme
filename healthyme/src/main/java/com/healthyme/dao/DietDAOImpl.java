@@ -36,4 +36,7 @@ public class DietDAOImpl implements DietDAO{
 		paramMap.put("date", date);
 		return sqlsession.selectOne(namespace + ".sumNutri", paramMap);
 	}
+	public List<NutritionVO> sumKcal(Integer userIdx) {
+		return sqlsession.selectList(namespace + ".sumKcal", userIdx);
+	}
 }

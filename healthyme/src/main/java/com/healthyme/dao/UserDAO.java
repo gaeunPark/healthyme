@@ -18,4 +18,6 @@ public interface UserDAO {
 	public String selectDayWeight(Integer userIdx, String date);
 	
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, Integer month);
+	
+	public List<UserInfoVO> getMyWeight(Integer userIdx);
 }

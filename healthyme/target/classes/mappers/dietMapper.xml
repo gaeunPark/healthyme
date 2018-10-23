@@ -27,5 +27,12 @@
 		from userdiet
 		where user_idx=#{userIdx} And Date(date)=#{date}
 	</select>
+	
+	<select id="sumKcal" resultType="NutritionVO">
+		select sum(kcal) as sum_kcal, Date(date) as date
+		from userdiet
+		where user_idx=#{userIdx}
+		group by Date(date)
+	</select>
 
 </mapper>

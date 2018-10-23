@@ -7,6 +7,7 @@ public class NutritionVO {
 	private String sumFat;
 	private String sumSugars;
 	private String sumSudium;
+	private String date;
 	
 	public String getSumKcal() {
 		return sumKcal;
@@ -44,11 +45,19 @@ public class NutritionVO {
 	public void setSumSudium(String sumSudium) {
 		this.sumSudium = sumSudium;
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	@Override
 	public String toString() {
 		return "NutritionVO [sumKcal=" + sumKcal + ", sumCarbo=" + sumCarbo + ", sumProtein=" + sumProtein + ", sumFat="
-				+ sumFat + ", sumSugars=" + sumSugars + ", sumSudium=" + sumSudium + "]";
+				+ sumFat + ", sumSugars=" + sumSugars + ", sumSudium=" + sumSudium + ", date=" + date + "]";
 	}
+	
+	
 	
 	
 	

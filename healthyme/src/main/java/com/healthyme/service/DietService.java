@@ -28,4 +28,8 @@ public class DietService {
 	public NutritionVO sumNutri(Integer userIdx, String date) throws Exception{
 		return dao.sumNutri(userIdx, date);
 	}
+	
+	public List<NutritionVO> sumKcal(Integer userIdx) throws Exception {
+		return dao.sumKcal(userIdx);
+	}
 }
