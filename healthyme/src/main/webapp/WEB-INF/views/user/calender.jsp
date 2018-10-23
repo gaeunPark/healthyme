@@ -1,7 +1,6 @@
 <%@ include file="../include/nav.jsp"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/fullcalendar.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/fullcalendar.print.min.css">
 <script src="${pageContext.request.contextPath}/resources/dist/js/fullcalendar.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/dist/js/ko.js"></script>
 
@@ -110,6 +109,19 @@ $(document).ready(function() {
 
 
 <script>
+	$.ajax({
+		type : 'post',
+		url : '/user/getEvents/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		success : function(data) {
+			var events = data;
+		}
+	});
+
 	$(document).ready(function() {
 		var date = new Date();
 		var d = date.getDate();
@@ -117,27 +129,22 @@ $(document).ready(function() {
 		var y = date.getFullYear();
 		
 		$('#calendar').fullCalendar({
-			contentHeight:420,
-			height: 400,
+
 			lang: "ko",
 			header: {
-				left: "prev",
+				left: 'prev',
 				center: "title",
 				right: "today next"
 			},
+			buttonIcons: false,
 			editable: true,
 			defaultView: 'month',
 			navLinks: true,
 			navLinkDayClick: function(date, jsEvent) {
-			    var date = date.format();		    
+			    var date = date.format();		 	
 			    location.href = "/user/myPage?date=" + date;
 			},
-			buttonText: {
-				today : "오늘",
-				month : "월별",
-				week : "주별",
-				day : "일별",
-			},
+			/* events: events, */
 			timeFormat : "HH:mm"
 
 			

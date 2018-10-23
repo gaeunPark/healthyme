@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.healthyme.mapper.UserMapper">
+<mapper namespace="com.healthyme.mapper.userMapper">
 
 	<select id="getTime" resultType="String">
 		select now()
@@ -25,20 +25,19 @@
 	<insert id="insertWeight">
 		INSERT INTO userinfo (user_idx, weight, date)
 		values(#{userIdx}, #{weight}, #{date})
-		ON DUPLICATE KEY UPDATE weight =
-		VALUES(weight);
+		ON DUPLICATE KEY UPDATE weight = VALUES(weight)
 	</insert>
 
 	<select id="selectDayWeight" resultType="String">
 		select weight
 		from userinfo
-		where user_idx = #{userIdx} AND Date(date) = #{date};
+		where user_idx = #{userIdx} AND Date(date) = #{date}
 	</select>
 
 	<select id="selectMonthWeight" resultType="UserInfoVO">
 		select Date(date) as date, weight
 		from userinfo
-		where user_idx = #{userIdx} AND month(date)=#{month} order by date;
+		where user_idx = #{userIdx} AND month(date)=#{month} order by date
 	</select>
 
 </mapper>

@@ -33,6 +33,7 @@ public class UserService{
 	}
 	
 	public String selectDayWeight(Integer userIdx, String date) throws Exception{
+		System.out.println("service");
 		return dao.selectDayWeight(userIdx, date);
 	}
 	

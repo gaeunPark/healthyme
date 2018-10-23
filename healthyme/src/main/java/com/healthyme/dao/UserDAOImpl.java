@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private static final String namespace = "com.healthyme.mapper.UserMapper";
+	private static final String namespace = "com.healthyme.mapper.userMapper";
 	
 	@Override
 	public String getTime() {
@@ -63,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("userIdx", userIdx);
 		paramMap.put("date", date);
-		return sqlSession.selectOne(namespace + ".selectWeight", paramMap);
+		return sqlSession.selectOne(namespace + ".selectDayWeight", paramMap);
 	}
 	@Override
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, Integer month){
