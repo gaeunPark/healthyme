@@ -34,5 +34,26 @@
 		where user_idx=#{userIdx}
 		group by Date(date)
 	</select>
+	
+	<select id="selectMonthKcal" resultType="NutritionVO">
+		select DATE_FORMAT(date, '%d') as date, sum(kcal) as sum_kcal,
+				sum(carbo) as sum_carbo, sum(protein) as sum_protein, sum(fat) as
+				sum_fat, sum(sugars) as sum_sugars, sum(sodium) as sum_sudium 
+		from userdiet
+		where user_idx = #{userIdx} AND DATE_FORMAT(date, '%Y-%m') = #{month}
+		group by Date(date) 
+		order by date
+	</select>
+	
+	<select id="avgNutri" resultType="NutritionVO">
+		select avg(carbo) as avg_carbo, avg(protein) as avg_protein, avg(fat) as avg_fat, 
+				avg(sugars) as avg_sugars, avg(sodium) as avg_sodium
+		from (select date, sum(carbo) as carbo, sum(protein) as protein, sum(fat) as
+				fat, sum(sugars) as sugars, sum(sodium) as sodium
+			  	from userdiet
+				where user_idx = #{userIdx} AND DATE_FORMAT(date, '%Y-%m') = #{month}
+				group by Day(date)) as a
+		group by Month(date)
+	</select>
 
 </mapper>

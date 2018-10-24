@@ -11,20 +11,19 @@
 	<div>
 		<div>
 			<form action="/nutrition/searchNutri">
-				<input type="text" style="width: 30%;" class="form-control"
+				<input type="text" style="width: 30%; display: inline-block;" class="form-control"
 					placeholder="Search" id="searchKey" name="searchKey" />
-				<button type="submit" id="searchBtn">검색</button>
+				<input class="btn btn-default" type="submit" id="searchBtn" value="검색">
 			</form>
 		</div>
 		<p>음식 검색어 순위</p>
-		<table id="food_table"
-			style="border: 1px solid black; text-align: center; width: 60%;">
-			<thead>
+		<table class="w3-table w3-centered w3-hoverable w3-bordered" id="food_table">
+			<thead class="color">
 				<tr>
-					<td style="width: 10%;">순위</td>
-					<td class="foodName" style="width: 30%;">음식명</td>
-					<td class="serving_wt" style="width: 20%;">1회 제공량(g)</td>
-					<td class="kcal" style="width: 20%;">열량(kcal)</td>
+					<th style="width: 10%;">순위</th>
+					<th class="foodName" style="width: 30%;">음식명</th>
+					<th class="serving_wt" style="width: 20%;">1회 제공량(g)</th>
+					<th class="kcal" style="width: 20%;">열량(kcal)</th>
 				</tr>
 			</thead>
 			<tbody>

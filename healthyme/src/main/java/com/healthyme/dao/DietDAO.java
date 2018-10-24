@@ -14,4 +14,8 @@ public interface DietDAO {
 	public NutritionVO sumNutri(Integer userIdx, String date);
 	
 	public List<NutritionVO> sumKcal(Integer userIdx);
+	
+	public List<NutritionVO> selectMonthKcal(Integer userIdx, String month);
+	
+	public NutritionVO avgNutri(Integer userIdx, String month);
 }

@@ -7,29 +7,26 @@
 	<div class="container">
 		<div>
 			<form action="/nutrition/searchNutri">
-				<input type="text" style="width: 30%;" class="form-control"
+				<input type="text" style="width: 30%; display: inline-block;" class="form-control"
 					placeholder="Search" id="searchKey" name="searchKey" />
 				<button type="submit" id="searchBtn">검색</button>
 			</form>
 		</div>
-		<p><%=request.getParameter("searchKey")%>로 개가 검색되었습니다
-		</p>
 		<h3>
 			<span><%=request.getParameter("searchKey")%></span>(으)로 <span
 				class="food_total"></span>개 검색 되었습니다.
 		</h3>
-		<table id="food_table"
-			style="border: 1px solid black; text-align: center; width: 60%;">
-			<thead>
+		<table class="w3-table w3-centered w3-hoverable w3-bordered" id="food_table">
+			<thead class="color">
 				<tr>
 					<th class="idx" style="width: 3%;">순서
-					</td>
+					</th>
 					<th class="foodName" style="width: 10%;">음식명
-					</td>
+					</th>
 					<th class="serving_wt" style="width: 6%;">1회 제공량(g)
-					</td>
+					</th>
 					<th class="kcal" style="width: 6%;">열량(kcal)
-					</td>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -223,6 +220,10 @@
 					alert("Error: " + errorThrown);
 				}
 			});
+		});
+		
+		$("#searchBtn").on("click", function(){
+			alert(searchKey);
 		});
 		
 		$('#searchKey').keyup(function() {

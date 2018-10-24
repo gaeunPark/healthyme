@@ -6,8 +6,13 @@ public class NutritionVO {
 	private String sumProtein;
 	private String sumFat;
 	private String sumSugars;
-	private String sumSudium;
+	private String sumSodium;
 	private String date;
+	private String avgCarbo;
+	private String avgProtein;
+	private String avgFat;
+	private String avgSugars;
+	private String avgSodium;
 	
 	public String getSumKcal() {
 		return sumKcal;
@@ -40,10 +45,10 @@ public class NutritionVO {
 		this.sumSugars = sumSugars;
 	}
 	public String getSumSudium() {
-		return sumSudium;
+		return sumSodium;
 	}
-	public void setSumSudium(String sumSudium) {
-		this.sumSudium = sumSudium;
+	public void setSumSudium(String sumSodium) {
+		this.sumSodium = sumSodium;
 	}
 	public String getDate() {
 		return date;
@@ -51,10 +56,46 @@ public class NutritionVO {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public String getSumSodium() {
+		return sumSodium;
+	}
+	public void setSumSodium(String sumSodium) {
+		this.sumSodium = sumSodium;
+	}
+	public String getAvgCarbo() {
+		return avgCarbo;
+	}
+	public void setAvgCarbo(String avgCarbo) {
+		this.avgCarbo = avgCarbo;
+	}
+	public String getAvgProtein() {
+		return avgProtein;
+	}
+	public void setAvgProtein(String avgProtein) {
+		this.avgProtein = avgProtein;
+	}
+	public String getAvgFat() {
+		return avgFat;
+	}
+	public void setAvgFat(String avgFat) {
+		this.avgFat = avgFat;
+	}
+	public String getAvgSugars() {
+		return avgSugars;
+	}
+	public void setAvgSugars(String avgSugars) {
+		this.avgSugars = avgSugars;
+	}
+	public String getAvgSodium() {
+		return avgSodium;
+	}
+	public void setAvgSodium(String avgSodium) {
+		this.avgSodium = avgSodium;
+	}
 	@Override
 	public String toString() {
 		return "NutritionVO [sumKcal=" + sumKcal + ", sumCarbo=" + sumCarbo + ", sumProtein=" + sumProtein + ", sumFat="
-				+ sumFat + ", sumSugars=" + sumSugars + ", sumSudium=" + sumSudium + ", date=" + date + "]";
+				+ sumFat + ", sumSugars=" + sumSugars + ", sumSudium=" + sumSodium + ", date=" + date + "]";
 	}
 	
 	

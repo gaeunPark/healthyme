@@ -66,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(namespace + ".selectDayWeight", paramMap);
 	}
 	@Override
-	public List<UserInfoVO> selectMonthWeight(Integer userIdx, Integer month){
+	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month){
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("userIdx", userIdx);
 		paramMap.put("month", month);

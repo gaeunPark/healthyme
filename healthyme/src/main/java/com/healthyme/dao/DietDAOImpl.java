@@ -39,4 +39,16 @@ public class DietDAOImpl implements DietDAO{
 	public List<NutritionVO> sumKcal(Integer userIdx) {
 		return sqlsession.selectList(namespace + ".sumKcal", userIdx);
 	}
+	public List<NutritionVO> selectMonthKcal(Integer userIdx, String month){
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userIdx", userIdx);
+		paramMap.put("month", month);
+		return sqlsession.selectList(namespace + ".selectMonthKcal", paramMap);
+	};
+	public NutritionVO avgNutri(Integer userIdx, String month) {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userIdx", userIdx);
+		paramMap.put("month", month);
+		return sqlsession.selectOne(namespace + ".avgNutri", paramMap);
+	};
 }

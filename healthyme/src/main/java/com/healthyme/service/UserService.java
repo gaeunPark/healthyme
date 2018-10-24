@@ -37,7 +37,7 @@ public class UserService{
 		return dao.selectDayWeight(userIdx, date);
 	}
 	
-	public List<UserInfoVO> selectMonthWeight(Integer userIdx, Integer month) throws Exception{
+	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month) throws Exception{
 		return dao.selectMonthWeight(userIdx, month);
 	}
 	public List<UserInfoVO> getMyWeight(Integer userIdx){

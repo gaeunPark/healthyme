@@ -27,14 +27,12 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homeGET(Model model) throws Exception {
 		logger.info("홈 화면");
-
 		return "home";
 	}
 
 	@RequestMapping(value = "/loginPOST", method = RequestMethod.POST)
 	public String loginPOST(@ModelAttribute UserVO userVO, Model model, HttpSession session) throws Exception {
 		logger.info("로그인 처리");
-
 		UserVO vo = userService.loginCheck(userVO, session);
 		String username = vo.getUsername();
 
@@ -51,7 +49,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public void main(Locale locale, Model model) throws Exception {
-
 	}
 
 	@RequestMapping("/logout")
@@ -62,52 +59,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(Model model) throws Exception {
-
 	}
 
 	@RequestMapping(value = "/nav", method = RequestMethod.GET)
 	public void nav(Model model) throws Exception {
-
 	}
 
-	// @RequestMapping("/signUp.do")
-	// public String signUp(Model model) throws Exception {
-	//
-	// User user = new User();
-	// // UserVO userVO = new UserVO();
-	// // homeMapper.insertUser(userVO);
-	//
-	// model.addAttribute("user", user);
-	// return "signUp";
-	// }
-	//
-	// @RequestMapping("/actionSignUp.do")
-	// public String actionSignUp(@ModelAttribute @Valid ActionSignUpDTO
-	// actionSignUpDTO, BindingResult bindingResult,
-	// Model model) throws Exception {
-	//
-	// if(bindingResult.hasErrors()){
-	// return "signUp";
-	// }
-	//
-	// int count = homeMapper.selectUsersCount(actionSignUpDTO.getUsername());
-	// if(count == 0){
-	// String username = actionSignUpDTO.getUsername();
-	// String password = actionSignUpDTO.getPassword();
-	// String name = actionSignUpDTO.getName();
-	// String email = actionSignUpDTO.getEmail();
-	// String phone = actionSignUpDTO.getPhone();
-	// String address = actionSignUpDTO.getAddress();
-	// homeMapper.insertUser(username, password, name, email, phone, address);
-	// } else {
-	/// * �뿉�윭 �삁�쇅泥섎━
-	// throw new NullPointerException();
-	// User user = null;
-	// user.getId();
-	// user.setName("AAAA");*/
-	//
-	// return "signUp";
-	// }
-	// return "redirect:/main.do";
-	// }
 }
