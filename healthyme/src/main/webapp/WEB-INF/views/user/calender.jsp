@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ include file="../include/nav.jsp"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/fullcalendar.min.css">

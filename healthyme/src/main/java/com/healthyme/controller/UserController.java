@@ -33,7 +33,6 @@ public class UserController {
 	
 	@Inject
 	private UserService userService;
-	
 	@Inject
 	private DietService dietService;
 	
@@ -59,7 +58,6 @@ public class UserController {
 	
 	@RequestMapping(value = "/addNutri", method = RequestMethod.POST)
 	public ResponseEntity<String> addNutri(HttpSession session, @RequestBody UserDietVO dietVO) {
-		
 		logger.info("식단정보넣기 ...........");
 				
 		ResponseEntity<String> entity = null;
@@ -102,11 +100,14 @@ public class UserController {
 		model.addAttribute("weight", weight);
 	}
 
-	
 	@RequestMapping(value = "/myChart", method = RequestMethod.GET)
 	public void myChart(Model model) throws Exception {
 		logger.info("myChart");
-		
+	}
+	
+	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
+	public void myInfo(Model model) throws Exception {
+		logger.info("myInfo");
 	}
 	
 

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../include/nav.jsp"%>
 
 <section>
@@ -14,7 +11,7 @@
 			</div>
 
 			<div class="content-wrap">
-				<table class="mypage-table">
+				<table class="w3-table w3-centered w3-bordered" id="mypage-table">
 					<tr>
 						<th>체성분</th>
 						<td>몸무게</td>
@@ -154,9 +151,9 @@
 
 				</div>
 			</div>
-		</div>
+		</div> <!-- contents -->
 		<div class="side"></div>
-	</div>
+	</div> <!-- container -->
 </section>
 
 <script>
