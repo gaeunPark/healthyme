@@ -10,6 +10,8 @@ public class UserVO {
 	private String email;
 	private String gender;
 	private Date regDate;
+	private String height;
+	private String goalWeight;
 	
 	public int getUserIdx() {
 		return userIdx;
@@ -53,12 +55,25 @@ public class UserVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
+	public String getGoalWeight() {
+		return goalWeight;
+	}
+	public void setGoalWeight(String goalWeight) {
+		this.goalWeight = goalWeight;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [userIdx=" + userIdx + ", userid=" + userid + ", userpw=" + userpw + ", username=" + username
-				+ ", email=" + email + ", gender=" + gender + ", regDate=" + regDate + "]";
+				+ ", email=" + email + ", gender=" + gender + ", regDate=" + regDate + ", height=" + height
+				+ ", goalWeight=" + goalWeight + "]";
 	}
+	
 	
 	
 }

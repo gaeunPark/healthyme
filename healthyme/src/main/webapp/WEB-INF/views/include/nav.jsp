@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
@@ -79,7 +80,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="true">커뮤니티</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
+						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=1">커뮤니티</a></li>
 					</ul></li>
 				<li><a href="#">SHOP</a></li>
 			</ul>

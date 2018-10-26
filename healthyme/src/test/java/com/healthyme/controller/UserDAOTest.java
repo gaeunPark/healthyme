@@ -81,11 +81,15 @@ public class UserDAOTest {
 		List<UserInfoVO> list = dao.selectMonthWeight(1, "2018-10");
 		System.out.println(list);
 	}
-	@Test
+//	@Test
 	public void avgNutri() throws Exception {
 		NutritionVO avgNtr = null;
 		avgNtr = dietDao.avgNutri(1, "2018-10");
 		avgNtr.toString();
+	}
+	@Test
+	public void updateUser() throws Exception {
+		String height="180";
 	}
 	
 

@@ -9,7 +9,7 @@
 			<form action="/nutrition/searchNutri">
 				<input type="text" style="width: 30%; display: inline-block;" class="form-control"
 					placeholder="Search" id="searchKey" name="searchKey" />
-				<button type="submit" id="searchBtn">검색</button>
+				<input class="btn btn-default" type="submit" id="searchBtn" value="검색">
 			</form>
 		</div>
 		<h3>

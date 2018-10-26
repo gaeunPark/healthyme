@@ -6,78 +6,38 @@
 	<div class="menu"> 회원정보 정보수정</div>
 	<div class="container">
 		<div class="contents">
-			<table class="w3-table w3-centered  w3-bordered" id="">
+		<form action="${pageContext.request.contextPath}/user/myInfo" method="post">
+			<table class="w3-table w3-centered  w3-bordered">
+				<tr><td><input type="hidden" name="userIdx" value="${userVO.userIdx}"></td></tr>
 				<tr>
-					<th class="idx">이름
-					</th>
-					<td><input class="w3-input w3-border" type="text"></td>
+					<th>이름</th>
+					<td><input class="w3-input w3-border" type="text" name="username" value="${userVO.username}"></td>
 				</tr>
 				<tr>
-					<th class="foodName">이메일
-					</th>
-					<td><input class="w3-input w3-border" type="text"></td>
+					<th>이메일</th>
+					<td><input class="w3-input w3-border" type="text" name="email" value="${userVO.email}"></td>
 				</tr>
 				<tr>
-					<th class="serving_wt" >비밀번호
-					</th>
-					<td><input class="w3-input w3-border" type="text"></td>
+					<th>비밀번호</th>
+					<td><input class="w3-input w3-border" type="text" name="userpw" value="${userVO.userpw}"></td>
 				</tr>
 				<tr>
-					<th class="kcal">키
-					</th>
-					<td><input class="w3-input w3-border" type="text"></td>
+					<th>키</th>
+					<td><input class="w3-input w3-border" type="text" name="height" value="${userVO.height}"></td>
 				</tr>
 				<tr>
-					<th class="kcal">몸무게
-					</th>
-					<td><input class="w3-input w3-border" type="text"></td>
+					<th>몸무게</th>
+					<td><input class="w3-input w3-border" type="text" name="goalWeight" value="${userVO.goalWeight}"></td>
 				</tr>
-			<tbody>
-			</tbody>
 		</table>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<input class="btn btn-default" type="submit" value="저장">
+		</form>
+
 		</div> <!-- contents -->
 
 	<div class="side"></div>
 	</div> <!-- container -->
 </section>
 
-<script>
-	$(document).ready(function() {
 
-		$("#addWeightBtn").on("click", function() {
-			var weight = $("#weight").val();
-			$.ajax({
-				type : 'post',
-				url : '/user/addWeight/',
-				headers : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				dataType : 'text',
-				data : JSON.stringify({
-					date : "<%=request.getParameter("date")%>
-	",
-					weight : weight,
-				}),
-				success : function(result) {
-					if (result == 'SUCCESS') {
-						alert("등록 되었습니다.");
-					}
-				}
-			});
-
-		});
-
-	}); //document.ready
-</script>
 <%@ include file="../include/footer.jsp"%>

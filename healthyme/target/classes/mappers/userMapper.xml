@@ -51,5 +51,20 @@
 		values(#{word}, 1)
 		ON DUPLICATE KEY UPDATE count = count+1;
 	</insert>
+	<select id="getUser" resultType="UserVO">
+		select *
+		from user
+		where user_idx = #{userIdx}
+	</select>
+	
+	<update id="updateUser">
+		UPDATE user
+		SET username = #{username},
+			email = #{email},
+			userpw = #{userpw},
+			height = #{height},
+			goal_weight = #{goalWeight}
+		WHERE user_idx = #{userIdx}
+	</update>
 
 </mapper>

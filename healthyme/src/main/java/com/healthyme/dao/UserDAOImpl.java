@@ -76,6 +76,14 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserInfoVO> getMyWeight(Integer userIdx){
 		return sqlSession.selectList(namespace + ".getMyWeight", userIdx);
 	}
+	@Override
+	public UserVO getUser(Integer userIdx) {
+		return sqlSession.selectOne(namespace + ".getUser", userIdx);
+	};
+	@Override
+	public void updateUser(UserVO userVO) {
+		sqlSession.update(namespace + ".updateUser", userVO);
+	};
 	
 	
 //	@Override

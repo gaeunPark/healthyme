@@ -40,10 +40,17 @@ public class UserService{
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month) throws Exception{
 		return dao.selectMonthWeight(userIdx, month);
 	}
-	public List<UserInfoVO> getMyWeight(Integer userIdx){
+	public List<UserInfoVO> getMyWeight(Integer userIdx) throws Exception{
 		return dao.getMyWeight(userIdx);
 	}
 	
+	public UserVO getUser(Integer userIdx) throws Exception{
+		return dao.getUser(userIdx);
+	}
+	
+	public void updateUser(UserVO userVO) throws Exception{
+		dao.updateUser(userVO);
+	}
 	
 	
 	

@@ -20,4 +20,8 @@ public interface UserDAO {
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month);
 	
 	public List<UserInfoVO> getMyWeight(Integer userIdx);
+	
+	public UserVO getUser(Integer userIdx);
+	
+	public void updateUser(UserVO userVO);
 }

@@ -106,8 +106,20 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
-	public void myInfo(Model model) throws Exception {
+	public void myInfo(HttpSession session, Model model) throws Exception {
 		logger.info("myInfo");
+		Integer userIdx = (Integer)session.getAttribute("userIdx");
+		UserVO vo = userService.getUser(userIdx);
+		
+		model.addAttribute("userVO", vo);	
+	}
+	
+	@RequestMapping(value = "/myInfo", method = RequestMethod.POST)
+	public String myInfoPost(Model model, @ModelAttribute UserVO userVO) throws Exception {
+		logger.info("updateMyInfo");
+		userService.updateUser(userVO);
+		System.out.println(userVO);
+		return "redirect:/user/myInfo";
 	}
 	
 
