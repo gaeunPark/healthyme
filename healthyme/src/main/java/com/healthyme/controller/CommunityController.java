@@ -1,5 +1,7 @@
 package com.healthyme.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -32,9 +34,8 @@ public class CommunityController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardService.countPaging(cri));
-		System.out.println(pageMaker.getTotalCount());
 		model.addAttribute("pageMaker", pageMaker);
-//		model.addAttribute("boardVOs", boardService.selectList(categoryIdx));
+
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -50,13 +51,15 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(@RequestParam int boardIdx, Model model) throws Exception {
-		logger.info("read");	
+	public void read(@RequestParam int boardIdx, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		logger.info("read");
+		System.out.println(cri);
 		model.addAttribute("boardVO", boardService.select(boardIdx));
+		
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestParam int boardIdx) throws Exception {
+	public String delete(@ModelAttribute("cri") Criteria cri, @RequestParam int boardIdx) throws Exception {
 		logger.info("remove");
 		boardService.delete(boardIdx);
 		return "redirect:/community/community?categoryIdx=1";

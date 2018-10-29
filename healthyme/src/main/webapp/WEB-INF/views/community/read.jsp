@@ -17,7 +17,10 @@
 				
 
 				<form role="form" method="post">
-					<input type='hidden' name='boardIdx' value="${boardVO.boardIdx}">			
+					<input type='hidden' name='boardIdx' value="${boardVO.boardIdx}">
+					<input type='hidden' name='categoryIdx' value="${boardVO.categoryIdx}">
+					<input type='hidden' name='page' value ="${cri.page}">
+				    <input type='hidden' name='perPageNum' value ="${cri.perPageNum}">		
 				</form>				
 				
 				<div class="box-body">
@@ -64,7 +67,9 @@
 						});
 						
 						$(".btn-primary").on("click", function(){
-							self.location = "/community/community?categoryIdx=1";
+							formObj.attr("method", "get");
+							formObj.attr("action", "/community/community");
+							formObj.submit();
 						});
 						
 					});
@@ -86,7 +91,9 @@
     
     if(result == 'SUCCESS'){
     	alert("처리가 완료되었습니다.");
-    }    
+    } 
+    
+    
 </script>
 
 

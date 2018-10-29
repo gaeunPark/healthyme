@@ -34,9 +34,9 @@
 	
 	<select id="listCriteria" resultType="BoardVO">
 	 <![CDATA[
-	 select board_idx, title, content, writer, reg_date, view_cnt, reply_cnt 
+	 select board_idx, category_idx, title, content, writer, reg_date, view_cnt, reply_cnt 
 	 from board
-	 where board_idx > 0 
+	 where board_idx > 0
 	 order by board_idx desc, reg_date desc
 	 limit #{pageStart}, #{perPageNum}
 	 ]]>
