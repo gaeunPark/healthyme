@@ -6,14 +6,54 @@
 
 <mapper namespace="com.healthyme.mapper.boardMapper">
 	
-	<insert id="insertPost">
-		insert into post (post_title, post_content, post_writer)
-		values(#{postTitle},#{postContent}, #{postWriter})
+	<insert id="insert">
+		insert into board (title, content, writer, category_idx)
+		values(#{title},#{content}, #{writer}, #{categoryIdx})
 	</insert>
 
-	<select id="selectList" resultType="PostVO">
-		selcet *
-		from post
-		where category_idx = #{categoryIdx}
+	<select id="selectList" resultType="BoardVO">
+		select *
+		from board
+		where category_idx = #{categoryIdx};
 	</select>
+	
+	<select id="select" resultType="BoardVO">
+		select *
+		from board
+		where board_idx = #{boardIdx};
+	</select>
+	
+	<update id="update">
+		update board set title =#{title}, content =#{content}
+		where board_idx = #{boardIdx};
+	</update>
+
+	<delete id="delete">
+		delete from board where board_idx = #{boardIdx};
+	</delete>
+	
+	<select id="listCriteria" resultType="BoardVO">
+	 <![CDATA[
+	 select board_idx, title, content, writer, reg_date, view_cnt, reply_cnt 
+	 from board
+	 where board_idx > 0 
+	 order by board_idx desc, reg_date desc
+	 limit #{pageStart}, #{perPageNum}
+	 ]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	 <![CDATA[
+	 select 
+	   count(board_idx) 
+	 from 
+	   board 
+	 where 
+	   board_idx > 0 
+	 ]]>
+	</select>
+	
+	
+	
+	
 </mapper>

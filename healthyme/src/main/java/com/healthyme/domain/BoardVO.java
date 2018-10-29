@@ -3,44 +3,49 @@ package com.healthyme.domain;
 import java.util.Date;
 
 public class BoardVO {
-	private Integer postIdx;
+	private Integer boardIdx;
 	private Integer categoryIdx;
-	private String postTitle;
-	private String postContent;
-	private String postWriter;
+	private String title;
+	private String content;
+	private String writer;
 	private Integer viewCnt;
 	private Integer replyCnt;
 	private Date regDate;
+	private Date updateDate;
+	private String fileName;
+	private Integer fileSize;
+	private String boardIp;
+	private String boardPass;
 	
-	public Integer getcCategoryIdx() {
+	public Integer getBoardIdx() {
+		return boardIdx;
+	}
+	public void setBoardIdx(Integer boardIdx) {
+		this.boardIdx = boardIdx;
+	}
+	public Integer getCategoryIdx() {
 		return categoryIdx;
 	}
 	public void setCategoryIdx(Integer categoryIdx) {
 		this.categoryIdx = categoryIdx;
 	}
-	public Integer getPostIdx() {
-		return postIdx;
+	public String getTitle() {
+		return title;
 	}
-	public void setPostIdx(Integer postIdx) {
-		this.postIdx = postIdx;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getPostTitle() {
-		return postTitle;
+	public String getContent() {
+		return content;
 	}
-	public void setPostTitle(String postTitle) {
-		this.postTitle = postTitle;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getPostContent() {
-		return postContent;
+	public String getWriter() {
+		return writer;
 	}
-	public void setPostContent(String postContent) {
-		this.postContent = postContent;
-	}
-	public String getPostWriter() {
-		return postWriter;
-	}
-	public void setPostWriter(String postWriter) {
-		this.postWriter = postWriter;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public Integer getViewCnt() {
 		return viewCnt;
@@ -60,6 +65,45 @@ public class BoardVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public Integer getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(Integer fileSize) {
+		this.fileSize = fileSize;
+	}
+	public String getBoardIp() {
+		return boardIp;
+	}
+	public void setBoardIp(String boardIp) {
+		this.boardIp = boardIp;
+	}
+	public String getBoardPass() {
+		return boardPass;
+	}
+	public void setBoardPass(String boardPass) {
+		this.boardPass = boardPass;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	@Override
+	public String toString() {
+		return "BoardVO [boardIdx=" + boardIdx + ", categoryIdx=" + categoryIdx + ", title=" + title + ", content="
+				+ content + ", writer=" + writer + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + ", regDate="
+				+ regDate + ", fileName=" + fileName + ", fileSize=" + fileSize + ", boardIp=" + boardIp
+				+ ", boardPass=" + boardPass + "]";
+	}
+
+	
 	
 	
 }
