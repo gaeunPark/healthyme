@@ -1,6 +1,6 @@
 package com.healthyme.domain;
 
-public class SearchCriteria {
+public class SearchCriteria extends Criteria {
 
 	private String searchType;
 	private String keyword;
@@ -16,6 +16,10 @@ public class SearchCriteria {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	@Override
+	public String toString() {
+		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
 	
 	

@@ -15,7 +15,8 @@
 				</div>
 
 				<form role="form" method="post">
-
+					<input type="hidden" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 					<div class="box-body">
 
 						<div class="form-group">
@@ -60,7 +61,7 @@
 						var formObj = $("form[role='form']");
 						console.log(formObj);
 						$(".btn-warning").on("click", function() {
-							self.location = "/community/community";
+							self.location = "/community/community?page=${cri.page}&perPageNum=${cri.perPageNum}&categoryIdx=1";
 						});
 						$(".btn-primary").on("click", function() {
 							formObj.submit();
