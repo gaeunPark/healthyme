@@ -14,9 +14,11 @@
 					<h3 class="box-title">read Posting Page</h3>
 				</div>
 
-				<form role="form" method="post">
+				<form role="form" action="modify" method="post">
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+					<input type='hidden' name='searchType' value ="${cri.searchType}">
+				    <input type='hidden' name='keyword' value ="${cri.keyword}">
 					<div class="box-body">
 
 						<div class="form-group">
@@ -61,7 +63,8 @@
 						var formObj = $("form[role='form']");
 						console.log(formObj);
 						$(".btn-warning").on("click", function() {
-							self.location = "/community/community?page=${cri.page}&perPageNum=${cri.perPageNum}&categoryIdx=1";
+							self.location = "/community/community?page=${cri.page}&perPageNum=${cri.perPageNum}"
+									+ "&searchType=${cri.searchType}&keyword=${cri.keyword}&categoryIdx=${cri.categoryIdx}"
 						});
 						$(".btn-primary").on("click", function() {
 							formObj.submit();

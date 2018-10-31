@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.healthyme.domain.BoardVO;
 import com.healthyme.domain.Criteria;
 import com.healthyme.domain.PageMaker;
-import com.healthyme.domain.SearchCriteria;
 import com.healthyme.service.BoardService;
 
 @Controller
@@ -26,31 +25,34 @@ public class CommunityController {
 	@Inject
 	private BoardService boardService;
 	
-//	@RequestMapping(value = "/community", method = RequestMethod.GET)
-//	public void community(@ModelAttribute Criteria cri, Model model, @RequestParam int categoryIdx) throws Exception {
-//		logger.info("community.....");
-//		
-//		model.addAttribute("boardVOs", boardService.listCriteria(cri));
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-//		pageMaker.setTotalCount(boardService.countPaging(cri));
-//		model.addAttribute("pageMaker", pageMaker);
-//
-//	}
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
-	public void community(@ModelAttribute SearchCriteria cri, Model model, @RequestParam int categoryIdx) throws Exception {
+	public void community(@ModelAttribute Criteria cri, Model model) throws Exception {
 		logger.info("community.....");
 		
+		cri.setCategoryIdx(1);	
 		model.addAttribute("boardVOs", boardService.listCriteria(cri));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardService.countPaging(cri));
-		model.addAttribute("pageMaker", pageMaker);
-
+		model.addAttribute("pageMaker", pageMaker);	
+	}
+	
+	@RequestMapping(value = "/community2", method = RequestMethod.GET)
+	public void community2(@ModelAttribute Criteria cri, Model model) throws Exception {
+		logger.info("community2.....");
+		
+		cri.setCategoryIdx(2);	
+		model.addAttribute("boardVOs", boardService.listCriteria(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.countPaging(cri));
+		model.addAttribute("pageMaker", pageMaker);	
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public void createGet() throws Exception {
+	public void createGet(@RequestParam("categoryIdx") int categoryIdx) throws Exception {
 		logger.info("createGet.....");
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -58,7 +60,7 @@ public class CommunityController {
 		logger.info("createPost.....");
 
 		boardService.insert(boardVO);
-		return "redirect:/community/community?categoryIdx=1";
+		return "redirect:/community/community";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -74,8 +76,10 @@ public class CommunityController {
 		boardService.delete(boardIdx);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/community/community?categoryIdx=1";
+		return "redirect:/community/community";
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -83,14 +87,17 @@ public class CommunityController {
 		logger.info("modifyGet");
 		model.addAttribute("boardVO", boardService.select(boardIdx));
 	}
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPost(@ModelAttribute BoardVO boardVO, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("modifyPost");
 		boardService.update(boardVO);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/community/community?categoryIdx=1";
+		return "redirect:/community/community";
 	}
 	
 	

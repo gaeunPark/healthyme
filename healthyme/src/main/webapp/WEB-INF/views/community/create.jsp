@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="../include/nav.jsp"%>
@@ -7,6 +8,7 @@
 	<div class="container">
 		<div class="contents">
 			<form action="${pageContext.request.contextPath}/community/create" method="post">
+				<input type="hidden" name="categoryIdx" value="<%=request.getParameter("categoryIdx")%>">
 				<div class="box-body">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Title</label> 
