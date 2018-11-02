@@ -19,7 +19,8 @@
 					<tr>
 						<td>${board.boardIdx}</td>
 						<td><a
-							href="/community/read${pageMaker.makeSearch(pageMaker.cri.page)}&boardIdx=${board.boardIdx}">${board.title}</a></td>
+							href="/community/read${pageMaker.makeSearch(pageMaker.cri.page)}&boardIdx=${board.boardIdx}">${board.title}
+							<strong>[${board.replyCnt}]</strong></a></td>
 						<td>${board.writer}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 								value="${board.regDate}" /></td>

@@ -49,6 +49,8 @@ public class CommunityController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardService.countPaging(cri));
 		model.addAttribute("pageMaker", pageMaker);	
+		
+		System.out.println("boardService.listCriteria(cri)" + boardService.listCriteria(cri));
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -58,9 +60,9 @@ public class CommunityController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createPost(@ModelAttribute BoardVO boardVO) throws Exception {
 		logger.info("createPost.....");
-
+		
 		boardService.insert(boardVO);
-		return "redirect:/community/community";
+		return "redirect:/community/community" + boardVO.getCategoryIdx();
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)

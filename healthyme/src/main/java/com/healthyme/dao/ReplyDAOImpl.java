@@ -43,5 +43,9 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void deleteReply(int replyIdx) {
 		sqlsession.delete(namespace + ".updateReply", replyIdx);
 	}
+	@Override
+	public int getBoardIdx(int replyIdx) {
+		return sqlsession.selectOne(namespace + ".getBoardIdx", replyIdx);
+	}
 
 }

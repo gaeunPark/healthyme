@@ -33,9 +33,7 @@ public class ReplyController {
 	@RequestMapping(value="", method = RequestMethod.POST)
 	public ResponseEntity<String> insertReply(@RequestBody ReplyVO replyVO){
 		logger.info("insert reply Post");
-		replyVO.setBoardIdx(189);
-		replyVO.setReplyer("admin");
-		replyVO.setReplyText("aaa");
+		
 		ResponseEntity<String> entity = null;
 		try {
 			service.insertReply(replyVO);

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.healthyme.dao.BoardDAO;
 import com.healthyme.domain.BoardVO;
@@ -22,7 +24,9 @@ public class BoardService {
 	public List<BoardVO> selectList(int categoryIdx) throws Exception{
 		return dao.selectList(categoryIdx);
 	}
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	public BoardVO select(int boardIdx) throws Exception{
+		dao.updateViewCnt(boardIdx);
 		return dao.select(boardIdx);
 	}
 	public void update(BoardVO boardVO) throws Exception{

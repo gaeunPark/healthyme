@@ -19,4 +19,8 @@ public interface BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri);
 	
 	public int countPaging(Criteria cri);
+	
+	public void updateReplyCnt(int boardIdx, int amount);
+	
+	public void updateViewCnt(int boardIdx);
 }

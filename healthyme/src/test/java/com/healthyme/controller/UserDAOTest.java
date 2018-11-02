@@ -27,11 +27,6 @@ public class UserDAOTest {
 	@Inject
 	private DietDAO dietDao;
 
-//	@Test
-	public void testTime() throws Exception {
-		System.out.println("getTime() = " + dao.getTime());
-
-	}
 
 //    @Test
 	public void testInsertUser() throws Exception {

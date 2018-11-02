@@ -1,15 +1,14 @@
 package com.healthyme.service;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.healthyme.dao.UserDAO;
+import com.healthyme.domain.LoginDTO;
 import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
 
@@ -23,9 +22,8 @@ public class UserService{
 		dao.insertUser(userVO);
 	}
 	
-	public UserVO loginCheck(UserVO userVO, HttpSession session) throws Exception{
-		UserVO vo = dao.loginCheck(userVO);
-		return vo;
+	public UserVO loginCheck(LoginDTO dto) throws Exception{
+		return dao.loginCheck(dto);	 
 	}
 	
 	public void insertWeight(UserInfoVO userInfoVO) throws Exception{
@@ -52,7 +50,13 @@ public class UserService{
 		dao.updateUser(userVO);
 	}
 	
-	
+	public void keepLogin(String userid, String sessionKey, Date sessionLimit) throws Exception{
+		dao.keepLogin(userid, sessionKey, sessionLimit);
+	}
+
+	public UserVO UserSessionKey(String value) throws Exception{
+		return dao.UserSessionKey(value);
+	}
 	
 	
 	

@@ -35,5 +35,11 @@
 	<delete id="deleteReply">
 		delete from reply where reply_idx = #{replyIdx};
 	</delete>
+	
+	<select id="getBoardIdx" resultType="int">
+		select board_idx
+		from reply
+		where reply_idx = #{replyIdx}
+	</select>
 
 </mapper>

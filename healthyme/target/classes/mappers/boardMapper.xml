@@ -18,7 +18,8 @@
 	</select>
 
 	<update id="update">
-		update board set title =#{title}, content =#{content}
+		update board 
+		set title =#{title}, content =#{content}
 		where board_idx = #{boardIdx};
 	</update>
 
@@ -47,8 +48,18 @@
 	 ]]>
 	<include refid="searchWhere"></include>
 	</select>
-
-
+	
+	<update id="updateReplyCnt">
+		update board 
+		set reply_cnt = reply_cnt + #{amount}
+		where board_idx = #{boardIdx};
+	</update>
+	
+	<update id="updateViewCnt">
+		update board 
+		set view_cnt = view_cnt + 1
+		where board_idx = #{boardIdx};
+	</update>
 
 
 	<sql id="searchWhere">

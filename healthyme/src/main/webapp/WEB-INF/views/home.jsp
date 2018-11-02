@@ -8,7 +8,7 @@
 <section>
 
 	<div class="container">
-		<c:if test="${empty sessionScope.username}">
+		<c:if test="${empty login.username}">
 		<div class="alert alert-danger alert-dismissible fade in" role="alert">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
@@ -27,7 +27,7 @@
 			</p>
 		</div>
 		</c:if>
-		<div class="contents">${username}반갑습니다.</div>
+		<div class="contents">${login.username}반갑습니다.</div>
 		<div class="side"></div>
 
 	</div>

@@ -47,11 +47,11 @@
 				
 				<div class="box-footer">
 			
-				
+				<c:if test="${login.userid == boardVO.writer}">
 					<button type="submit" class="btn btn-warning">Modify</button>
 					<button type="submit" class="btn btn-danger">REMOVE</button>
+				</c:if>
 					<button type="submit" class="btn btn-primary">LIST ALL</button>
-				
 				</div>
 				
 				<div class="row">
@@ -63,11 +63,11 @@
 								<h3 class="box-title">댓글쓰기</h3>
 							</div>
 							
-						  <c:if test="${empty login}">		<!-- not empty			 -->
+						  <c:if test="${not empty login}">
 							<div class="box-body">
 								<label for="exampleInputEmail1">Writer</label> 
 								<input	class="form-control" type="text" placeholder="USER ID"
-									id="newReplyWriter" value="${login.uid }" readonly="readonly">   
+									id="newReplyWriter" value="${login.userid}" readonly="readonly">   
 								<label for="exampleInputEmail1">Reply Text</label> 
 								<input class="form-control" type="text"	placeholder="REPLY TEXT" id="newReplyText">
 							</div>
@@ -88,7 +88,7 @@
 
 						<!-- ...426p. 댓글 목록과 페이징 처리에 필요한 div -->
 						<!-- The time line -->
-						<ul class="timeline">
+						<ul class="timeline w3-ul w3-border">
 							<!-- timeline time label -->
 							<li class="time-label" id="repliesDiv">
 								<span class="bg-green"> 
@@ -148,36 +148,29 @@
 <script id="template" type="text/x-handlebars-template">
 	{{#each .}}
 		<li class="replyLi" data-rno={{rno}}>
-		<i class="fa fa-comments bg-blue"></i>
-		 <div class="timeline-item" >
-		  	<span class="time">
-		    	{{prettifyDate regDate}}
-		  	</span>
-
-		  	<h3 class="timeline-header">
-				<strong>{{rno}}</strong> -{{replyer}}
-		  	</h3>
-
-			  <div class="timeline-body">
+			<div class="timeline-header">
+				{{replyer}} {{prettifyDate regDate}}
+			</div>
+			<div class="timeline-body">
 				{{replyText}} 
-			  </div>
-		      <div class="timeline-footer">
+			</div>
+			<div class="timeline-footer">
 				{{#eqReplyer replyer }}
-		     	  <a class="btn btn-primary btn-xs" 
-			         data-toggle="modal" data-target="#modifyModal">
-					  Modify
-				  </a>
+		 			<a class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#modifyModal">
+					Modify
+					</a>
 				{{/eqReplyer}}
-		      </div>
-		  </div>			
+			</div>	 			
 		</li>
 	{{/each}}
 </script>
+
+
 <script>
 	// 로그인  replyer 확인
 	Handlebars.registerHelper("eqReplyer", function(replyer, block) {
 		var accum = '';
-		if (replyer == '${login.uid}') {
+		if (replyer == '${login.userid}') {
 			accum += block.fn();
 		}
 		return accum;
@@ -203,17 +196,10 @@
 	
 	function getPage(pageInfo) {
 		$.getJSON(pageInfo, function(data) {
-			console.log("getPage(pageInfo) : ", pageInfo);
-			console.log("getJSON(data) : ", data);
-
 			printData(data.list, $("#repliesDiv"), $('#template'));
 			printPaging(data.pageMaker, $(".pagination"));			
-			/*
-			...510p.
-			   댓글 삭제 이벤트 에서$("#replyDelBtn").on("click",function()
-			   다시 getPage() 할 때 댓글 갯수를 갱신시켜 줌.
-			*/
-			$("#reply_countSmall").html("[ " + data.pageMaker.totalCount +" ]");//...510p.
+			
+			$("#reply_countSmall").html("[ " + data.pageMaker.totalCount +" ]");
 			$("#modifyModal").modal('hide');
 		});
 	}
@@ -245,11 +231,10 @@
 
 	});
 
-	//...438p.페이징 처리의 코드는 ul class = 'pagination' 에서 이뤄짐.
 	$(".pagination").on("click", "li a", function(event) {
 		event.preventDefault();
 		replyPage = $(this).attr("href");
-		getPage("/replies/" + bno + "/" + replyPage);
+		getPage("/replies/" + boardIdx + "/" + replyPage);
 
 	});
 	
@@ -281,7 +266,8 @@ $(document).ready(function(){
 	$("#replyAddBtn").on("click", function() {
 		var replyerObj = $("#newReplyWriter");
 		var replytextObj = $("#newReplyText");
-		var replyer = replyerObj.val();
+		/* var replyer = replyerObj.val(); */
+		var replyer = "admin";
 		var replyText = replytextObj.val();
 
 		$.ajax({

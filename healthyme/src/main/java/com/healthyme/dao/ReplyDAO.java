@@ -16,4 +16,6 @@ public interface ReplyDAO {
 	public void deleteReply(int replyIdx);
 	
 	public int countReply(int boardIdx);
+	
+	public int getBoardIdx(int replyIdx);
 }

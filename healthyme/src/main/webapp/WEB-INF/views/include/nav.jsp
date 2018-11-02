@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <html>
 <head>
 <title>nav</title>
@@ -18,7 +19,7 @@
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/dist/js/moment.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -47,12 +48,12 @@
 				<button type="submit" class="btn btn-default">검색</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<c:if test="${empty sessionScope.username}">
+				<c:if test="${empty login.username}">
 					<li><a data-toggle="modal" href="#loginModal">로그인</a></li>
 					<li><a data-toggle="modal" href="#joinModal">회원가입</a></li>
 				</c:if>
-				<c:if test="${!empty sessionScope.username}">
-					<li><a data-toggle="modal" href="#">${sessionScope.username}님</a></li>
+				<c:if test="${!empty login.username}">
+					<li><a data-toggle="modal" href="#">${login.username}님</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false">마이페이지
 							<span class="caret"></span>
@@ -62,7 +63,7 @@
 							<li><a data-toggle="modal"
 								href="${pageContext.request.contextPath}/user/calender">마이페이지</a></li>
 							<li class="divider"></li>
-							<li><a data-toggle="modal" href="/logout">로그아웃</a></li>
+							<li><a data-toggle="modal" href="/user/logout">로그아웃</a></li>
 						</ul></li>
 				</c:if>
 				<li><a href="join">즐겨찾기</a></li>
@@ -108,7 +109,7 @@
 				<h4 class="modal-title" id="myModalLabel">로그인</h4>
 			</div>
 			<div class="modal-body">
-				<form action="${pageContext.request.contextPath}/loginPOST"
+				<form action="${pageContext.request.contextPath}/user/loginPOST"
 					method="post" id="loginForm"
 					onsubmit="return confirm('로그인 하시겠습니까?')">
 					<div class="form-group">
@@ -128,32 +129,18 @@
 					<span class='text-center'><a
 						href="/bbs/index.php?mid=index&act=dispMemberFindAccount"
 						class="text-sm">비밀번호 찾기</a></span>
+						  <input type="checkbox" name="useCookie"> Remember Me
 					<hr />
-					<div class="form-group">
-						<br>
-						<center>
-							<p>- 또는 -</p>
-						</center>
-						<br>
-						<button class="btn facebookBtn">
-							<!-- <img src="/resources/img/flogo-HexRBG-Wht-58.svg"
-								alt="facebookLogo"> -->
-							페이스북으로 로그인
-						</button>
-						<button class="btn googleBtn">
-							<!-- <img src="/resources/img/google-logo-01.svg" alt="googleLogo"> -->
-							구글로 로그인 &nbsp;&nbsp;
-						</button>
 				</form>
 			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			<button type="button" class="btn btn-primary">로그인</button>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">로그인</button>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
+
 
 
 <!-- 회원가입Modal -->
@@ -171,9 +158,6 @@
 				<h4 class="modal-title" id="myModalLabel">회원가입</h4>
 			</div>
 			<div class="modal-body">
-
-				<!-- <form role="form" method="post" id="joinForm"
-					onsubmit="return false;"> -->
 					<p>ID :</p>
 					<p>
 						<input type="text" name="userid" id="userid">
@@ -202,7 +186,6 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button type="submit" id="joinBtn" class="btn btn-primary">가입하기</button>
-				<!-- </form> -->
 			</div>
 		</div>
 	</div>
