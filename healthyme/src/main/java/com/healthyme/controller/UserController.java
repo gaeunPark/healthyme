@@ -89,8 +89,9 @@ public class UserController {
 	@RequestMapping(value = "/myPage", method = { RequestMethod.GET })
 	public void myPageGET(@RequestParam("date") String date, HttpSession session, Model model) throws Exception {
 		logger.info("마이페이지");
-
-		Integer userIdx = (Integer) session.getAttribute("userIdx");
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		Integer userIdx = userVO.getUserIdx();
 
 		List<UserDietVO> dietLists = dietService.selectDietList(userIdx, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
@@ -109,7 +110,8 @@ public class UserController {
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
 	public void myInfo(HttpSession session, Model model) throws Exception {
 		logger.info("myInfo");
-		Integer userIdx = (Integer) session.getAttribute("userIdx");
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		Integer userIdx = userVO.getUserIdx();
 		UserVO vo = userService.getUser(userIdx);
 
 		model.addAttribute("userVO", vo);

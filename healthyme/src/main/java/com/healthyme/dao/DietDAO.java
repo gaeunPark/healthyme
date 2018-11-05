@@ -2,8 +2,10 @@ package com.healthyme.dao;
 
 import java.util.List;
 
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.NutritionVO;
 import com.healthyme.domain.UserDietVO;
+import com.healthyme.domain.UserVO;
 
 public interface DietDAO {
 	
@@ -13,7 +15,7 @@ public interface DietDAO {
 	
 	public NutritionVO sumNutri(Integer userIdx, String date);
 	
-	public List<NutritionVO> sumKcal(Integer userIdx);
+	public List<CalenderDTO> CalenderKcal(UserVO userVO);
 	
 	public List<NutritionVO> selectMonthKcal(Integer userIdx, String month);
 	

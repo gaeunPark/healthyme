@@ -30,10 +30,10 @@
 						<option value="07">07</option>
 						<option value="08">08</option>
 						<option value="09">09</option>
-						<option value="10" selected>10</option>
-						<option value="11">11</option>
+						<option value="10">10</option>
+						<option value="11" selected>11</option>
 						<option value="12">12</option>
-					</select> 일 &nbsp;&nbsp;&nbsp;
+					</select> 월 &nbsp;&nbsp;&nbsp;
 					<input class="btn btn-default" type="submit" value="검색">
 				</form>
 				</div>
@@ -46,7 +46,7 @@
 		</div>
 		<div class="side"></div>
 	</div>
-	</div>
+	
 </section>
 
 <script>
@@ -80,6 +80,8 @@
 			} */
 		};
 
+	
+	$(document).ready(function(){	
 	var Weightdata = [];
 	$.ajax({
 		type : 'post',
@@ -100,6 +102,7 @@
 			}
 		}
 	});
+	console.log(Weightdata);
 	var Kcaldata = [];
 	$.ajax({
 		type : 'post',
@@ -212,6 +215,8 @@
 	 } ]
 	 }
 	 }; */
+	 
+	}); /* document */
 </script>
 
 <%@ include file="../include/footer.jsp"%>

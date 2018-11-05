@@ -32,7 +32,8 @@
 	
 	
 	$(document).ready(function() {
-		var events = [];
+		var events = []
+		
 		$.ajax({
 			type : 'post',
 			url : '/user/getWeightEvents/',
@@ -56,7 +57,6 @@
 				}
 			}
 		});
-		console.log(events);
 		$.ajax({
 			type : 'post',
 			url : '/user/getKcalEvents/',
@@ -80,14 +80,8 @@
 				}
 			}
 		});
-		
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-		
+		console.log(events);
 		$('#calendar').fullCalendar({
-
 			lang: "ko",
 			header: {
 				left: 'prev',
@@ -104,8 +98,6 @@
 			},
 			events: events,
 			timeFormat : "HH:mm"
-
-			
 		}) /* fullCalendar */
 	}); /* document.ready */
 	

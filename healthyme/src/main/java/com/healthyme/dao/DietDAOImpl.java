@@ -9,8 +9,10 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.NutritionVO;
 import com.healthyme.domain.UserDietVO;
+import com.healthyme.domain.UserVO;
 
 @Repository
 public class DietDAOImpl implements DietDAO{
@@ -37,8 +39,8 @@ public class DietDAOImpl implements DietDAO{
 		return sqlsession.selectOne(namespace + ".sumNutri", paramMap);
 	}
 	@Override
-	public List<NutritionVO> sumKcal(Integer userIdx) {
-		return sqlsession.selectList(namespace + ".sumKcal", userIdx);
+	public List<CalenderDTO> CalenderKcal(UserVO userVO) {
+		return sqlsession.selectList(namespace + ".CalenderKcal", userVO);
 	}
 	@Override
 	public List<NutritionVO> selectMonthKcal(Integer userIdx, String month){

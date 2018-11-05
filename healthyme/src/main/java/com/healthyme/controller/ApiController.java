@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.NutritionVO;
 import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
@@ -44,13 +45,11 @@ public class ApiController {
 	public ResponseEntity<String> addWeight(HttpSession session, @RequestBody UserInfoVO infoVO) {	
 		logger.info("체중정보 넣기 ...........");
 		
-		UserVO userVO = (UserVO)session.getAttribute("login");
-		
 		ResponseEntity<String> entity = null;
 		try {
+			UserVO userVO = (UserVO)session.getAttribute("login");	
 			infoVO.setUserIdx(userVO.getUserIdx());
-			
-			userService.insertWeight(infoVO);			
+			userService.insertWeight(infoVO);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);		
 		} catch (Exception e) {
 			logger.info("Error ...........");
@@ -60,16 +59,46 @@ public class ApiController {
 		return entity;
 	}
 	
-	@RequestMapping("user/selectMonthWeight")
+	@RequestMapping(value = "user/getWeightEvents", method = RequestMethod.POST)
+	public List<CalenderDTO> getWeightEvents(HttpSession session) {	
+		logger.info("달력정보(체중) 가져오기 ...........");
+		List<CalenderDTO> list = null;
+		try {
+			UserVO userVO = (UserVO)session.getAttribute("login");
+			list = userService.CalenderWeight(userVO);
+	
+		} catch (Exception e) {
+			logger.info("Error ...........");
+			e.printStackTrace();
+		}		
+		return list;
+	}
+	
+	@RequestMapping(value = "user/getKcalEvents", method = RequestMethod.POST)
+	public List<CalenderDTO> getKcalEvents(HttpSession session) {	
+		logger.info("달력정보(칼로리) 가져오기 ...........");
+		List<CalenderDTO> list = null;
+		try {
+			UserVO userVO = (UserVO)session.getAttribute("login");
+			list = dietService.CalenderKcal(userVO);
+
+		} catch (Exception e) {
+			logger.info("Error ...........");
+			e.printStackTrace();
+		}		
+		return list;
+	}
+	
+	@RequestMapping(value = "user/selectMonthWeight", method = RequestMethod.POST)
 	public List<UserInfoVO> selectMonthWeight(HttpSession session, @RequestParam("month") String month) {	
 		logger.info("한달 체중정보 가져오기 ...........");
 		List<UserInfoVO> list = null;
 		
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
+			UserVO userVO = (UserVO)session.getAttribute("login");
 			
-			list = userService.selectMonthWeight(userIdx, month);
-			//logger.info("OK... vo = " + list.toString());	
+			list = userService.selectMonthWeight(userVO.getUserIdx(), month);
+//			System.out.println("체중정보" + list);
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();
@@ -77,47 +106,15 @@ public class ApiController {
 		return list;
 	}
 	
-	@RequestMapping("user/getWeightEvents")
-	public List<UserInfoVO> getWeightEvents(HttpSession session) {	
-		logger.info("달력정보(체중) 가져오기 ...........");
-		List<UserInfoVO> list = null;
-		
-		try {
-//			int userIdx = (Integer)session.getAttribute("userIdx");
-			list = userService.getMyWeight(1);
-			
-			logger.info("OK... vo = " + list.toString());	
-		} catch (Exception e) {
-			logger.info("Error ...........");
-			e.printStackTrace();
-		}		
-		return list;
-	}
-	
-	@RequestMapping("user/getKcalEvents")
-	public List<NutritionVO> getKcalEvents(HttpSession session) {	
-		logger.info("달력정보(칼로리) 가져오기 ...........");
-		List<NutritionVO> list = null;
-		try {
-//			int userIdx = (Integer)session.getAttribute("1");
-			list = dietService.sumKcal(1);
-			
-			//logger.info("OK... vo = " + list.toString());	
-		} catch (Exception e) {
-			logger.info("Error ...........");
-			e.printStackTrace();
-		}		
-		return list;
-	}
-	
-	@RequestMapping("user/selectMonthKcal")
+	@RequestMapping(value = "user/selectMonthKcal", method = RequestMethod.POST)
 	public List<NutritionVO> selectMonthKcal(HttpSession session, @RequestParam("month") String month) {	
 		logger.info("한달칼로리 가져오기 ...........");
 		List<NutritionVO> list = null;
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
-			list = dietService.selectMonthKcal(userIdx, month);
-			//logger.info("OK... vo = " + list.toString());	
+			UserVO userVO = (UserVO)session.getAttribute("login");
+			
+			list = dietService.selectMonthKcal(userVO.getUserIdx(), month);
+//			System.out.println("한달칼로리" + list);
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();
@@ -125,13 +122,14 @@ public class ApiController {
 		return list;
 	}
 	
-	@RequestMapping("user/avgNutri")
+	@RequestMapping(value = "user/avgNutri", method = RequestMethod.POST)
 	public NutritionVO avgNutri(HttpSession session, @RequestParam("month") String month) {	
 		logger.info("평균Ntr 가져오기 ...........");
 		NutritionVO avgNtr = null;
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
-			avgNtr = dietService.avgNutri(userIdx, month);
+			UserVO userVO = (UserVO)session.getAttribute("login");
+			avgNtr = dietService.avgNutri(userVO.getUserIdx(), month);
+//			System.out.println("평균Ntr" + avgNtr);
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();

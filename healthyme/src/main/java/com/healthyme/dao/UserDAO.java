@@ -3,6 +3,7 @@ package com.healthyme.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.LoginDTO;
 import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
@@ -19,7 +20,7 @@ public interface UserDAO {
 	
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month);
 	
-	public List<UserInfoVO> getMyWeight(Integer userIdx);
+	public List<CalenderDTO> CalenderWeight(UserVO userVO);
 	
 	public UserVO getUser(Integer userIdx);
 	

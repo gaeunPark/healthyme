@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.LoginDTO;
 import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
@@ -52,8 +53,8 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList(namespace + ".selectMonthWeight", paramMap);
 	}
 	@Override
-	public List<UserInfoVO> getMyWeight(Integer userIdx){
-		return sqlSession.selectList(namespace + ".getMyWeight", userIdx);
+	public List<CalenderDTO> CalenderWeight(UserVO userVO){
+		return sqlSession.selectList(namespace + ".CalenderWeight", userVO);
 	}
 	@Override
 	public UserVO getUser(Integer userIdx) {

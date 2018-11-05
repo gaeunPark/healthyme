@@ -28,7 +28,7 @@
 		where user_idx=#{userIdx} And Date(date)=#{date}
 	</select>
 	
-	<select id="sumKcal" resultType="NutritionVO">
+	<select id="CalenderKcal" resultType="CalenderDTO">
 		select sum(kcal) as sum_kcal, Date(date) as date
 		from userdiet
 		where user_idx=#{userIdx}

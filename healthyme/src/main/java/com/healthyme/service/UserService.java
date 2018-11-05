@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.healthyme.dao.UserDAO;
+import com.healthyme.domain.CalenderDTO;
 import com.healthyme.domain.LoginDTO;
 import com.healthyme.domain.UserInfoVO;
 import com.healthyme.domain.UserVO;
@@ -37,8 +38,8 @@ public class UserService{
 	public List<UserInfoVO> selectMonthWeight(Integer userIdx, String month) throws Exception{
 		return dao.selectMonthWeight(userIdx, month);
 	}
-	public List<UserInfoVO> getMyWeight(Integer userIdx) throws Exception{
-		return dao.getMyWeight(userIdx);
+	public List<CalenderDTO> CalenderWeight(UserVO userVO) throws Exception{
+		return dao.CalenderWeight(userVO);
 	}
 	
 	public UserVO getUser(Integer userIdx) throws Exception{
