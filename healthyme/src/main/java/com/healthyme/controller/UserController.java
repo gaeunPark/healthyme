@@ -49,7 +49,6 @@ public class UserController {
 			userService.join(userVO);
 			logger.info("OK... vo = " + userVO.toString());
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();
@@ -85,7 +84,6 @@ public class UserController {
 	@RequestMapping(value = "/calender", method = RequestMethod.GET)
 	public void cal(Model model) throws Exception {
 		logger.info("calender");
-
 	}
 
 	@RequestMapping(value = "/myPage", method = { RequestMethod.GET })
@@ -172,7 +170,6 @@ public class UserController {
 				userService.keepLogin(vo.getUserid(), session.getId(), new Date());
 			}
 		}
-
 		return "user/login";
 	}
 

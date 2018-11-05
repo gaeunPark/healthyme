@@ -29,28 +29,12 @@ public class CommunityController {
 	public void community(@ModelAttribute Criteria cri, Model model) throws Exception {
 		logger.info("community.....");
 		
-		cri.setCategoryIdx(1);	
 		model.addAttribute("boardVOs", boardService.listCriteria(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardService.countPaging(cri));
 		model.addAttribute("pageMaker", pageMaker);	
-	}
-	
-	@RequestMapping(value = "/community2", method = RequestMethod.GET)
-	public void community2(@ModelAttribute Criteria cri, Model model) throws Exception {
-		logger.info("community2.....");
-		
-		cri.setCategoryIdx(2);	
-		model.addAttribute("boardVOs", boardService.listCriteria(cri));
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(boardService.countPaging(cri));
-		model.addAttribute("pageMaker", pageMaker);	
-		
-		System.out.println("boardService.listCriteria(cri)" + boardService.listCriteria(cri));
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)

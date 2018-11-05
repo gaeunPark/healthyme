@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthyme.domain.NutritionVO;
-import com.healthyme.domain.UserDietVO;
 import com.healthyme.domain.UserInfoVO;
+import com.healthyme.domain.UserVO;
 import com.healthyme.service.DietService;
 import com.healthyme.service.UserService;
 
@@ -30,7 +29,6 @@ public class ApiController {
 	
 	@Inject
 	private DietService dietService;
-	
 	@Inject
 	private UserService userService;
 	
@@ -45,14 +43,14 @@ public class ApiController {
 	@RequestMapping(value = "user/addWeight", method = RequestMethod.POST)
 	public ResponseEntity<String> addWeight(HttpSession session, @RequestBody UserInfoVO infoVO) {	
 		logger.info("체중정보 넣기 ...........");
-				
+		
+		UserVO userVO = (UserVO)session.getAttribute("login");
+		
 		ResponseEntity<String> entity = null;
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
-			infoVO.setUserIdx(userIdx);
-
+			infoVO.setUserIdx(userVO.getUserIdx());
+			
 			userService.insertWeight(infoVO);			
-			//logger.info("OK... vo = " + infoVO.toString());	
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);		
 		} catch (Exception e) {
 			logger.info("Error ...........");
@@ -85,10 +83,10 @@ public class ApiController {
 		List<UserInfoVO> list = null;
 		
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
-			list = userService.getMyWeight(userIdx);
+//			int userIdx = (Integer)session.getAttribute("userIdx");
+			list = userService.getMyWeight(1);
 			
-			//logger.info("OK... vo = " + list.toString());	
+			logger.info("OK... vo = " + list.toString());	
 		} catch (Exception e) {
 			logger.info("Error ...........");
 			e.printStackTrace();
@@ -101,8 +99,8 @@ public class ApiController {
 		logger.info("달력정보(칼로리) 가져오기 ...........");
 		List<NutritionVO> list = null;
 		try {
-			int userIdx = (Integer)session.getAttribute("userIdx");
-			list = dietService.sumKcal(userIdx);
+//			int userIdx = (Integer)session.getAttribute("1");
+			list = dietService.sumKcal(1);
 			
 			//logger.info("OK... vo = " + list.toString());	
 		} catch (Exception e) {

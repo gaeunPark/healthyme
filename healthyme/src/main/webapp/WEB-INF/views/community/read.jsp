@@ -255,7 +255,7 @@ $(document).ready(function(){
 		formObj.attr("action", "/community/delete");
 		formObj.submit();
 	});
-	// 목룍
+	// 목록가기
 	$(".btn-primary").on("click", function(){
 		formObj.attr("method", "get");
 		formObj.attr("action", "/community/community");
@@ -266,8 +266,7 @@ $(document).ready(function(){
 	$("#replyAddBtn").on("click", function() {
 		var replyerObj = $("#newReplyWriter");
 		var replytextObj = $("#newReplyText");
-		/* var replyer = replyerObj.val(); */
-		var replyer = "admin";
+		var replyer = replyerObj.val();
 		var replyText = replytextObj.val();
 
 		$.ajax({
@@ -300,7 +299,6 @@ $(document).ready(function(){
 
 		var rno = $(".modal-title").html().trim();
 		var replytext = $("#replytext").val().trim();
-		//console.log('수정이벤트 replytext :', replytext);
 
 		$.ajax({
 			type : 'put',
@@ -310,11 +308,10 @@ $(document).ready(function(){
 				"X-HTTP-Method-Override" : "PUT"
 			},
 			data : JSON.stringify({
-				replytext : replytext //...데이터 전달.
+				replytext : replytext
 			}),
 			dataType : 'text',
 			success : function(result) {
-				//console.log("result: " + result);
 				if (result == 'SUCCESS') {
 					alert("수정 되었습니다.");
 					getPage("/replies/" + bno + "/" + replyPage);
@@ -325,7 +322,6 @@ $(document).ready(function(){
 
 	// 댓글 삭제
 	$("#replyDelBtn").on("click",function(){
-		  
 		  var rno = $(".modal-title").html().trim();
 		  var replytext = $("#replytext").val().trim();
 		  

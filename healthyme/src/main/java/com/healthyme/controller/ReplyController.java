@@ -62,7 +62,8 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value="/{replyIdx}", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateReply(@PathVariable("replyIdx") Integer replyIdx, @RequestBody ReplyVO replyVO){
+	public ResponseEntity<String> updateReply(@PathVariable("replyIdx") Integer replyIdx, 
+			@RequestBody ReplyVO replyVO){
 		
 		ResponseEntity<String> entity = null;
 		try {

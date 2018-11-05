@@ -49,7 +49,7 @@
 		where user_idx = #{userIdx} AND DATE_FORMAT(date, '%Y-%m') = #{month} order by date
 	</select>
 	
-	<select id="getMyWeight" resultType="UserInfoVO">
+	<select id="CalenderWeight" resultType="CalenderDTO">
 		select Date(date) as date, weight
 		from userinfo
 		where user_idx = #{userIdx} order by date

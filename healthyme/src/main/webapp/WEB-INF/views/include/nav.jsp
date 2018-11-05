@@ -66,7 +66,7 @@
 							<li><a data-toggle="modal" href="/user/logout">로그아웃</a></li>
 						</ul></li>
 				</c:if>
-				<li><a href="join">즐겨찾기</a></li>
+				<li><a href="#"> <span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></li>
 			</ul>
 		</div>
 
@@ -81,8 +81,8 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="true">커뮤니티</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="${pageContext.request.contextPath}/community/community">커뮤니티</a></li>
-						<li><a href="${pageContext.request.contextPath}/community/community2">커뮤니티</a></li>
+						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=1">커뮤니티</a></li>
+						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=2">커뮤니티</a></li>
 					</ul></li>
 				<li><a href="#">SHOP</a></li>
 			</ul>

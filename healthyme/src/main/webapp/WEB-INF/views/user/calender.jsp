@@ -18,7 +18,6 @@
 			<div><a href="${pageContext.request.contextPath}/user/myChart">차트보기</a></div>
 
 
-
 		</div>
 		<!--  class="contents" -->
 
@@ -30,56 +29,58 @@
 </section>
 
 <script>
-	var events = [];
-	$.ajax({
-		type : 'post',
-		url : '/user/getWeightEvents/',
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
-		},
-		dataType : 'json',
-		success : function(data) {
-			if(data != 'empty'){
-				$.each(data, function(key, val){
-					events.push({
-						title: val.weight,
-						start: val.date,
-				        backgroundColor: 'orange',
-				        borderColor: 'white',
-				        textColor: 'black',
-						flagCheckbox: true
-					})
-				})
-			}
-		}
-	});
-	console.log(events);
-	$.ajax({
-		type : 'post',
-		url : '/user/getKcalEvents/',
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
-		},
-		dataType : 'json',
-		success : function(data) {
-			if(data != 'empty'){
-				$.each(data, function(key, val){
-					events.push({
-						title: val.sumKcal,
-						start: val.date,
-				        backgroundColor: 'green',
-				        borderColor: 'white',
-				        textColor: 'white',
-						flagCheckbox: true
-					})
-				})
-			}
-		}
-	});
+	
 	
 	$(document).ready(function() {
+		var events = [];
+		$.ajax({
+			type : 'post',
+			url : '/user/getWeightEvents/',
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : 'json',
+			success : function(data) {
+				if(data != 'empty'){
+					$.each(data, function(key, val){
+						events.push({
+							title: val.weight,
+							start: val.date,
+					        backgroundColor: 'orange',
+					        borderColor: 'white',
+					        textColor: 'black',
+							flagCheckbox: true
+						})
+					})
+				}
+			}
+		});
+		console.log(events);
+		$.ajax({
+			type : 'post',
+			url : '/user/getKcalEvents/',
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : 'json',
+			success : function(data) {
+				if(data != 'empty'){
+					$.each(data, function(key, val){
+						events.push({
+							title: val.sumKcal,
+							start: val.date,
+					        backgroundColor: 'green',
+					        borderColor: 'white',
+					        textColor: 'white',
+							flagCheckbox: true
+						})
+					})
+				}
+			}
+		});
+		
 		var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
