@@ -28,7 +28,7 @@
 	<update id="updateReply">
 		update reply 
 		set reply_text =#{replyText},
-			updateDate = now()
+			update_date = now()
 		where reply_idx = #{replyIdx};
 	</update>
 

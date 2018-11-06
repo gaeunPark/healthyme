@@ -39,8 +39,5 @@ public class HomeController {
 	public void test(Model model) throws Exception {
 	}
 
-	@RequestMapping(value = "/nav", method = RequestMethod.GET)
-	public void nav(Model model) throws Exception {
-	}
 
 }

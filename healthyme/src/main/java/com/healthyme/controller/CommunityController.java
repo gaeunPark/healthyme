@@ -42,11 +42,11 @@ public class CommunityController {
 		logger.info("createGet.....");
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPost(@ModelAttribute BoardVO boardVO) throws Exception {
+	public String createPost(@ModelAttribute BoardVO boardVO, RedirectAttributes rttr) throws Exception {
 		logger.info("createPost.....");
-		
 		boardService.insert(boardVO);
-		return "redirect:/community/community" + boardVO.getCategoryIdx();
+		rttr.addAttribute("categoryIdx", boardVO.getCategoryIdx());
+		return "redirect:/community/community";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -64,6 +64,7 @@ public class CommunityController {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
+		rttr.addAttribute("categoryIdx", cri.getCategoryIdx());
 		
 		return "redirect:/community/community";
 	}
@@ -75,14 +76,16 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPost(@ModelAttribute BoardVO boardVO, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) throws Exception {
+	public String modifyPost(@ModelAttribute BoardVO boardVO, RedirectAttributes rttr, Criteria cri) throws Exception {
 		logger.info("modifyPost");
 		boardService.update(boardVO);
+		
+		System.out.println(cri);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		
+		rttr.addAttribute("categoryIdx", cri.getCategoryIdx());	
 		return "redirect:/community/community";
 	}
 	

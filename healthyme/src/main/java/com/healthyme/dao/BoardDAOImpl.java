@@ -48,7 +48,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri) {
 		return sqlsession.selectList(namespace + ".listCriteria", cri);
 	}
-
 	@Override
 	public int countPaging(Criteria cri) {
 		return sqlsession.selectOne(namespace + ".countPaging", cri);
@@ -59,7 +58,7 @@ public class BoardDAOImpl implements BoardDAO {
 	    paramMap.put("boardIdx", boardIdx);
 	    paramMap.put("amount", amount);
 	    
-		sqlsession.update(namespace + ".updateReplyCnt", boardIdx);
+		sqlsession.update(namespace + ".updateReplyCnt", paramMap);
 	}
 	@Override
 	public void updateViewCnt(int boardIdx) {

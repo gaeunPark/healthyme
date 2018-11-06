@@ -54,6 +54,7 @@
 		
 		<interceptor>
 			<mapping path="/" />
+			
 			<beans:ref bean="SessionInterceptor" />
 		</interceptor>
 	</interceptors>

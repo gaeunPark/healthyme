@@ -18,33 +18,34 @@
 				<c:forEach var="board" items="${boardVOs}">
 					<tr>
 						<td>${board.boardIdx}</td>
-						<td><a href="/community/read${pageMaker.makeSearch(pageMaker.cri.page, 1)}&boardIdx=${board.boardIdx}">${board.title}</a></td>
+						<td><a href="/community/read${pageMaker.makeSearch(pageMaker.cri.page)}&boardIdx=${board.boardIdx}">${board.title}
+						<strong>[${board.replyCnt}]</strong></a></td>
 						<td>${board.writer}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regDate}" /></td>
 						<td><span class="badge bg-red">${board.viewCnt}</span></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<a href="/community/create?categoryIdx=1">글쓰기</a>
+			<a href="/community/create?categoryIdx=${pageMaker.cri.categoryIdx}">글쓰기</a>
 			
 			<div class="text-center">
 				<ul class="pagination">
 					<c:if test="${pageMaker.prev}">
 						<li> 
-							<a href="/community/community${pageMaker.makeSearch(pageMaker.startPage - 1, 1)}">&laquo;</a>
+							<a href="/community/community${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a>
 						</li>
 					</c:if>
 
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
 						<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-							<a href="/community/community${pageMaker.makeSearch(idx, 1)}">${idx}</a>
+							<a href="/community/community${pageMaker.makeSearch(idx)}">${idx}</a>
 						</li>
 					</c:forEach>
 
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li> 
-							<a href="/community/community${pageMaker.makeSearch(pageMaker.endPage + 1, 1)}">&raquo;</a>
+							<a href="/community/community${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a>
 						</li>
 					</c:if>
 

@@ -241,7 +241,6 @@
 	
 	
 $(document).ready(function(){
-	
 	var formObj = $("form[role='form']");
 	
 	// 글 수정
@@ -268,7 +267,6 @@ $(document).ready(function(){
 		var replytextObj = $("#newReplyText");
 		var replyer = replyerObj.val();
 		var replyText = replytextObj.val();
-
 		$.ajax({
 			type : 'post',
 			url : '/replies/',
@@ -296,9 +294,8 @@ $(document).ready(function(){
 
 	// 댓글 수정
 	$("#replyModBtn").on("click", function() {
-
 		var rno = $(".modal-title").html().trim();
-		var replytext = $("#replytext").val().trim();
+		var replyText = $("#replytext").val().trim();
 
 		$.ajax({
 			type : 'put',
@@ -308,13 +305,13 @@ $(document).ready(function(){
 				"X-HTTP-Method-Override" : "PUT"
 			},
 			data : JSON.stringify({
-				replytext : replytext
+				replyText : replyText
 			}),
 			dataType : 'text',
 			success : function(result) {
 				if (result == 'SUCCESS') {
 					alert("수정 되었습니다.");
-					getPage("/replies/" + bno + "/" + replyPage);
+					getPage("/replies/" + boardIdx + "/" + replyPage);
 				}
 			}
 		});
@@ -324,7 +321,6 @@ $(document).ready(function(){
 	$("#replyDelBtn").on("click",function(){
 		  var rno = $(".modal-title").html().trim();
 		  var replytext = $("#replytext").val().trim();
-		  
 		  $.ajax({
 				type:'delete',
 				url:'/replies/'+rno,
@@ -336,12 +332,11 @@ $(document).ready(function(){
 					console.log("result: " + result);
 					if(result == 'SUCCESS'){
 						alert("삭제 되었습니다.");
-						getPage("/replies/"+bno+"/"+replyPage );
+						getPage("/replies/" + boardIdx + "/" + replyPage );
 					}
 			}});
 	});	
 
-	
 	$(".timeline").on("click", ".replyLi", function(event){
 		var reply = $(this);
 		console.log("reply list clicked : ", reply.find('.timeline-body').text().trim());
@@ -351,16 +346,10 @@ $(document).ready(function(){
 		
 	});
 
-/* 	function goLogin(){
-		self.location ="/user/login";
-	} */
-	
-	
-	
-	
-	
-	
-	
+	function goLogin(){
+			self.location ="/user/login";
+	}
+
 	
 });		/* document.ready */
 </script>

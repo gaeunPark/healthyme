@@ -19,6 +19,7 @@
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 					<input type='hidden' name='searchType' value ="${cri.searchType}">
 				    <input type='hidden' name='keyword' value ="${cri.keyword}">
+				    <input type='hidden' name='categoryIdx' value ="${cri.categoryIdx}">
 					<div class="box-body">
 
 						<div class="form-group">
