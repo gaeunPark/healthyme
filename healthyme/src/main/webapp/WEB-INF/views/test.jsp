@@ -33,17 +33,16 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">음식정보<span class="sr-only">(current)</span></a></li>
-					<li><a href="#">트레이닝</a></li>
+					<li><a href="#">트레이닝<span class="sr-only">(current)</span></a></li>
 					<li><a href="#">커뮤니티</a></li>
-					<li><a href="#">SHOP</a></li>
 					
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<!-- <form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+				</form> -->
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">회원가입</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -63,6 +62,7 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+
 
 
 </body>

@@ -30,11 +30,6 @@ public class HomeController {
 		logger.info("홈 화면");
 		return "home";
 	}
-
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void main(Locale locale, Model model) throws Exception {
-	}
-
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(Model model) throws Exception {
 	}

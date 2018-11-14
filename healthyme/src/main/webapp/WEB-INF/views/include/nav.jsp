@@ -31,8 +31,11 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/">
-				<img alt="Brand" src="http://placehold.it/70x30">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/" 
+			style="padding-top: 0px; padding-bottom: 0px; padding-right: 0px; padding-left: 0px;
+			">
+				<img alt="Brand" src="${pageContext.request.contextPath}/resources/dist/img/logo.jpg" 
+				>
 			</a> <a class="navbar-brand" href="${pageContext.request.contextPath}/">헬미!</a>
 			<p class="navbar-text">Healthy me</p>
 		</div>
@@ -66,7 +69,6 @@
 							<li><a data-toggle="modal" href="/user/logout">로그아웃</a></li>
 						</ul></li>
 				</c:if>
-				<li><a href="#"> <span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></li>
 			</ul>
 		</div>
 
@@ -81,8 +83,8 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="true">커뮤니티</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=1">커뮤니티</a></li>
-						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=2">커뮤니티</a></li>
+						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=1">자유게시판</a></li>
+						<li><a href="${pageContext.request.contextPath}/community/community?categoryIdx=2">고민&질문</a></li>
 					</ul></li>
 				<li><a href="#">SHOP</a></li>
 			</ul>

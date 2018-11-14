@@ -43,7 +43,7 @@ footer {
 }
 /* -------- navi --------- */
 .navbar-default {
-    background-color: #f8f8f8;
+    background-color: #fff;
     border-color: #FD7902;
     font-size: 14px;
 }
@@ -86,4 +86,13 @@ footer {
 	margin: auto;
 }
 
+/* -------- community --------- */
+.create {
+	width:100%;
+	padding: 10px;
+}
+
+.createBtn {
+	float: right;
+}
 

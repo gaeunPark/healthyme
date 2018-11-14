@@ -183,39 +183,14 @@
 			datasets : [{
 				label : month + ' ctx',
 				data : Ntrdata ,
-				backgroundColor : [ 'rgba(255, 99, 132, 0.2)' ],
+				backgroundColor : ['yellowgreen', 'orange', 'yellow', 'skyblue', 'pink'],
 				borderWidth : 1
 			} ],
 		},
 		options : options
 	});
-
 	
 	
-	/* 	var options = {
-	 maintainAspectRatio : false,
-	 spanGaps : false,
-	 elements : {
-	 line : {
-	 tension : 0.000001
-	 }
-	 },
-	 plugins : {
-	 filler : {
-	 propagate : false
-	 }
-	 },
-	 scales : {
-	 xAxes : [ {
-	 ticks : {
-	 autoSkip : false,
-	 maxRotation : 0,
-	 beginAtZero : true
-	 }
-	 } ]
-	 }
-	 }; */
-	 
 	}); /* document */
 </script>
 

@@ -6,6 +6,7 @@ public class Criteria {
 	private String searchType;
 	private String keyword;
 	private int categoryIdx;
+	private String category;
 	
 	public Criteria() {
 		this.page = 1;
@@ -58,6 +59,13 @@ public class Criteria {
 
 	public void setCategoryIdx(int categoryIdx) {
 		this.categoryIdx = categoryIdx;
+	}
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
