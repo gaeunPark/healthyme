@@ -29,58 +29,55 @@
 </section>
 
 <script>
-	
+	var events = []
+	$.ajax({
+		type : 'post',
+		url : '/user/getWeightEvents/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		success : function(data) {
+			if(data != 'empty'){
+				$.each(data, function(key, val){
+					events.push({
+						title: val.weight,
+						start: val.date,
+				        backgroundColor: 'orange',
+				        borderColor: 'white',
+				        textColor: 'black',
+						flagCheckbox: true
+					})
+				})
+			}
+		}
+	});
+	$.ajax({
+		type : 'post',
+		url : '/user/getKcalEvents/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		success : function(data) {
+			if(data != 'empty'){
+				$.each(data, function(key, val){
+					events.push({
+						title: val.sumKcal,
+						start: val.date,
+				        backgroundColor: 'green',
+				        borderColor: 'white',
+				        textColor: 'white',
+						flagCheckbox: true
+					})
+				})
+			}
+		}
+	});
 	
 	$(document).ready(function() {
-		var events = []
-		
-		$.ajax({
-			type : 'post',
-			url : '/user/getWeightEvents/',
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : 'json',
-			success : function(data) {
-				if(data != 'empty'){
-					$.each(data, function(key, val){
-						events.push({
-							title: val.weight,
-							start: val.date,
-					        backgroundColor: 'orange',
-					        borderColor: 'white',
-					        textColor: 'black',
-							flagCheckbox: true
-						})
-					})
-				}
-			}
-		});
-		$.ajax({
-			type : 'post',
-			url : '/user/getKcalEvents/',
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : 'json',
-			success : function(data) {
-				if(data != 'empty'){
-					$.each(data, function(key, val){
-						events.push({
-							title: val.sumKcal,
-							start: val.date,
-					        backgroundColor: 'green',
-					        borderColor: 'white',
-					        textColor: 'white',
-							flagCheckbox: true
-						})
-					})
-				}
-			}
-		});
-		console.log(events);
 		$('#calendar').fullCalendar({
 			lang: "ko",
 			header: {
@@ -99,6 +96,7 @@
 			events: events,
 			timeFormat : "HH:mm"
 		}) /* fullCalendar */
+		
 	}); /* document.ready */
 	
 	

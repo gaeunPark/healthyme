@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.healthyme.domain.Criteria;
 import com.healthyme.domain.NutritionVO;
+import com.healthyme.domain.PageMaker;
 import com.healthyme.service.DietService;
 
 @Controller
@@ -35,18 +37,14 @@ public class NutritionController {
 	private static final Logger logger = LoggerFactory.getLogger(NutritionController.class);
 	public static int INDENT_FACTOR = 4;
 	
-	@Inject
-	private DietService ntrService;
-	
 	@RequestMapping(value = "/readNutri", method = RequestMethod.GET, produces = "text/json; charset=UTF-8")
 	public void readNutri(Model model) throws Exception {
 		logger.info("nutrition/readNutri 화면");
-
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public void ntrGET3(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("searchKey") String searchKey) throws Exception {
+			@ModelAttribute("searchKey") String searchKey, @ModelAttribute("pageNo") String pageNo) throws Exception {
 
 		logger.info("search");
 		request.setCharacterEncoding("utf-8");
@@ -61,8 +59,8 @@ public class NutritionController {
 		String parameter = "";
 		parameter = parameter + "&" + "desc_kor=" + URLEncoder.encode(searchKey, "UTF-8");
 		parameter = parameter + "&" + "bgn_year=" + "2017";
-		parameter = parameter + "&" + "numOfRows=" + "50";
-		int pageNo = 1;
+		parameter = parameter + "&" + "numOfRows=" + "30";
+//		int pageNo = 1;
 		parameter = parameter + "&" + "pageNo=" + URLEncoder.encode(pageNo + "", "UTF-8");
 
 		addr = addr + serviceKey + parameter;
@@ -86,9 +84,10 @@ public class NutritionController {
 		JSONObject JSONObj = XML.toJSONObject(buffer.toString());
 		out.println(JSONObj);
 
-		String JsonString = JSONObj.toString();
+//		String JsonString = JSONObj.toString();
 //		System.out.println(JsonString);
-
+		
+		//total 갯수
 		JSONObject jObject = JSONObj.getJSONObject("response");
 		JSONObject body = jObject.getJSONObject("body");
 		String totalCount = body.optString("totalCount");
@@ -97,8 +96,13 @@ public class NutritionController {
 	}
 
 	@RequestMapping(value = "/searchNutri", method = RequestMethod.GET, produces = "text/json; charset=UTF-8")
-	public void searchNutri(Model model) throws Exception {
+	public void searchNutri(@ModelAttribute Criteria cri, Model model) throws Exception {
 		logger.info("nutrition/searchNutri 화면");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(50);
+		model.addAttribute("pageMaker", pageMaker);	
 	}	
 
 

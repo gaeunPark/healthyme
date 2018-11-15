@@ -32,9 +32,32 @@
 			<tbody>
 			</tbody>
 		</table>
+		
+		<div class="text-center">
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev}">
+						<li> 
+							<a href="/community/community${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a>
+						</li>
+					</c:if>
 
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+							<a href="searchNutri?searchKey=<%=request.getParameter("searchKey")%>&pageNo=${idx}">${idx}</a>
+						</li>
+					</c:forEach>
+
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li> 
+							<a href="/community/community${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a>
+						</li>
+					</c:if>
+				</ul>
+			</div>
+		
 	</div>
-	'
+	
 
 	<!-- 영양소Modal -->
 	<div class="modal fade" id="nutriModal" tabindex="-1" role="dialog"
@@ -112,13 +135,14 @@
 
 
 	<script>
-	
 	$.ajax({
-		url : '/nutrition/search?searchKey=' + "<%=request.getParameter("searchKey")%>",
+		url : '/nutrition/search?searchKey=' + "<%=request.getParameter("searchKey")%>" + '&pageNo=1',
 		contentType: 'application/json',
 		type : 'get',
 		dataType : 'json',
 		success : function(data) {
+			var totalCount = data.response.body.totalCount;
+			console.log(totalCount);
 			var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
 			$(".food_total").html(myItem.length);
 			
@@ -148,6 +172,7 @@
 	});
 
 	$(document).ready(function() {
+		
 		$("#food_table").on("click", ".food_td a", function(){
 			var food = $(this).parent();
 			var fName = food.attr("data-fName");
@@ -181,6 +206,8 @@
 				}
 			});
 		});
+		
+		
 		
 		$("#nutriAddBtn").on("click", function(){
 			var foodName = $("#foodName").html();
@@ -220,10 +247,6 @@
 					alert("Error: " + errorThrown);
 				}
 			});
-		});
-		
-		$("#searchBtn").on("click", function(){
-			alert(searchKey);
 		});
 		
 		$('#searchKey').keyup(function() {

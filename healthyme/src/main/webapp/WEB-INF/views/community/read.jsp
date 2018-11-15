@@ -4,143 +4,147 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 <!-- Main content -->
-<section class="content">
-	<div class="row">
-		<!-- left column -->
-		<div class="col-md-12">
-			<!-- general form elements -->
-
-			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">read Posting Page</h3>
-				</div>
-				<!-- /.box-header -->
-				
-
-				<form role="form" method="post">
-					<input type='hidden' name='boardIdx' value="${boardVO.boardIdx}">
-					<input type='hidden' name='categoryIdx' value="${boardVO.categoryIdx}">
-					<input type='hidden' name='page' value ="${cri.page}">
-				    <input type='hidden' name='perPageNum' value ="${cri.perPageNum}">
-				    <input type='hidden' name='searchType' value ="${cri.searchType}">
-				    <input type='hidden' name='keyword' value ="${cri.keyword}">		
-				</form>				
-				
-				<div class="box-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input type="text"
-							name='title' class="form-control" value="${boardVO.title}"
-							readonly="readonly">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Content</label>
-						<textarea class="form-control" name="content" rows="3"
-							readonly="readonly">${boardVO.content}</textarea>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Writer</label> <input type="text"
-							name="writer" class="form-control" value="${boardVO.writer}"
-							readonly="readonly">
-					</div>
-				</div>
-				<!-- /.box-body -->
-				
-				<div class="box-footer">
-			
-				<c:if test="${login.userid == boardVO.writer}">
-					<button type="submit" class="btn btn-warning">Modify</button>
-					<button type="submit" class="btn btn-danger">REMOVE</button>
-				</c:if>
-					<button type="submit" class="btn btn-primary">LIST ALL</button>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-
-						<!-- ...426p. 댓글 등록에 필요한 div -->
-						<div class="box box-success">
-							<div class="box-header">
-								<h3 class="box-title">댓글쓰기</h3>
-							</div>
-							
-						  <c:if test="${not empty login}">
-							<div class="box-body">
-								<label for="exampleInputEmail1">Writer</label> 
-								<input	class="form-control" type="text" placeholder="USER ID"
-									id="newReplyWriter" value="${login.userid}" readonly="readonly">   
-								<label for="exampleInputEmail1">Reply Text</label> 
-								<input class="form-control" type="text"	placeholder="REPLY TEXT" id="newReplyText">
-							</div>
-
-							<!-- /.box-body -->
-							<div class="box-footer">
-								<button type="button" class="btn btn-primary" id="replyAddBtn">
-									입력</button>
-							</div>						  
-						  </c:if>
-						  
-						  <c:if test="${empty login}">
-						    <div class="box-body">
-						      <div><a href="javascript:goLogin();" >Login Please</a></div>
-						    </div>
-						  </c:if>	
-						</div>
-
-						<!-- ...426p. 댓글 목록과 페이징 처리에 필요한 div -->
-						<!-- The time line -->
-						<ul class="timeline w3-ul w3-border">
-							<!-- timeline time label -->
-							<li class="time-label" id="repliesDiv">
-								<span class="bg-green"> 
-									Replies List
-									<!-- ...510p.댓글목록갯수. -->  
-									<small id='reply_countSmall'> [ ${boardVO.replyCnt} ] </small> 
-								</span>
-							</li>
-						</ul>
-
-						<div class='text-center'>
-							<ul id="pagination" class="pagination pagination-sm no-margin ">
-							</ul>
-						</div>
-
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
-				
-
-				<!-- ...442p. 수정과 삭제를 위한 Modal 창 -->
-				<div id="modifyModal" class="modal modal-primary fade" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"></h4>
-							</div>
-							<div class="modal-body" data-rno>
-								<p>
-									<input type="text" id="replytext" class="form-control">
-								</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
-								<button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-							
-				
-			</div>
-			<!-- /.box -->
-		</div>
-		<!--/.col (left) -->
+<section>
+	<div class="menu">
+		<h3>커뮤니티</h3>
 	</div>
-	<!-- /.row -->
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<form role="form" method="post">
+						<input type='hidden' name='boardIdx' value="${boardVO.boardIdx}">
+						<input type='hidden' name='categoryIdx'
+							value="${boardVO.categoryIdx}"> <input type='hidden'
+							name='page' value="${cri.page}"> <input type='hidden'
+							name='perPageNum' value="${cri.perPageNum}"> <input
+							type='hidden' name='searchType' value="${cri.searchType}">
+						<input type='hidden' name='keyword' value="${cri.keyword}">
+					</form>
+
+					<div class="box-body">
+						<div class="form-group">
+							<input type="text"
+								name='title' value="${boardVO.title}"
+								readonly="readonly">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="content" rows="3"
+								readonly="readonly">${boardVO.content}</textarea>
+						</div>
+						<div class="form-group">
+							<input type="text"
+								name="writer" class="form-control" value="${boardVO.writer}"
+								readonly="readonly">
+						</div>
+					</div>
+					
+					<table>
+						<tr>
+							<th>제목</th>
+						</tr>
+						<tr>
+							<td>작성자</td>
+							<td>조회수</td>
+							<td>날짜</td>
+						</tr>
+						<tr>내용</tr>
+					</table>
+
+					<div class="box-footer">
+
+						<c:if test="${login.userid == boardVO.writer}">
+							<button type="submit" class="btn btn-default boardModify">Modify</button>
+							<button type="submit" class="btn btn-default boardRemove">REMOVE</button>
+						</c:if>
+						<button type="submit" class="btn btn-default listAll">LIST ALL</button>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- ...426p. 댓글 등록에 필요한 div -->
+							<div class="box box-success">
+								<div class="box-header">
+									<h4 class="box-title">댓글쓰기</h4>
+								</div>
+
+								<c:if test="${not empty login}">
+									<div style="background:#f7f7f7; padding: 3% 5%; ">
+										 <input type="hidden" id="newReplyWriter" value="${login.userid}"> 
+										<input class="form-control" type="text"
+										placeholder="댓글을 입력해주세요" id="newReplyText"
+										style="display:inline-block; width: 80%;">		
+										<a style="float: right; width: auto;" type="button" class="btn btn-default" id="replyAddBtn">
+										입력</a>		
+									</div>
+								</c:if>
+									
+								<c:if test="${empty login}">
+									<div class="box-body">
+										<div>
+											<a href="javascript:goLogin();">Login Please</a>
+										</div>
+									</div>
+								</c:if>
+							</div>
+
+							<!-- ...426p. 댓글 목록과 페이징 처리에 필요한 div -->
+							<!-- The time line -->
+							<ul class="timeline w3-ul w3-border">
+								<!-- timeline time label -->
+								<li class="time-label" id="repliesDiv"><span
+									class="bg-green"> 댓글 <!-- 댓글목록갯수. -->
+										<small id='reply_countSmall'> [ ${boardVO.replyCnt} ]
+									</small>
+								</span></li>
+							</ul>
+
+							<div class='text-center'>
+								<ul id="pagination" class="pagination pagination-sm no-margin ">
+								</ul>
+							</div>
+
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+
+					<!-- ...442p. 수정과 삭제를 위한 Modal 창 -->
+					<div id="modifyModal" class="modal modal-primary fade"
+						role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"></h4>
+								</div>
+								<div class="modal-body" data-rno>
+									<p>
+										<input type="text" id="replytext" class="form-control">
+									</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
+									<button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- /.box -->
+			</div>
+			<!--/.col (left) -->
+		</div>
+		<!-- /.row -->
+	</div>
 </section>
 <!-- /.content -->
 
@@ -244,18 +248,18 @@ $(document).ready(function(){
 	var formObj = $("form[role='form']");
 	
 	// 글 수정
-	$(".btn-warning").on("click", function(){
+	$(".boardModify").on("click", function(){
 		formObj.attr("action", "/community/modify");
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
 	// 글 삭제
-	$(".btn-danger").on("click", function(){
+	$(".boardRemove").on("click", function(){
 		formObj.attr("action", "/community/delete");
 		formObj.submit();
 	});
 	// 목록가기
-	$(".btn-primary").on("click", function(){
+	$(".listAll").on("click", function(){
 		formObj.attr("method", "get");
 		formObj.attr("action", "/community/community");
 		formObj.submit();
@@ -267,6 +271,7 @@ $(document).ready(function(){
 		var replytextObj = $("#newReplyText");
 		var replyer = replyerObj.val();
 		var replyText = replytextObj.val();
+		console.log(replyer);
 		$.ajax({
 			type : 'post',
 			url : '/replies/',
@@ -285,7 +290,6 @@ $(document).ready(function(){
 					alert("등록 되었습니다.");
 					replyPage = 1;
 					getPage("/replies/" + boardIdx + "/" + replyPage);
-					replyerObj.val("");
 					replytextObj.val("");
 				}
 			}

@@ -33,6 +33,9 @@ public class HomeController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(Model model) throws Exception {
 	}
+	@RequestMapping(value = "/test2", method = RequestMethod.GET)
+	public void test2(Model model) throws Exception {
+	}
 
 
 }
