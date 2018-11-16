@@ -124,7 +124,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<c:if test="${!empty sessionScope.username}">
+					<c:if test="${!empty login.username}">
 					<button type="submit" id="nutriAddBtn" class="btn btn-primary">추가하기</button>
 					</c:if>
 				</div>
@@ -142,9 +142,8 @@
 		dataType : 'json',
 		success : function(data) {
 			var totalCount = data.response.body.totalCount;
-			console.log(totalCount);
 			var myItem = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
-			$(".food_total").html(myItem.length);
+			$(".food_total").html(totalCount);
 			
 			for (var i = 0; i < myItem.length; i++) {
 				var ntr = [];
@@ -176,7 +175,6 @@
 		$("#food_table").on("click", ".food_td a", function(){
 			var food = $(this).parent();
 			var fName = food.attr("data-fName");
-
 			$(".modal-title").html(fName);
 			$.ajax({
 				url : '/nutrition/search?searchKey=' + fName,

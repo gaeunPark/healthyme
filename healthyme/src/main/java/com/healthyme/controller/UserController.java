@@ -64,8 +64,8 @@ public class UserController {
 
 		ResponseEntity<String> entity = null;
 		try {
-			int userIdx = (Integer) session.getAttribute("userIdx");
-			dietVO.setUserIdx(userIdx);
+//			int userIdx = (Integer) session.getAttribute("userIdx");
+			dietVO.setUserIdx(1);
 			dietVO.setTimeslot(1);
 
 			dietService.insertNutrition(dietVO);

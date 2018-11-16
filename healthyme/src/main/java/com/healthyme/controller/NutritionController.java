@@ -1,5 +1,7 @@
 package com.healthyme.controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -60,7 +62,10 @@ public class NutritionController {
 		parameter = parameter + "&" + "desc_kor=" + URLEncoder.encode(searchKey, "UTF-8");
 		parameter = parameter + "&" + "bgn_year=" + "2017";
 		parameter = parameter + "&" + "numOfRows=" + "30";
-//		int pageNo = 1;
+		pageNo = "1";
+//		if (pageNo == null) {
+//			pageNo = "1";
+//		}
 		parameter = parameter + "&" + "pageNo=" + URLEncoder.encode(pageNo + "", "UTF-8");
 
 		addr = addr + serviceKey + parameter;
