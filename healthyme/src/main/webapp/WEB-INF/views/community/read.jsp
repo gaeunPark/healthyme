@@ -25,10 +25,11 @@
 
 					<div class="box-body">
 						<div class="form-group">
-							<input type="text"
+							<input type="text" class="form-control"
 								name='title' value="${boardVO.title}"
 								readonly="readonly">
 						</div>
+						<hr>
 						<div class="form-group">
 							<textarea class="form-control" name="content" rows="3"
 								readonly="readonly">${boardVO.content}</textarea>
@@ -40,7 +41,7 @@
 						</div>
 					</div>
 					
-					<table>
+					<!-- <table>
 						<tr>
 							<th>제목</th>
 						</tr>
@@ -50,7 +51,7 @@
 							<td>날짜</td>
 						</tr>
 						<tr>내용</tr>
-					</table>
+					</table> -->
 
 					<div class="box-footer">
 

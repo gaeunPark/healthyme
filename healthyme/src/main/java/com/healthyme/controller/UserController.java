@@ -96,6 +96,8 @@ public class UserController {
 		List<UserDietVO> dietLists = dietService.selectDietList(userIdx, date);
 		NutritionVO sumNutri = dietService.sumNutri(userIdx, date);
 		String weight = userService.selectDayWeight(userIdx, date);
+		String goalWeight = userService.getUser(userIdx).getGoalWeight();
+		
 
 		model.addAttribute("dietLists", dietLists);
 		model.addAttribute("sumNutri", sumNutri);

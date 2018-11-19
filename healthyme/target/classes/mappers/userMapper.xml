@@ -12,7 +12,7 @@
 	</insert>
 
 	<select id="loginCheck" resultType="UserVO">
-		select user_idx, userid, username
+		select user_idx, userid, username, goalWeight
 		from user
 		where userid = #{userid} AND userpw = #{userpw}
 	</select>

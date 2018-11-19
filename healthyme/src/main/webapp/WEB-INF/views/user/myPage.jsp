@@ -18,7 +18,7 @@
 						<td>
 							<input type="text" name="weight" value="${weight}" id="weight">
 							<input type="submit" id="addWeightBtn" value="저장"></td>
-						<td style="text-align: right;">목표체중 앞으로 -kg</td>
+						<td style="text-align: right;">목표체중 앞으로 -${login.goalWeight}kg</td>
 					</tr>
 					<tr>
 						<th>식단칼로리</th>
@@ -57,7 +57,7 @@
 					</tr>
 				</table>
 
-				<div role="tabpanel">
+				<%-- <div role="tabpanel">
 
 					<!-- Nav tabs -->
 					<div class="nav nav-tabs" role="tablist">
@@ -142,11 +142,22 @@
 								</tr>
 							</table>
 						</div>
+					</div> --%>
+					
+					<div>
+						<c:forEach var="dietList" items="${dietLists}">
+							<c:if test="${dietList.timeslot == 1}">
+								<tr>
+									<td>${dietList.foodName}</td>
+									<td>${dietList.kcal}</td>
+								</tr>
+							</c:if>
+						</c:forEach>
 					</div>
+					
 					<div>
 						<a href="${pageContext.request.contextPath}/user/calender">달력</a>
 					</div>
-
 
 
 				</div>
